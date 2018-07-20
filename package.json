@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "airbnb-browser-shims": "^3.0.0",
     "axios": "^0.18.0",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -16,11 +22,13 @@
     "start": "webpack-dev-server --mode development",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "lint": "./node_modules/.bin/eslint src/**/*.js*",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-preset-airbnb": "^2.5.2",
     "babel-preset-env": "^1.7.0",
     "cz-conventional-changelog": "^2.1.0",
     "webpack": "^4.16.0",
