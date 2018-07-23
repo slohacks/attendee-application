@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import 'airbnb-browser-shims';
 
 import reducers from './reducers';
 import SignUp from './containers/SignUp';
+import Questionaire from './containers/Questionaire';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -15,7 +15,8 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/" component={SignUp} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/questionaire" component={Questionaire} />
         </Switch>
       </div>
     </BrowserRouter>
