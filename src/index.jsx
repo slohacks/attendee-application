@@ -20,8 +20,8 @@ ReactDOM.render(
         <Switch>
           <Route path="/sign-up" component={SignUp} />
           <Route path="/questionaire" component={Questionaire} />
-          <Route path="/login" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
         </Switch>
       </div>
     </BrowserRouter>

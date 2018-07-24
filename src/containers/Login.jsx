@@ -37,13 +37,13 @@ class Login extends Component {
             label="Email"
             name="email"
             type="text"
-            component={this.renderField}
+            component={Login.renderField}
           />
           <Field
             label="Enter a password (8 or more characters)"
             name="password"
             type="password"
-            component={this.renderField}
+            component={Login.renderField}
           />
           <button type="submit">
           Submit
