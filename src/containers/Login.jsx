@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../actions/index';
 
-
 class Login extends Component {
   onSubmit(values) {
     this.props.login(values); // eslint-disable-line react/destructuring-assignment
