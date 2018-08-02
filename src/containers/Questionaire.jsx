@@ -12,5 +12,4 @@ const Questionaire = () => (
   </div>
 );
 
-
 export default requireAuth(Questionaire);
