@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  authenticated: '',
+  authenticated: 'jumer',
   errorMessage: '',
 };
 
