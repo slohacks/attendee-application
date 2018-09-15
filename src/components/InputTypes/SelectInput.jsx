@@ -9,9 +9,9 @@ const SelectInput = ({
   meta: { touched, error },
 }) => {
   function renderOptions() {
-    return options.map((option) => { // eslint-disable-line arrow-body-style
+    return Object.keys(options).map((option) => { // eslint-disable-line arrow-body-style
       return (
-        <option key={option} value={option}>
+        <option key={option} value={options[option]}>
           {option}
         </option>
       );

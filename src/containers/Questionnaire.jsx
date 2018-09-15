@@ -5,7 +5,8 @@ import requireAuth from '../components/requireAuth';
 import ProgressBar from '../components/Questionnaire/ProgressBar';
 import PersonalInfo from '../components/Questionnaire/PersonalInfo';
 import BasicInfo from '../components/Questionnaire/BasicInfo';
-
+import ShortAnswer from '../components/Questionnaire/ShortAnswer';
+import Statistics from '../components/Questionnaire/Statistics';
 
 class Questionaire extends Component {
   constructor() {
@@ -20,6 +21,10 @@ class Questionaire extends Component {
         return <PersonalInfo nextPage={this.renderNextPage} section={questionSections[id]} />;
       case '1':
         return <BasicInfo nextPage={this.renderNextPage} section={questionSections[id]} />;
+      case '2':
+        return <ShortAnswer nextPage={this.renderNextPage} section={questionSections[id]} />;
+      case '3':
+        return <Statistics nextPage={this.renderNextPage} section={questionSections[id]} />;
       default:
         return (
           <h1>

@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
-class BasicInfo extends Component {
+class ShortAnswer extends Component {
   onSubmit(formProps) {
     const { nextPage, submitResponse } = this.props; // eslint-disable-line no-shadow
     submitResponse(formProps);
@@ -30,7 +30,7 @@ class BasicInfo extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          {BasicInfo.renderInputs(questions)}
+          {ShortAnswer.renderInputs(questions)}
           <button type="submit">
             Submit!
           </button>
@@ -40,7 +40,7 @@ class BasicInfo extends Component {
   }
 }
 
-BasicInfo.propTypes = {
+ShortAnswer.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   section: PropTypes.shape({}).isRequired,
   nextPage: PropTypes.func.isRequired,
@@ -48,8 +48,8 @@ BasicInfo.propTypes = {
 };
 
 export default reduxForm({
-  form: 'Basic Info',
+  form: 'Short Answer',
   destroyOnUnmount: false,
 })(
-  connect(null, { submitResponse })(BasicInfo),
+  connect(null, { submitResponse })(ShortAnswer),
 );
