@@ -1,0 +1,149 @@
+{
+  "body": 
+  [
+    {
+      "id": 0,
+      "name": "Personal Info",
+      "questions":
+      [
+        {         
+          "id": "name",
+          "title": "What is your name?",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "email",
+          "title": "What is your email?",
+          "inputType": "textInput",
+          "validate": "email"
+        },
+        {
+          "id": "phoneNumber",
+          "title": "What is your phone number?",
+          "inputType": "textInput",
+          "validate": "phoneNumber"
+        },
+        {          
+          "id": "age",
+          "title": "Will you at least be 18 years old before February 1, 2019",
+          "inputType": "dropDown",
+          "options": { 
+            "Yes": true, 
+            "No": false 
+          }
+        },
+        {          
+          "id": "college",
+          "title": "What college are you studying at?",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "major",
+          "title": "What major are you currently studying?",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "city",
+          "title": "Which city will you be traveling from?",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "diet",
+          "title": "Dietary Restrictions",
+          "inputType": "dropDown",
+          "options": {
+            "None": 0, 
+            "Kosher": 1, 
+            "Gluten Free": 2, 
+            "Vegan": 3, 
+            "Vegetarian": 4
+          }
+        },
+        {          
+          "id": "allergies",
+          "title": "Do you have any allergies?",
+          "inputType": "textInput"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Basic Info",
+      "questions":
+      [
+        {         
+          "id": "github",
+          "title": "What is your Github username?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
+          "id": "linkedin",
+          "title": "What is your linkedin?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
+          "id": "website",
+          "title": "What is your personal website?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
+          "id": "resume",
+          "title": "Upload your resume!",
+          "inputType": "fileUpload",
+          "validate": "none"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Short Answers",
+      "questions":
+      [
+        {         
+          "id": "project",
+          "title": "Tell us about one of the projects you're most proud of. Doesn't have to be CS-related!",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "challenge",
+          "title": "What's a challenging situation you've run into, and how did you go about solving it?",
+          "inputType": "textInput"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Statistics Info",
+      "questions":
+      [
+        {         
+          "id": "gender",
+          "title": "What's your gender?",
+          "inputType": "dropDown",
+          "options": {
+            "Female": 0, 
+            "Male": 1, 
+            "Other": 2
+          }
+        },
+        {          
+          "id": "ethnicity",
+          "title": "What's your ethnicity?",
+          "inputType": "dropDown",
+          "options": {
+            "American Indian or Alaska Native": 0, 
+            "Asian": 1, 
+            "Black or African American": 2, 
+            "Hispanic or Latino": 3, 
+            "Native Hawaiian or Other Pacific Islander": 4,
+            "White": 5,
+            "Other": 6
+          }
+        }
+      ]
+    }
+  ]
+}
