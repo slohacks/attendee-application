@@ -29,7 +29,7 @@
           "inputType": "dropDown",
           "options": { 
             "Yes": true, 
-            "No": false 
+            "No": false
           }
         },
         {          
@@ -122,17 +122,18 @@
         {         
           "id": "gender",
           "title": "What's your gender?",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "options": {
             "Female": 0, 
-            "Male": 1, 
-            "Other": 2
+            "Male": 1,
+            "I prefer not to answer": 2, 
+            "Other": 3
           }
         },
         {          
           "id": "ethnicity",
           "title": "What's your ethnicity?",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "options": {
             "American Indian or Alaska Native": 0, 
             "Asian": 1, 

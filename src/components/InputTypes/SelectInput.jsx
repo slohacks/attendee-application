@@ -1,14 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const SelectInput = ({
-  input,
-  label,
-  options,
-  disabled,
-  meta: { touched, error },
-}) => {
-  function renderOptions() {
+class SelectInput extends Component {
+  renderOptions() {
+    const { options } = this.props;
     return Object.keys(options).map((option) => { // eslint-disable-line arrow-body-style
       return (
         <option key={option} value={options[option]}>
@@ -18,26 +13,34 @@ const SelectInput = ({
     });
   }
 
-  return (
-    <div>
-      <label htmlFor="value">
-        {label}
-      </label>
-      <select {...input} disabled={disabled}>
-        <option />
-        {renderOptions()}
-      </select>
-      <div className="error-message">
-        {touched ? error : ''}
+  render() {
+    const {
+      input,
+      label,
+      disabled,
+      meta: { touched, error },
+    } = this.props;
+    return (
+      <div>
+        <label htmlFor="value">
+          {label}
+        </label>
+        <select {...input} disabled={disabled}>
+          <option />
+          {this.renderOptions()}
+        </select>
+        <div className="error-message">
+          {touched ? error : ''}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 SelectInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool.isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
