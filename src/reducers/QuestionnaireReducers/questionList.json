@@ -104,7 +104,7 @@
       [
         {         
           "id": "project",
-          "title": "Tell us about one of the projects you're most proud of. Doesn't have to be CS-related!",
+          "title": "Tell us about one of the projects you're most proud of. It Doesn't have to be CS-related!",
           "inputType": "textInput"
         },
         {          
