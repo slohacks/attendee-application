@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field, Fields } from 'redux-form';
 import TextInput from '../InputTypes/TextInput';
 import SelectInput from '../InputTypes/SelectInput';
+import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -67,6 +68,21 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={SelectInput}
+          />
+        );
+      case 'multiSelect':
+        return (
+          <Fields
+            label={title}
+            disabled={disabled}
+            options={question.options}
+            names={[
+              id,
+              `other_${id}`,
+            ]}
+            mainField={id}
+            otherField={`other_${id}`}
+            component={MultiSelect}
           />
         );
       case 'fileUpload':

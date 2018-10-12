@@ -40,6 +40,31 @@ class Statistics extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+  if (!values.gender) {
+    errors.gender = 'Required';
+  }
+
+  if (values.gender === '3') {
+    if (!values.other_gender) {
+      errors.other_gender = 'Cannot be empty';
+    }
+  }
+
+  if (!values.ethnicity) {
+    errors.ethnicity = 'Required';
+  }
+
+  if (values.ethnicity === '6') {
+    if (!values.other_ethnicity) {
+      errors.other_ethnicity = 'Cannot be empty';
+    }
+  }
+
+  return errors;
+}
+
 Statistics.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   section: PropTypes.shape({}).isRequired,
@@ -49,6 +74,7 @@ Statistics.propTypes = {
 
 export default reduxForm({
   form: 'Statistics',
+  validate,
   destroyOnUnmount: false,
 })(
   connect(null, { submitResponse })(Statistics),
