@@ -3,7 +3,8 @@
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
     "no-class-assign": "off",
-    "jsx-a11y/label-has-for": "off"
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   },
   "globals": {
     "document": true
