@@ -10,7 +10,7 @@ class FileInput extends Component {
   }
 
   onChange(e) {
-    const { input: { onChange }, saveFile } = this.props; // eslint-disable-line no-shadow
+    const { input: { onChange }, saveFile } = this.props;
     onChange(e.target.files[0]);
     saveFile(e.target.files[0].name);
   }

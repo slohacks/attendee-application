@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import axios from 'axios';
 import InputType from './InputType';
 import ProgressBar from './ProgressBar';
 
 class Submission extends Component {
   submitApplication(form) { // eslint-disable-line class-methods-use-this
     console.log(form);
+    axios.post('http://127.0.0.1:8000/applications/', form)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   renderSections() {
     const { questionSections } = this.props;
-    return questionSections.map((section) => { // eslint-disable-line arrow-body-style
+    return questionSections.map((section) => {
       return (
         <div key={section.name}>
           <h2>

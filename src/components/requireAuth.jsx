@@ -13,9 +13,11 @@ export default (ChildComponent) => {
     }
 
     shouldNavigateAway() {
-      const { auth } = this.props;
+      const { accessToken, userToken, expiresAt } = this.props;
       const { history } = this.props;
-      if (!auth) {
+      if (!accessToken || !userToken) {
+        history.push('/login');
+      } else if (new Date().getTime() > expiresAt) {
         history.push('/login');
       }
     }
@@ -25,11 +27,16 @@ export default (ChildComponent) => {
     }
   }
   function mapStateToProps(state) {
-    return { auth: state.auth.authenticated };
+    return {
+      userToken: state.auth.userToken,
+      accessToken: state.auth.accessToken,
+      expiresAt: state.auth.expiresAt,
+    };
   }
 
   ComposedComponent.propTypes = {
-    auth: PropTypes.string.isRequired,
+    userToken: PropTypes.string.isRequired,
+    accessToken: PropTypes.string.isRequired,
     history: PropTypes.shape().isRequired,
   };
 
