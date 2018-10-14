@@ -6,7 +6,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import reducers from './reducers';
 import SignUp from './containers/SignUp';
-import Questionaire from './containers/Questionaire';
+import Questionnaire from './containers/Questionnaire';
+import Login from './containers/Login';
+import Dashboard from './containers/Dashboard';
+import Submission from './components/Questionnaire/Submission';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -16,7 +19,10 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/questionaire" component={Questionaire} />
+          <Route path="/questionnaire/:id" component={Questionnaire} />
+          <Route path="/submission" component={Submission} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
         </Switch>
       </div>
     </BrowserRouter>
