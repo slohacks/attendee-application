@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 class ProgressBar extends Component {
   renderProgressLinks() {
     const { questionSections } = this.props;
-    return questionSections.map((section) => { // eslint-disable-line arrow-body-style
+    return questionSections.map((section) => {
       return (
         <Link key={section.id} to={`/questionnaire/${section.id}`}>
           {section.name}

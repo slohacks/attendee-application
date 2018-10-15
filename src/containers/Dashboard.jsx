@@ -7,7 +7,7 @@ const Dashboard = () => (
     <button type="button">
       Logout
     </button>
-    <Link to="/questionaire">
+    <Link to="/questionnaire/0">
       Start application
     </Link>
   </div>
