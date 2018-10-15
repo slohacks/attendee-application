@@ -11,6 +11,8 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case HANDLE_AUTHENTICATION: {
       const tokenExpiration = JSON.stringify((action.payload.expiresIn * 1000) + new Date().getTime()); // eslint-disable-line max-len
+      console.log(action.payload);
+
       return {
         ...state,
         accessToken: action.payload.accessToken,

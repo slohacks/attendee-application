@@ -8,13 +8,19 @@ import ProgressBar from './ProgressBar';
 
 class Submission extends Component {
   submitApplication(form) { // eslint-disable-line class-methods-use-this
+    const { accessToken } = this.props;
+    console.log(accessToken);
     console.log(form);
-    axios.post('http://127.0.0.1:8000/applications/', form)
+    axios.post('http://127.0.0.1:8000/applications/', form, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.message);
+        console.log(error.response);
       });
   }
 
@@ -54,13 +60,18 @@ class Submission extends Component {
 }
 
 function mapStateToProps(state) {
-  return { questionSections: state.questions.body, responseValues: state.responses };
+  return {
+    questionSections: state.questions.body,
+    responseValues: state.responses,
+    accessToken: state.auth.accessToken,
+  };
 }
 
 Submission.propTypes = {
   invalid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  accessToken: PropTypes.string.isRequired,
 };
 
 Submission = reduxForm({
