@@ -7,13 +7,13 @@ import { submitResponse } from '../../actions/index';
 
 class ShortAnswer extends Component {
   onSubmit(formProps) {
-    const { nextPage, submitResponse } = this.props;
+    const { nextPage, submitResponse } = this.props; // eslint-disable-line no-shadow
     submitResponse(formProps);
     nextPage();
   }
 
   static renderInputs(questions) {
-    return questions.map((question) => {
+    return questions.map((question) => { // eslint-disable-line arrow-body-style
       return (
         <InputType
           key={question.id}

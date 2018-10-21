@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { login } from '../actions/index';
+import { signUp } from '../actions/index';
+import reCAPTCHA from '../components/reCaptcha';
 
-class Login extends Component {
+class SignUp extends Component {
   onSubmit(values) {
-    this.props.login(values); // eslint-disable-line react/destructuring-assignment
+    this.props.signUp(values); // eslint-disable-line react/destructuring-assignment
   }
 
   static renderField(field) {
@@ -21,6 +21,7 @@ class Login extends Component {
             {...field.input}
           />
         </label>
+
         <div className="input-error">
           {field.meta.touched ? field.meta.error : ''}
         </div>
@@ -31,36 +32,30 @@ class Login extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="Email"
-            name="email"
-            type="text"
-            component={Login.renderField}
-          />
-          <Field
-            label="Enter a password (8 or more characters)"
-            name="password"
-            type="password"
-            component={Login.renderField}
-          />
-          <button type="submit">
-          Submit
-          </button>
-
-        </form>
-        <div>
-          <Link to="placeholder">
-          Forgot Password
-          </Link>
-        </div>
-        <div>
-          <Link to="/signup">
-            Create Account
-          </Link>
-        </div>
-      </div>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Field
+          label="Email"
+          name="email"
+          type="text"
+          component={SignUp.renderField}
+        />
+        <Field
+          label="Enter a password (8 or more characters)"
+          name="password"
+          type="password"
+          component={SignUp.renderField}
+        />
+        <Field
+          name="recaptcha"
+          component={reCAPTCHA}
+        />
+        <button
+          type="submit"
+          className=""
+        >
+        Submit
+        </button>
+      </form>
     );
   }
 }
@@ -68,6 +63,8 @@ class Login extends Component {
 function validate(values) {
   const errors = {};
   const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+  // Validate the inputs from 'values'
   if (!values.email) {
     errors.email = 'Email required';
   } else if (!re.test(values.email)) {
@@ -77,20 +74,24 @@ function validate(values) {
   if (!values.password) {
     errors.password = 'Password required';
   } else if (values.password.length < 8) {
-    errors.password = 'Invalid password';
+    errors.password = 'Password must be 8 characters or more';
+  }
+
+  if (!values.recaptcha) {
+    errors.recaptcha = 'reCAPTCHA must be checked';
   }
 
   return errors;
 }
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
+SignUp.propTypes = {
+  signUp: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
   validate,
-  form: 'LoginForm',
+  form: 'SignUpForm',
 })(
-  connect(null, { login })(Login),
+  connect(null, { signUp })(SignUp),
 );

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class SelectInput extends Component {
   renderOptions() {
     const { options } = this.props;
-    return Object.keys(options).map((option) => {
+    return Object.keys(options).map((option) => { // eslint-disable-line arrow-body-style
       return (
         <option key={option} value={options[option]}>
           {option}
