@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import InputType from './InputType';
 import ProgressBar from './ProgressBar';
+import { submitApp } from '../../actions/index';
 
 class Submission extends Component {
   submitApplication(form) { // eslint-disable-line class-methods-use-this
-    console.log(form);
+    this.props.submitApp(form);
   }
 
   renderSections() {
@@ -59,7 +60,7 @@ Submission = reduxForm({
   form: 'Submission Form',
   enableReinitialize: true,
 })(
-  connect(mapStateToProps, null)(Submission),
+  connect(mapStateToProps, { submitApp })(Submission),
 );
 
 Submission = connect(

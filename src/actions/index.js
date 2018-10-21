@@ -5,6 +5,8 @@ import
   SAVE_RESPONSE,
   FILE_NAME,
 } from './types';
+import firebase from 'firebase';
+import database from '../config/firebase';
 
 export function signUp(values) {
   return {
@@ -25,6 +27,12 @@ export function submitResponse(formProps) {
     type: SAVE_RESPONSE,
     payload: formProps,
   };
+}
+
+export function submitApp(form) {
+  return (dispatch) => {
+    database.ref().push(form);
+  }
 }
 
 export function saveFile(fileName) {

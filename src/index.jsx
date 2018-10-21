@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ReduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
 import SignUp from './containers/SignUp';
@@ -11,7 +12,7 @@ import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
