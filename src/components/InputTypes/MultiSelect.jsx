@@ -8,7 +8,7 @@ const MultiSelect = (props) => {
   const { [otherField]: { input: otherInput, meta: otherMeta } } = props;
 
   function renderOptions() {
-    return Object.keys(options).map((option) => { // eslint-disable-line arrow-body-style
+    return Object.keys(options).map((option) => {
       return (
         <option key={option} value={options[option]}>
           {option}
