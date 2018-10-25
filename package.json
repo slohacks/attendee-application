@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "airbnb-browser-shims": "^3.0.0",
-    "auth0-js": "^9.8.0",
     "axios": "^0.18.0",
     "eslint": "^5.1.0",
     "eslint-config-airbnb": "^17.0.0",

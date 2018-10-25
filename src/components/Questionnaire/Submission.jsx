@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import axios from 'axios';
 import InputType from './InputType';
 import ProgressBar from './ProgressBar';
 import { submitApp } from '../../actions/index';

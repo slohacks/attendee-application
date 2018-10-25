@@ -4,7 +4,6 @@ import
   LOGIN,
   SAVE_RESPONSE,
   FILE_NAME,
-  HANDLE_AUTHENTICATION,
 } from './types';
 import firebase from '../config/firebase';
 

@@ -6,24 +6,24 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
+import SignUp from './containers/SignUp';
 import Questionnaire from './containers/Questionnaire';
 import Login from './containers/Login';
-import Callback from './containers/Callback';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware}>
+  <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
         <Switch>
+          <Route path="/sign-up" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/login" component={Login} />
-          <Route path="/callback" component={Callback} />
         </Switch>
       </div>
     </BrowserRouter>
