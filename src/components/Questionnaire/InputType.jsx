@@ -5,6 +5,7 @@ import TextInput from '../InputTypes/TextInput';
 import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
+import ListSelect from '../InputTypes/ListSelect';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -83,6 +84,17 @@ const InputType = (props) => {
             mainField={id}
             otherField={`other_${id}`}
             component={MultiSelect}
+          />
+        );
+      case 'listSelect':
+        return (
+          <Field
+            label={title}
+            validate={[required]}
+            name={id}
+            options={question.options}
+            disabled={disabled}
+            component={ListSelect}
           />
         );
       case 'fileUpload':
