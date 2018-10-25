@@ -5,17 +5,12 @@ import { reduxForm } from 'redux-form';
 import axios from 'axios';
 import InputType from './InputType';
 import ProgressBar from './ProgressBar';
+import { submitApp } from '../../actions/index';
 
 class Submission extends Component {
-  submitApplication(form) { // eslint-disable-line class-methods-use-this
-    console.log(form);
-    axios.post('http://127.0.0.1:8000/applications/', form)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  submitApplication(form) {
+    const { submitApp } = this.props; // eslint-disable-line no-shadow
+    submitApp(form);
   }
 
   renderSections() {
@@ -61,13 +56,14 @@ Submission.propTypes = {
   invalid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  submitApp: PropTypes.func.isRequired,
 };
 
 Submission = reduxForm({
   form: 'Submission Form',
   enableReinitialize: true,
 })(
-  connect(mapStateToProps, null)(Submission),
+  connect(mapStateToProps, { submitApp })(Submission),
 );
 
 Submission = connect(

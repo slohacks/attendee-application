@@ -12,18 +12,7 @@ import Callback from './containers/Callback';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 
-const INITIALIZE_STATE = {
-  auth: {
-    accessToken: localStorage.getItem('access_token'),
-    userToken: localStorage.getItem('id_token'),
-    expiresAt: localStorage.getItem('expires_at'),
-  },
-};
-
-const createStoreWithMiddleware = createStore(
-  reducers,
-  INITIALIZE_STATE, applyMiddleware(ReduxThunk),
-);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>

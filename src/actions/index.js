@@ -6,6 +6,7 @@ import
   FILE_NAME,
   HANDLE_AUTHENTICATION,
 } from './types';
+import firebase from '../config/firebase';
 
 export function signUp(values) {
   return {
@@ -35,13 +36,8 @@ export function saveFile(fileName) {
   };
 }
 
-export function handleAuth(tokens, callback) {
+export function submitApp(form) {
   return (dispatch) => {
-    const expiresAt = JSON.stringify((tokens.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', tokens.accessToken);
-    localStorage.setItem('id_token', tokens.idToken);
-    localStorage.setItem('expires_at', expiresAt);
-    dispatch({ type: HANDLE_AUTHENTICATION, payload: tokens });
-    callback();
+    console.log(firebase.database().ref().push(form));
   };
 }
