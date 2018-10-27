@@ -47,7 +47,7 @@ ListSelect.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
   }).isRequired,
-  options: PropTypes.shape({}).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   disabled: PropTypes.bool.isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
