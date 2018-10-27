@@ -38,5 +38,6 @@ export function saveFile(fileName) {
 export function submitApp(form) {
   return (dispatch) => {
     console.log(firebase.database().ref().push(form));
+    console.log(form);
   };
 }

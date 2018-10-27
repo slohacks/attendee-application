@@ -8,8 +8,8 @@ import { submitApp } from '../../actions/index';
 
 class Submission extends Component {
   submitApplication(form) {
-    const { submitApp } = this.props; // eslint-disable-line no-shadow
-    submitApp(form);
+    const { submitApp: submitApplication } = this.props;
+    submitApplication(form);
   }
 
   renderSections() {
