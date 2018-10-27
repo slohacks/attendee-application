@@ -5,7 +5,7 @@ import
   SAVE_RESPONSE,
   FILE_NAME,
 } from './types';
-import firebase from '../config/firebase';
+import { applicationsRef } from '../config/firebase';
 
 export function signUp(values) {
   return {
@@ -37,7 +37,6 @@ export function saveFile(fileName) {
 
 export function submitApp(form) {
   return (dispatch) => {
-    console.log(firebase.database().ref().push(form));
-    console.log(form);
+    applicationsRef.doc('id').set(form);
   };
 }
