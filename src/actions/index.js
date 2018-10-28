@@ -40,6 +40,12 @@ export function saveFile(fileName) {
 }
 
 export const submitApp = form => (dispatch) => {
-  applicationsRef.doc('id').set(form);
-  dispatch(() => ({ type: 'SUBMIT_APPLICATION' }));
+  const user = firebase.auth().currentUser;
+
+  if (user) {
+    applicationsRef.doc(user.uid).set(form);
+    dispatch(() => ({ type: 'SUBMIT_APPLICATION' }));
+  } else {
+    dispatch(() => ({ type: 'SUBMIT_APPLICATION_FAIL' }));
+  }
 };
