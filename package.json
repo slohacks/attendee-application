@@ -36,6 +36,7 @@
     "babel-preset-airbnb": "^2.5.2",
     "babel-preset-env": "^1.7.0",
     "cz-conventional-changelog": "^2.1.0",
+    "redux-devtools-extension": "^2.13.5",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
