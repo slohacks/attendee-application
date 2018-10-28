@@ -9,20 +9,25 @@ export function signUp(values) {
 }
 
 export const login = values => (dispatch) => {
-  console.log(values);
-  firebase.auth().signInWithEmailAndPassword(values.email, values.password).then(() => {
-    dispatch(() => ({ type: types.LOGIN_GUCCI, payload: values }));
-    console.log('success');
-  }).catch((error) => {
-    dispatch(() => ({ type: types.LOGIN_FAIL, payload: error }));
-    console.log('unsuccess', error);
-  });
+  firebase.auth().signInWithEmailAndPassword(values.email, values.password)
+    .then((userCredential) => {
+      dispatch({ type: types.LOGIN_GUCCI, userCredential });
+    }).catch((error) => {
+      dispatch({ type: types.LOGIN_FAIL, error });
+    });
 };
 
 export function saveFile(fileName) {
   return {
     type: types.FILE_NAME,
     payload: fileName,
+  };
+}
+
+export function submitResponse(formProps) {
+  return {
+    type: types.SAVE_RESPONSE,
+    payload: formProps,
   };
 }
 
