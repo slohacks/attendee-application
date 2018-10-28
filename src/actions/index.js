@@ -17,6 +17,16 @@ export const login = values => (dispatch) => {
     });
 };
 
+export const signout = () => (dispatch) => {
+  firebase.auth().signOut()
+    .then(() => {
+      dispatch({ type: types.SIGN_OUT_GUCCI });
+    })
+    .catch((error) => {
+      dispatch({ type: types.SIGN_OUT_FAIL, error });
+    });
+};
+
 export function saveFile(fileName) {
   return {
     type: types.FILE_NAME,

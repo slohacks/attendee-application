@@ -6,6 +6,22 @@ import PropTypes from 'prop-types';
 import { login } from '../actions/index';
 
 class Login extends Component {
+  componentDidMount() {
+    const { history, auth } = this.props;
+
+    if (auth) {
+      history.push('/dashboard');
+    }
+  }
+
+  componentDidUpdate() {
+    const { history, auth } = this.props;
+
+    if (auth) {
+      history.push('/dashboard');
+    }
+  }
+
   onSubmit(values) {
     const { login: loginActionCreator } = this.props;
     loginActionCreator(values);
@@ -30,11 +46,7 @@ class Login extends Component {
   }
 
   render() {
-    const { handleSubmit, history, auth } = this.props;
-
-    if (auth) {
-      history.push('/dashboard');
-    }
+    const { handleSubmit } = this.props;
 
     return (
       <div>
