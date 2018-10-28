@@ -1,25 +1,41 @@
-import { HANDLE_AUTHENTICATION } from '../actions/types';
+import * as types from '../actions/types';
 
 const INITIAL_STATE = {
-  accessToken: '',
-  userToken: '',
-  expiresAt: '',
+  authenticated: false,
+  user: {},
+  error: false,
   errorMessage: '',
 };
 
-export default function (state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case HANDLE_AUTHENTICATION: {
-      const tokenExpiration = JSON.stringify((action.payload.expiresIn * 1000) + new Date().getTime()); // eslint-disable-line max-len
+    case types.LOGIN_GUCCI:
       return {
         ...state,
-        accessToken: action.payload.accessToken,
-        userToken: action.payload.idToken,
-        expiresAt: tokenExpiration,
+        authenticated: true,
+        error: false,
+        user: action.userCredential.user,
       };
-    }
-
+    case types.LOGIN_FAIL:
+      return {
+        ...state,
+        error: true,
+        errorMessage: action.error.message,
+      };
+    case types.SIGN_OUT_GUCCI:
+      return {
+        ...state,
+        authenticated: false,
+        error: false,
+        user: {},
+      };
+    case types.SIGN_OUT_FAIL:
+      return {
+        ...state,
+        error: true,
+        errorMessage: action.error.message,
+      };
     default:
       return state;
   }
-}
+};

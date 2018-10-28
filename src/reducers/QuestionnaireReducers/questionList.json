@@ -7,13 +7,8 @@
       "questions":
       [
         {         
-          "id": "first_name",
-          "title": "What is your first name?",
-          "inputType": "textInput"
-        },
-        {         
-          "id": "last_name",
-          "title": "What is your last name?",
+          "id": "name",
+          "title": "What is your name?",
           "inputType": "textInput"
         },
         {          
@@ -23,13 +18,13 @@
           "validate": "email"
         },
         {
-          "id": "phone_number",
+          "id": "phoneNumber",
           "title": "What is your phone number?",
           "inputType": "textInput",
           "validate": "phoneNumber"
         },
         {          
-          "id": "is_eighteen",
+          "id": "age",
           "title": "Will you at least be 18 years old before February 1, 2019",
           "inputType": "dropDown",
           "options": { 
@@ -38,13 +33,8 @@
           }
         },
         {          
-          "id": "school",
-          "title": "What college/school are you studying at?",
-          "inputType": "textInput"
-        },
-        {          
-          "id": "graduation_date",
-          "title": "When do you graduate?",
+          "id": "college",
+          "title": "What college are you studying at?",
           "inputType": "textInput"
         },
         {          
@@ -58,7 +48,7 @@
           "inputType": "textInput"
         },
         {          
-          "id": "dietary_restrictions",
+          "id": "diet",
           "title": "Dietary Restrictions",
           "inputType": "dropDown",
           "options": {
@@ -94,7 +84,7 @@
           "validate": "none"
         },
         {          
-          "id": "personal_website",
+          "id": "website",
           "title": "What is your personal website?",
           "inputType": "textInput",
           "validate": "none"
@@ -107,8 +97,13 @@
       "questions":
       [
         {         
-          "id": "short_answer",
+          "id": "project",
           "title": "Tell us about one of the projects you're most proud of. It Doesn't have to be CS-related!",
+          "inputType": "textInput"
+        },
+        {          
+          "id": "challenge",
+          "title": "What's a challenging situation you've run into, and how did you go about solving it?",
           "inputType": "textInput"
         }
       ]
@@ -125,7 +120,8 @@
           "options": {
             "Female": 0, 
             "Male": 1,
-            "Other": 2
+            "I prefer not to answer": 2, 
+            "Other": 3
           }
         },
         {          
@@ -141,20 +137,6 @@
             "White": 5,
             "Other": 6
           }
-        },
-        {          
-          "id": "agreed",
-          "title": "MLH agreement",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          }
-        },
-        {          
-          "id": "anything_else",
-          "title": "Anything else you have to say?",
-          "inputType": "textInput"
         }
       ]
     }

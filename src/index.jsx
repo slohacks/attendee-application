@@ -2,42 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
+import SignUp from './containers/SignUp';
 import Questionnaire from './containers/Questionnaire';
 import Login from './containers/Login';
-import Callback from './containers/Callback';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 
-const INITIALIZE_STATE = {
-  auth: {
-    accessToken: localStorage.getItem('access_token'),
-    userToken: localStorage.getItem('id_token'),
-    expiresAt: localStorage.getItem('expires_at'),
-  },
-};
-
-const createStoreWithMiddleware = createStore(
-  reducers,
-  INITIALIZE_STATE, applyMiddleware(ReduxThunk),
-);
+const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
+  applyMiddleware(ReduxThunk),
+));
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
-    <BrowserRouter>
+    <HashRouter>
       <div>
         <Switch>
+          <Route path="/sign-up" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/login" component={Login} />
-          <Route path="/callback" component={Callback} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.querySelector('.app'),
 );
