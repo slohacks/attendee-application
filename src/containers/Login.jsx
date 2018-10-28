@@ -7,7 +7,8 @@ import { login } from '../actions/index';
 
 class Login extends Component {
   onSubmit(values) {
-    this.props.login(values); // eslint-disable-line react/destructuring-assignment
+    const { login: loginActionCreator } = this.props;
+    loginActionCreator(values);
   }
 
   static renderField(field) {

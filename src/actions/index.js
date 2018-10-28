@@ -5,7 +5,7 @@ import
   SAVE_RESPONSE,
   FILE_NAME,
 } from './types';
-import { applicationsRef } from '../config/firebase';
+import { firebase, applicationsRef } from '../config/firebase';
 
 export function signUp(values) {
   return {
@@ -14,12 +14,16 @@ export function signUp(values) {
   };
 }
 
-export function login(values) {
-  return {
-    type: LOGIN,
-    payload: values,
-  };
-}
+export const login = values => (dispatch) => {
+  console.log(values);
+  firebase.auth().signInWithEmailAndPassword(values.email, values.password).then(() => {
+    dispatch(() => ({ type: 'LOGIN_SUCCESSFUL', payload: values }));
+    console.log('success');
+  }).catch((error) => {
+    dispatch(() => ({ type: 'LOGIN_UNSUCCESSFUL', payload: error }));
+    console.log('unsuccess', error);
+  });
+};
 
 export function submitResponse(formProps) {
   return {
@@ -35,8 +39,7 @@ export function saveFile(fileName) {
   };
 }
 
-export function submitApp(form) {
-  return (dispatch) => {
-    applicationsRef.doc('id').set(form);
-  };
-}
+export const submitApp = form => (dispatch) => {
+  applicationsRef.doc('id').set(form);
+  dispatch(() => ({ type: 'SUBMIT_APPLICATION' }));
+};
