@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import InputType from './InputType';
 import ProgressBar from './ProgressBar';
+import { submitApp } from '../../actions/index';
 
 class Submission extends Component {
-  submitApplication(form) { // eslint-disable-line class-methods-use-this
-    console.log(form);
+  submitApplication(form) {
+    const { submitApp: submitApplication } = this.props;
+    submitApplication(form);
   }
 
   renderSections() {
     const { questionSections } = this.props;
-    return questionSections.map((section) => { // eslint-disable-line arrow-body-style
+    return questionSections.map((section) => {
       return (
         <div key={section.name}>
           <h2>
@@ -53,13 +55,14 @@ Submission.propTypes = {
   invalid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  submitApp: PropTypes.func.isRequired,
 };
 
 Submission = reduxForm({
   form: 'Submission Form',
   enableReinitialize: true,
 })(
-  connect(mapStateToProps, null)(Submission),
+  connect(mapStateToProps, { submitApp })(Submission),
 );
 
 Submission = connect(

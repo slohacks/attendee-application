@@ -29,7 +29,7 @@ export default (ChildComponent) => {
   }
 
   ComposedComponent.propTypes = {
-    auth: PropTypes.string.isRequired,
+    auth: PropTypes.bool.isRequired,
     history: PropTypes.shape().isRequired,
   };
 

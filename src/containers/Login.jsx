@@ -6,8 +6,25 @@ import PropTypes from 'prop-types';
 import { login } from '../actions/index';
 
 class Login extends Component {
+  componentDidMount() {
+    const { history, auth } = this.props;
+
+    if (auth) {
+      history.push('/dashboard');
+    }
+  }
+
+  componentDidUpdate() {
+    const { history, auth } = this.props;
+
+    if (auth) {
+      history.push('/dashboard');
+    }
+  }
+
   onSubmit(values) {
-    this.props.login(values); // eslint-disable-line react/destructuring-assignment
+    const { login: loginActionCreator } = this.props;
+    loginActionCreator(values);
   }
 
   static renderField(field) {
@@ -30,6 +47,7 @@ class Login extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -83,14 +101,20 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return { auth: state.auth.authenticated };
+}
+
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  auth: PropTypes.bool.isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
 export default reduxForm({
   validate,
   form: 'LoginForm',
 })(
-  connect(null, { login })(Login),
+  connect(mapStateToProps, { login })(Login),
 );
