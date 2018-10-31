@@ -3,7 +3,8 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
 
-const config = {};
+const config = {
+};
 
 firebase.initializeApp(config);
 
