@@ -23,13 +23,12 @@ ReactDOM.render(
     <HashRouter>
       <div>
         <Switch>
-          <Route path="/" exact component={Login} />
+          <Route path={['/', '/login']} exact component={Login} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
           <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} />
-          {/* <Route path="/login" component={Login} /> */}
         </Switch>
       </div>
     </HashRouter>
