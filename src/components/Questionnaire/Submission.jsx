@@ -9,6 +9,7 @@ import { submitApp } from '../../actions/index';
 class Submission extends Component {
   submitApplication(form) {
     const { submitApp: submitApplication } = this.props;
+    console.log(form);
     submitApplication(form);
   }
 

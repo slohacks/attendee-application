@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 const INITIAL_STATE = {
-  authenticated: false,
+  authenticated: true,
   user: {},
   error: false,
   errorMessage: '',
