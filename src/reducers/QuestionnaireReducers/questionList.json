@@ -99,12 +99,12 @@
         {         
           "id": "project",
           "title": "Tell us about one of the projects you're most proud of. It Doesn't have to be CS-related!",
-          "inputType": "textInput"
+          "inputType": "textArea"
         },
         {          
           "id": "challenge",
           "title": "What's a challenging situation you've run into, and how did you go about solving it?",
-          "inputType": "textInput"
+          "inputType": "textArea"
         }
       ]
     },

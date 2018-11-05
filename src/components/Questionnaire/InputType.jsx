@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, Fields } from 'redux-form';
 import TextInput from '../InputTypes/TextInput';
+import TextArea from '../InputTypes/TextArea';
 import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
@@ -57,6 +58,16 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={TextInput}
+          />
+        );
+      case 'textArea':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            validate={[required]}
+            name={id}
+            component={TextArea}
           />
         );
       case 'dropDown':
