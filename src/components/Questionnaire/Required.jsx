@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
-class ShortAnswer extends Component {
+class Required extends Component {
   onSubmit(formProps) {
     const { nextPage, submitResponse: submitAnswers } = this.props;
     submitAnswers(formProps);
@@ -30,7 +30,7 @@ class ShortAnswer extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          {ShortAnswer.renderInputs(questions)}
+          {Required.renderInputs(questions)}
           <button type="submit">
             Submit!
           </button>
@@ -40,7 +40,7 @@ class ShortAnswer extends Component {
   }
 }
 
-ShortAnswer.propTypes = {
+Required.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   section: PropTypes.shape({}).isRequired,
   nextPage: PropTypes.func.isRequired,
@@ -48,8 +48,8 @@ ShortAnswer.propTypes = {
 };
 
 export default reduxForm({
-  form: 'Short Answer',
+  form: 'Required',
   destroyOnUnmount: false,
 })(
-  connect(null, { submitResponse })(ShortAnswer),
+  connect(null, { submitResponse })(Required),
 );

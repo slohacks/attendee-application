@@ -7,8 +7,8 @@ import { submitResponse } from '../../actions/index';
 
 class PersonalInfo extends Component {
   onSubmit(formProps) {
-    const { nextPage, submitResponse } = this.props;
-    submitResponse(formProps);
+    const { nextPage, submitResponse: submitAnswers } = this.props;
+    submitAnswers(formProps);
     nextPage();
   }
 

@@ -48,7 +48,7 @@ ShortAnswer.propTypes = {
 };
 
 export default reduxForm({
-  form: 'Short Answer',
+  form: 'Miscellaneous',
   destroyOnUnmount: false,
 })(
   connect(null, { submitResponse })(ShortAnswer),

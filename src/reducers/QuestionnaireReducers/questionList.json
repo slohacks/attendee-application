@@ -139,6 +139,53 @@
           }
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Miscellaneous",
+      "questions": [
+        {
+          "id": "misc",
+          "title": "Anything else we should know?",
+          "inputType": "textArea"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Required",
+      "questions": [
+        {
+          "id": "mlh",
+          "title": "MLH CoC marked?",
+          "inputType": "dropDown",
+          "options": { 
+            "Yes": true, 
+            "No": false
+          },
+        "validate": "checked"
+        },
+        {
+          "id": "hack_club",
+          "title": "Hack Club Liability",
+          "inputType": "dropDown",
+          "options": { 
+            "Yes": true, 
+            "No": false
+          },
+          "validate": "checked"
+        },
+        {
+          "id": "asi",
+          "title": "ASI liablility marked?",
+          "inputType": "dropDown",
+          "options": { 
+            "Yes": true, 
+            "No": false
+          },
+          "validate": "checked"
+        }
+      ]
     }
   ]
 }
