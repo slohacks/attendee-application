@@ -23,7 +23,7 @@ ReactDOM.render(
     <HashRouter>
       <div>
         <Switch>
-          <Route path={['/', '/login']} exact component={Login} />
+          {['/', '/login'].map((path, index) => <Route path={path} component={Login} key={parseInt(index.toString(), index)} />)}
           <Route path="/sign-up" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
