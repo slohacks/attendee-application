@@ -7,6 +7,8 @@ import PersonalInfo from '../components/Questionnaire/PersonalInfo';
 import BasicInfo from '../components/Questionnaire/BasicInfo';
 import ShortAnswer from '../components/Questionnaire/ShortAnswer';
 import Statistics from '../components/Questionnaire/Statistics';
+import Miscellaneous from '../components/Questionnaire/Miscellaneous';
+import Required from '../components/Questionnaire/Required';
 
 class Questionaire extends Component {
   constructor() {
@@ -25,6 +27,10 @@ class Questionaire extends Component {
         return <ShortAnswer nextPage={this.renderNextPage} section={questionSections[id]} />;
       case '3':
         return <Statistics nextPage={this.renderNextPage} section={questionSections[id]} />;
+      case '4':
+        return <Miscellaneous nextPage={this.renderNextPage} section={questionSections[id]} />;
+      case '5':
+        return <Required nextPage={this.renderNextPage} section={questionSections[id]} />;
       default:
         return (
           <h1>

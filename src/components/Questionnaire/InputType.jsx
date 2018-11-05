@@ -12,6 +12,7 @@ const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
+const checked = value => (value === 'false' ? 'Required' : '');
 
 const InputType = (props) => {
   function renderFields(question) {
@@ -71,6 +72,18 @@ const InputType = (props) => {
           />
         );
       case 'dropDown':
+        if (question.validate === 'checked') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              validate={[required, checked]}
+              name={id}
+              options={question.options}
+              component={SelectInput}
+            />
+          );
+        }
         return (
           <Field
             label={title}
