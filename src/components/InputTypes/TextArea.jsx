@@ -8,7 +8,7 @@ const TextArea = ({
   meta: { touched, error },
 }) => (
   <div>
-    <label htmlFor="value">
+    <label>
       {label}
       <textarea {...input} disabled={disabled} />
     </label>
