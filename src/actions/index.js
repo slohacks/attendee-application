@@ -45,7 +45,8 @@ export const submitApp = form => (dispatch) => {
   const user = firebase.auth().currentUser;
 
   if (user) {
-    applicationsRef.doc(user.uid).set(form);
+    const newForm = { ...form, time: Date.now() };
+    applicationsRef.doc(user.uid).set(newForm);
     dispatch(() => ({ type: types.SUBMIT_GUCCI }));
   } else {
     dispatch(() => ({ type: types.SUBMIT_FAIL }));
