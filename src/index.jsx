@@ -23,8 +23,8 @@ ReactDOM.render(
     <HashRouter>
       <div>
         <Switch>
-          {['/', '/login'].map((path, index) => <Route path={path} component={Login} key={parseInt(index.toString(), index)} />)}
-          <Route path="/sign-up" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
           <Route path="/dashboard" component={Dashboard} />
