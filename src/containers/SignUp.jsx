@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 
-
 class SignUp extends Component {
   onSubmit(values) {
     this.props.signUp(values); // eslint-disable-line react/destructuring-assignment
