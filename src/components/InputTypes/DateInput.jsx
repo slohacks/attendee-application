@@ -18,7 +18,6 @@ const DateInput = ({
   </div>
 );
 
-
 DateInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
