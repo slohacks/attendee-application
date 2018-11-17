@@ -42,6 +42,11 @@
           "title": "What major are you currently studying?",
           "inputType": "textInput"
         },
+        {
+          "id": "grad_date",
+          "title": "When will be graduating?",
+          "inputType": "dateInput"
+        },
         {          
           "id": "city",
           "title": "Which city will you be traveling from?",

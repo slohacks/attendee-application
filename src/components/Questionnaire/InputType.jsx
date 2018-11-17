@@ -6,6 +6,7 @@ import TextArea from '../InputTypes/TextArea';
 import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
+import DateInput from '../InputTypes/DateInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -118,6 +119,15 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={FileInput}
+          />
+        );
+      case 'dateInput':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            name={id}
+            component={DateInput}
           />
         );
       default:
