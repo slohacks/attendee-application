@@ -25,12 +25,15 @@ class PersonalInfo extends Component {
   }
 
   render() {
-    const { section: { questions } } = this.props;
+    const { section: { questions }, previousPage } = this.props;
     const { handleSubmit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           {PersonalInfo.renderInputs(questions)}
+          <button onClick={previousPage} type="button">
+            Back
+          </button>
           <button type="submit">
             Submit!
           </button>
@@ -44,7 +47,7 @@ PersonalInfo.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   section: PropTypes.shape({}).isRequired,
   nextPage: PropTypes.func.isRequired,
-  submitResponse: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired,
 };
 
 export default reduxForm({

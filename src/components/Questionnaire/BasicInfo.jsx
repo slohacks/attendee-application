@@ -25,12 +25,15 @@ class BasicInfo extends Component {
   }
 
   render() {
-    const { section: { questions } } = this.props;
+    const { section: { questions }, previousPage } = this.props;
     const { handleSubmit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           {BasicInfo.renderInputs(questions)}
+          <button onClick={previousPage} type="button">
+            Back
+          </button>
           <button type="submit">
             Submit!
           </button>

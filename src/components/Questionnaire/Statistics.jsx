@@ -25,12 +25,15 @@ class Statistics extends Component {
   }
 
   render() {
-    const { section: { questions } } = this.props;
+    const { section: { questions }, previousPage } = this.props;
     const { handleSubmit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           {Statistics.renderInputs(questions)}
+          <button onClick={previousPage} type="button">
+            Back
+          </button>
           <button type="submit">
             Submit!
           </button>
@@ -46,7 +49,7 @@ function validate(values) {
     errors.gender = 'Required';
   }
 
-  if (values.gender === '3') {
+  if (values.gender === 'Other') {
     if (!values.other_gender) {
       errors.other_gender = 'Cannot be empty';
     }
@@ -56,7 +59,7 @@ function validate(values) {
     errors.ethnicity = 'Required';
   }
 
-  if (values.ethnicity === '6') {
+  if (values.ethnicity === 'Other') {
     if (!values.other_ethnicity) {
       errors.other_ethnicity = 'Cannot be empty';
     }

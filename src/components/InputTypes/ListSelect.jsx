@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VirtualizedSelect from 'react-virtualized-select';
 import createFilterOptions from 'react-select-fast-filter-options';
+import Creatable from './Creatable';
 
 import 'react-select/dist/react-select.css';
 import 'react-virtualized-select/styles.css';
@@ -33,6 +34,7 @@ const ListSelect = (props) => {
         filterOptions={filterOptions}
         clearable={false}
         disabled={disabled}
+        selectComponent={Creatable}
       />
       <div className="error-message">
         {touched ? error : ''}

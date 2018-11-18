@@ -3,7 +3,12 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
 
-const config = {};
+const config = {apiKey: "AIzaSyA0Ktp6yx0Sey_G4OlOTW_mnIfU0EjBXOI",
+authDomain: "attendee-application.firebaseapp.com",
+databaseURL: "https://attendee-application.firebaseio.com",
+projectId: "attendee-application",
+storageBucket: "attendee-application.appspot.com",
+messagingSenderId: "667136836888"};
 
 firebase.initializeApp(config);
 

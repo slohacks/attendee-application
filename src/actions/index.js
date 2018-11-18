@@ -27,13 +27,6 @@ export const signout = () => (dispatch) => {
     });
 };
 
-export function saveFile(fileName) {
-  return {
-    type: types.FILE_NAME,
-    payload: fileName,
-  };
-}
-
 export function submitResponse(formProps) {
   return {
     type: types.SAVE_RESPONSE,
@@ -41,13 +34,22 @@ export function submitResponse(formProps) {
   };
 }
 
-export const submitApp = form => (dispatch) => {
-  const user = firebase.auth().currentUser;
+export const uploadResume = (user, resume, onChange) => (dispatch) => {
+  const storageRef = firebase.storage().ref().child('resumes').child(`${user.uid}.pdf`);
 
-  if (user) {
-    applicationsRef.doc(user.uid).set(form);
-    dispatch(() => ({ type: types.SUBMIT_GUCCI }));
-  } else {
-    dispatch(() => ({ type: types.SUBMIT_FAIL }));
-  }
+  console.log(resume);
+  storageRef.put(resume).then(() => {
+    dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
+    onChange(resume.name);
+  }).catch((error) => {
+    dispatch({ type: types.UPLOAD_RESUME_FAIL, error });
+  });
+};
+
+export const submitApp = (user, form) => (dispatch) => {
+  applicationsRef.doc(user.uid).set(form).then(() => {
+    dispatch({ type: types.SUBMIT_GUCCI });
+  }).catch((error) => {
+    dispatch({ type: types.SUBMIT_FAIL, error });
+  });
 };

@@ -8,3 +8,5 @@ export const SIGN_OUT_FAIL = 'sign_out_fail';
 export const SUBMIT_GUCCI = 'submit_app_gucci';
 export const SUBMIT_FAIL = 'submit_app_fail';
 export const SAVE_RESPONSE = 'save_response';
+export const UPLOAD_RESUME_GUCCI = 'upload_resume_gucci';
+export const UPLOAD_RESUME_FAIL = 'upload_resume_fail';

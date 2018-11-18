@@ -88,6 +88,11 @@
           "title": "What is your personal website?",
           "inputType": "textInput",
           "validate": "none"
+        },
+        {
+          "id": "resume",
+          "title": "Upload your resume.",
+          "inputType": "fileUpload"
         }
       ]
     },
@@ -139,6 +144,10 @@
           }
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Submission"
     }
   ]
 }

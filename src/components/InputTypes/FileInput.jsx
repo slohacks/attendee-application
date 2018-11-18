@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveFile } from '../../actions/index';
+import { uploadResume } from '../../actions/index';
 
 class FileInput extends Component {
   constructor(props) {
@@ -10,13 +10,13 @@ class FileInput extends Component {
   }
 
   onChange(e) {
-    const { input: { onChange }, saveFile } = this.props;
-    onChange(e.target.files[0]);
-    saveFile(e.target.files[0].name);
+    const { input: { onChange }, uploadResume: sendResume, auth } = this.props;
+    sendResume(auth.user, e.target.files[0], onChange);
   }
 
   render() {
     const {
+      input,
       label,
       disabled,
       fileName,
@@ -40,13 +40,12 @@ class FileInput extends Component {
 }
 
 function mapStateToProps(state) {
-  return { fileName: state.file };
+  return { fileName: state.fileName, auth: state.auth };
 }
 
 FileInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
-  saveFile: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   fileName: PropTypes.string.isRequired,
   meta: PropTypes.shape({
@@ -55,4 +54,4 @@ FileInput.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, { saveFile })(FileInput);
+export default connect(mapStateToProps, { uploadResume })(FileInput);
