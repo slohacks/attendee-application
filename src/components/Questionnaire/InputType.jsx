@@ -7,6 +7,7 @@ import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 import DateInput from '../InputTypes/DateInput';
+import CheckboxInput from '../InputTypes/CheckboxInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -128,6 +129,16 @@ const InputType = (props) => {
             disabled={disabled}
             name={id}
             component={DateInput}
+          />
+        );
+      case 'checkbox':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            name={id}
+            validate={[required]}
+            component={CheckboxInput}
           />
         );
       default:

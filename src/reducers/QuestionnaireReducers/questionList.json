@@ -26,11 +26,7 @@
         {          
           "id": "age",
           "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          }
+          "inputType": "checkbox"
         },
         {          
           "id": "college",
@@ -163,32 +159,17 @@
         {
           "id": "mlh",
           "title": "MLH CoC marked?",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-        "validate": "checked"
+          "inputType": "checkbox"
         },
         {
           "id": "hack_club",
           "title": "Hack Club Liability",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-          "validate": "checked"
+          "inputType": "checkbox"
         },
         {
           "id": "asi",
           "title": "ASI liablility marked?",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-          "validate": "checked"
+          "inputType": "checkbox"
         }
       ]
     }
