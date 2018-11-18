@@ -11,12 +11,6 @@
           "title": "What is your name?",
           "inputType": "textInput"
         },
-        {          
-          "id": "email",
-          "title": "What is your email?",
-          "inputType": "textInput",
-          "validate": "email"
-        },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
