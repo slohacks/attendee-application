@@ -11,12 +11,6 @@
           "title": "What is your name?",
           "inputType": "textInput"
         },
-        {          
-          "id": "email",
-          "title": "What is your email?",
-          "inputType": "textInput",
-          "validate": "email"
-        },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
@@ -37,6 +31,11 @@
           "id": "major",
           "title": "What major are you currently studying?",
           "inputType": "textInput"
+        },
+        {
+          "id": "grad_date",
+          "title": "When will be graduating?",
+          "inputType": "dateInput"
         },
         {          
           "id": "city",
@@ -100,12 +99,12 @@
         {         
           "id": "project",
           "title": "Tell us about one of the projects you're most proud of. It Doesn't have to be CS-related!",
-          "inputType": "textInput"
+          "inputType": "textArea"
         },
         {          
           "id": "challenge",
           "title": "What's a challenging situation you've run into, and how did you go about solving it?",
-          "inputType": "textInput"
+          "inputType": "textArea"
         }
       ]
     },
@@ -143,6 +142,38 @@
     },
     {
       "id": 4,
+      "name": "Miscellaneous",
+      "questions": [
+        {
+          "id": "misc",
+          "title": "Anything else we should know?",
+          "inputType": "textArea"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Required",
+      "questions": [
+        {          
+          "id": "mlh",
+          "title": "MLH CoC marked?",
+          "inputType": "checkBox"
+        },
+        {          
+          "id": "hack_club",
+          "title": "Hack Club Liability",
+          "inputType": "checkBox"
+        },
+        {          
+          "id": "asi",
+          "title": "ASI liablility marked?",
+          "inputType": "checkBox"
+        }
+      ]
+    },
+    {
+      "id": 6,
       "name": "Submission"
     }
   ]

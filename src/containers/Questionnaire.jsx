@@ -8,6 +8,8 @@ import BasicInfo from '../components/Questionnaire/BasicInfo';
 import ShortAnswer from '../components/Questionnaire/ShortAnswer';
 import Statistics from '../components/Questionnaire/Statistics';
 import Submission from '../components/Questionnaire/Submission';
+import Miscellaneous from '../components/Questionnaire/Miscellaneous';
+import Required from '../components/Questionnaire/Required';
 
 class Questionaire extends Component {
   constructor() {
@@ -20,15 +22,59 @@ class Questionaire extends Component {
     const { questionSections } = this.props;
     switch (id) {
       case '0':
-        return <PersonalInfo previousPage={this.renderPreviousPage} nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <PersonalInfo
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '1':
-        return <BasicInfo previousPage={this.renderPreviousPage} nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <BasicInfo
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '2':
-        return <ShortAnswer previousPage={this.renderPreviousPage} nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <ShortAnswer
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '3':
-        return <Statistics previousPage={this.renderPreviousPage} nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <Statistics
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '4':
-        return <Submission previousPage={this.renderPreviousPage} />;
+        return (
+          <Miscellaneous
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
+      case '5':
+        return (
+          <Required
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
+      case '6':
+        return (
+          <Submission
+            previousPage={this.renderPreviousPage}
+          />
+        );
       default:
         return (
           <h1>

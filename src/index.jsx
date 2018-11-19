@@ -12,6 +12,7 @@ import Questionnaire from './containers/Questionnaire';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
+import NotFound from './components/NotFound';
 
 const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
   applyMiddleware(ReduxThunk),
@@ -22,11 +23,12 @@ ReactDOM.render(
     <HashRouter>
       <div>
         <Switch>
-          <Route path="/sign-up" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/login" component={Login} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </HashRouter>

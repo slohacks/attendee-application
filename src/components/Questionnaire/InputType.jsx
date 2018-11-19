@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, Fields } from 'redux-form';
 import TextInput from '../InputTypes/TextInput';
+import TextArea from '../InputTypes/TextArea';
 import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 import CheckInput from '../InputTypes/CheckBox';
 import CollegeListSelect from './CollegeListSelect';
+import DateInput from '../InputTypes/DateInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
+const checked = value => (value === 'false' ? 'Required' : '');
 
 const InputType = (props) => {
   function renderFields(question) {
@@ -61,7 +64,29 @@ const InputType = (props) => {
             component={TextInput}
           />
         );
+      case 'textArea':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            validate={[required]}
+            name={id}
+            component={TextArea}
+          />
+        );
       case 'dropDown':
+        if (question.validate === 'checked') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              validate={[required, checked]}
+              name={id}
+              options={question.options}
+              component={SelectInput}
+            />
+          );
+        }
         return (
           <Field
             label={title}
@@ -109,6 +134,16 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={CheckInput}
+          />
+        );
+      case 'dateInput':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            validate={[required]}
+            name={id}
+            component={DateInput}
           />
         );
       default:

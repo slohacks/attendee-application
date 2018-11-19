@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
-import reCAPTCHA from '../components/reCaptcha';
 
 class SignUp extends Component {
   onSubmit(values) {
@@ -46,8 +45,10 @@ class SignUp extends Component {
           component={SignUp.renderField}
         />
         <Field
-          name="recaptcha"
-          component={reCAPTCHA}
+          label="Confirm Password"
+          name="confirm_password"
+          type="password"
+          component={SignUp.renderField}
         />
         <button
           type="submit"
@@ -75,6 +76,13 @@ function validate(values) {
     errors.password = 'Password required';
   } else if (values.password.length < 8) {
     errors.password = 'Password must be 8 characters or more';
+  }
+  if (!values.confirm_password) {
+    errors.confirm_password = 'Confirm Password required';
+  } else if (values.confirm_password.length < 8) {
+    errors.confirm_password = 'Confirm Password must be 8 characters or more';
+  } else if (values.confirm_password.localeCompare(values.password)) {
+    errors.confirm_password = 'Passwords do not match';
   }
 
   if (!values.recaptcha) {

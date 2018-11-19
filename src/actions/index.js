@@ -1,12 +1,16 @@
 import * as types from './types';
 import { firebase, applicationsRef } from '../config/firebase';
 
-export function signUp(values) {
-  return {
-    type: types.SIGN_UP_GUCCI,
-    payload: values,
-  };
-}
+export const signUp = values => (dispatch) => {
+  firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+    .then((userCredential) => {
+      firebase.auth().currentUser.sendEmailVerification()
+        .then(() => dispatch({ type: types.SIGN_UP_GUCCI, userCredential }))
+        .catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
+    }).catch((error) => {
+      dispatch({ type: types.SIGN_UP_FAIL, error });
+    });
+};
 
 export const login = values => (dispatch) => {
   firebase.auth().signInWithEmailAndPassword(values.email, values.password)
@@ -46,7 +50,8 @@ export const uploadResume = (user, resume, onChange) => (dispatch) => {
 };
 
 export const submitApp = (user, form) => (dispatch) => {
-  applicationsRef.doc(user.uid).set(form).then(() => {
+  const newForm = { ...form, time: firebase.firestore.Timestamp.now() };
+  applicationsRef.doc(user.uid).set(newForm).then(() => {
     dispatch({ type: types.SUBMIT_GUCCI });
   }).catch((error) => {
     dispatch({ type: types.SUBMIT_FAIL, error });
