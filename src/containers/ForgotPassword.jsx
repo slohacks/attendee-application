@@ -6,7 +6,8 @@ import { forgotPassword } from '../actions/index';
 
 class ForgotPassword extends Component {
   onSubmit(values) {
-    this.props.forgotPassword(values); // eslint-disable-line react/destructuring-assignment
+    const { forgotPassword:  forgotPass } = this.props;
+    forgotPass(values); 
   }
 
   static renderField(field) {
