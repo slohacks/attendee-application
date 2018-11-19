@@ -8,8 +8,8 @@ import { submitResponse } from '../../actions/index';
 
 class BasicInfo extends Component {
   onSubmit(formProps) {
-    const { nextPage, submitResponse } = this.props;
-    submitResponse(formProps);
+    const { nextPage, submitResponse: submitForm } = this.props;
+    submitForm(formProps);
     nextPage();
   }
 
@@ -49,6 +49,8 @@ BasicInfo.propTypes = {
   section: PropTypes.shape({}).isRequired,
   nextPage: PropTypes.func.isRequired,
   submitResponse: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({

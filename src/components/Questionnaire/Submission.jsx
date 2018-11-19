@@ -52,14 +52,20 @@ class Submission extends Component {
 }
 
 function mapStateToProps(state) {
-  return { questionSections: state.questions.body, responseValues: state.responses, auth: state.auth };
+  return {
+    questionSections: state.questions.body,
+    responseValues: state.responses,
+    auth: state.auth,
+  };
 }
 
 Submission.propTypes = {
-  invalid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   submitApp: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
+  auth: PropTypes.shape({}).isRequired,
 };
 
 Submission = reduxForm({

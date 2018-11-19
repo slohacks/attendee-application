@@ -25,10 +25,10 @@ class SelectInput extends Component {
       disabled,
       meta: { touched, error },
     } = this.props;
-    const errorExist = error ? true : false;
+    const errorExist = touched && Boolean(error);
     return (
       <div>
-        <FormControl fullWidth error={touched && errorExist} disabled={disabled}>
+        <FormControl fullWidth error={errorExist} disabled={disabled}>
           <InputLabel>
             {label}
           </InputLabel>
@@ -36,7 +36,11 @@ class SelectInput extends Component {
             <MenuItem value="" />
             {this.renderOptions()}
           </Select>
-          {touched && errorExist ? <FormHelperText>{error} </FormHelperText> : '' }
+          {errorExist ? (
+            <FormHelperText>
+              {error}
+            </FormHelperText>
+          ) : '' }
         </FormControl>
       </div>
     );

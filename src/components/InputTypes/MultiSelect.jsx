@@ -12,8 +12,8 @@ const MultiSelect = (props) => {
   const { label, options, disabled } = props;
   const { [mainField]: { input: mainInput, meta: mainMeta } } = props;
   const { [otherField]: { input: otherInput, meta: otherMeta } } = props;
-  const mainError = mainMeta.error ? true : false;
-  const otherError = otherMeta.error ? true : false;
+  const mainError = Boolean(mainMeta.error) && mainMeta.touched;
+  const otherError = Boolean(otherMeta.error) && otherMeta.touched;
 
   function renderOptions() {
     return Object.keys(options).map((option) => {
@@ -34,7 +34,7 @@ const MultiSelect = (props) => {
 
   return (
     <div>
-      <FormControl fullWidth error={(mainError && mainMeta.touched) || (otherMeta.error)} disabled={disabled}>
+      <FormControl fullWidth error={(mainError)} disabled={disabled}>
         <InputLabel>
           {label}
         </InputLabel>
@@ -44,9 +44,13 @@ const MultiSelect = (props) => {
         </Select>
         {mainInput.value === ('Other')
           ? (
-            <TextField fullWidth label={label} helperText={otherMeta.touched && otherError ? otherMeta.error : ''} error={otherMeta.touched && otherError} {...otherInput} disabled={disabled} />
+            <TextField fullWidth label={label} helperText={otherMeta.touched && otherError ? otherMeta.error : ''} error={otherError} {...otherInput} disabled={disabled} />
           ) : null }
-        {mainError && mainMeta.touched ? <FormHelperText>{mainMeta.error}</FormHelperText> : ''}
+        {mainError ? (
+          <FormHelperText>
+            {mainMeta.error}
+          </FormHelperText>
+        ) : ''}
       </FormControl>
 
     </div>

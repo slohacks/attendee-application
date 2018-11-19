@@ -8,9 +8,9 @@ const TextInput = ({
   disabled,
   meta: { touched, error },
 }) => {
-  const errorExist = error ? true : false;
+  const errorExist = touched && Boolean(error);
   return (
-    <TextField fullWidth label={label} helperText={touched && errorExist ? error : ''} error={touched && errorExist} {...input} disabled={disabled} />
+    <TextField fullWidth label={label} helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
   );
 };
 

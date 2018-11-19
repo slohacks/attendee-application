@@ -37,7 +37,6 @@ export function submitResponse(formProps) {
 export const uploadResume = (user, resume, onChange) => (dispatch) => {
   const storageRef = firebase.storage().ref().child('resumes').child(`${user.uid}.pdf`);
 
-  console.log(resume);
   storageRef.put(resume).then(() => {
     dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
     onChange(resume.name);

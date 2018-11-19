@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 const CheckInput = ({
   input,
@@ -10,14 +9,12 @@ const CheckInput = ({
   disabled,
   meta: { touched, error },
 }) => {
-  const errorExist = error ? true : false;
   return (
     <div>
-      <InputLabel>
+      <InputLabel error={touched && Boolean(error)}>
         {label}
       </InputLabel>
-      <CheckBox {...input} disabled={disabled} checked={input.value} />
-      {touched && errorExist ? <FormHelperText>{error}</FormHelperText> : '' }
+      <CheckBox {...input} value={String(input.value)} checked={input.value} disabled={disabled} />
     </div>
   );
 };

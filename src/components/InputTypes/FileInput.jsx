@@ -25,7 +25,6 @@ class FileInput extends Component {
       fileName,
       meta: { touched, error },
     } = this.props;
-    const errorExist = error ? true : false;
     return (
       <div>
         <InputLabel>
@@ -37,7 +36,11 @@ class FileInput extends Component {
             {fileName}
           </Button>
         </label>
-        {touched && errorExist ? <FormHelperText>{error} </FormHelperText> : '' }
+        {touched && Boolean(error) ? (
+          <FormHelperText>
+            {error}
+          </FormHelperText>
+        ) : '' }
       </div>
     );
   }
@@ -56,6 +59,8 @@ FileInput.propTypes = {
     touched: PropTypes.bool,
     error: PropTypes.string,
   }).isRequired,
+  uploadResume: PropTypes.func.isRequired,
+  auth: PropTypes.shape({}).isRequired,
 };
 
 export default connect(mapStateToProps, { uploadResume })(FileInput);

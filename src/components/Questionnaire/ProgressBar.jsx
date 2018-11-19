@@ -29,7 +29,7 @@ class ProgressBar extends Component {
   }
 
   render() {
-    const { questionSections, id } = this.props;
+    const { id } = this.props;
     return (
       <div>
         <Stepper activeStep={Number(id)}>
@@ -46,6 +46,7 @@ function mapStateToProps(state) {
 
 ProgressBar.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(ProgressBar);
