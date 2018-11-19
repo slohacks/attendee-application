@@ -6,24 +6,30 @@ import { forgotPassword } from '../actions/index';
 
 class ForgotPassword extends Component {
   onSubmit(values) {
-    const { forgotPassword:  forgotPass } = this.props;
-    forgotPass(values); 
+    const { forgotPassword: forgotPass } = this.props;
+    forgotPass(values);
   }
 
   static renderField(field) {
+    const {
+      label,
+      type,
+      input,
+      meta: { touched, error },
+    } = field;
     return (
       <div className="input-wrapper">
         <label htmlFor="value" className="label-field">
-          {field.label}
+          {label}
           <input
-            type={field.type}
+            type={type}
             className="input-box"
-            {...field.input}
+            {...input}
           />
         </label>
 
         <div className="input-error">
-          {field.meta.touched ? field.meta.error : ''}
+          {touched ? error : ''}
         </div>
       </div>
     );
@@ -41,7 +47,6 @@ class ForgotPassword extends Component {
         />
         <button
           type="submit"
-          className=""
         >
         Submit
         </button>
