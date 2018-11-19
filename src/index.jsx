@@ -12,6 +12,7 @@ import Questionnaire from './containers/Questionnaire';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
+import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './components/NotFound';
 
 const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
@@ -24,6 +25,7 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/lostpassword" component={ForgotPassword} />
           <Route path="/signup" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
