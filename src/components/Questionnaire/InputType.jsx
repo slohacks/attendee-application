@@ -16,6 +16,10 @@ const required = value => (value || typeof value === 'number' ? undefined : 'Req
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
 const checked = value => (value === 'false' ? 'Required' : '');
+const process = (date) => {
+  return new Date(date).getTime();
+};
+const date = value => (!(process(value) >= process('02/01/2019')) ? 'Invalid Graduation Date' : '');
 
 const InputType = (props) => {
   function renderFields(question) {
@@ -151,6 +155,7 @@ const InputType = (props) => {
             label={title}
             disabled={disabled}
             name={id}
+            validate={[required, date]}
             component={DateInput}
           />
         );
