@@ -1,6 +1,6 @@
 import * as types from '../../actions/types';
 
-const INITIAL_STATE = 'Select File';
+const INITIAL_STATE = 'UPLOAD';
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

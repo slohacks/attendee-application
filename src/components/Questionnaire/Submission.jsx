@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import Button from '@material-ui/core/Button';
 import InputType from './InputType';
 import { submitApp } from '../../actions/index';
 
@@ -33,17 +34,17 @@ class Submission extends Component {
   }
 
   render() {
-    const { invalid, handleSubmit, previousPage } = this.props;
+    const { valid, handleSubmit, previousPage } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.submitApplication.bind(this))}>
           {this.renderSections()}
-          <button onClick={previousPage} type="button">
-            Back
-          </button>
-          <button type="submit" disabled={invalid}>
-            Submit Application
-          </button>
+          <Button variant="contained" color="secondary" onClick={previousPage} type="button">
+            BACK
+          </Button>
+          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+            NEXT
+          </Button>
         </form>
       </div>
     );

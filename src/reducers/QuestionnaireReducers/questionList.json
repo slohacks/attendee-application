@@ -26,11 +26,7 @@
         {          
           "id": "age",
           "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          }
+          "inputType": "checkBox"
         },
         {          
           "id": "college",
