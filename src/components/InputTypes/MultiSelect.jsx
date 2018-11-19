@@ -52,9 +52,7 @@ const MultiSelect = (props) => {
           </FormHelperText>
         ) : ''}
       </FormControl>
-
     </div>
-
   );
 };
 

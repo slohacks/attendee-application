@@ -19,7 +19,6 @@ const CheckInput = ({
   );
 };
 
-
 CheckInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
