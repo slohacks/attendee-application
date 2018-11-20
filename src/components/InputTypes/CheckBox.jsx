@@ -1,26 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import FormLabel from '@material-ui/core/FormLabel';
+import CheckBox from '@material-ui/core/Checkbox';
+import InputLabel from '@material-ui/core/InputLabel';
 
-const DateInput = ({
+const CheckInput = ({
   input,
   label,
   disabled,
   meta: { touched, error },
 }) => {
-  const errorExist = touched && Boolean(error);
   return (
     <div>
-      <FormLabel error={errorExist}>
+      <InputLabel error={touched && Boolean(error)}>
         {label}
-      </FormLabel>
-      <TextField type="date" fullWidth helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
+      </InputLabel>
+      <CheckBox {...input} value={String(input.value)} checked={input.value} disabled={disabled} />
     </div>
   );
 };
 
-DateInput.propTypes = {
+CheckInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool.isRequired,
@@ -30,4 +29,4 @@ DateInput.propTypes = {
   }).isRequired,
 };
 
-export default DateInput;
+export default CheckInput;

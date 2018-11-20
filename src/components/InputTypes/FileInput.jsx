@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveFile } from '../../actions/index';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import { uploadResume } from '../../actions/index';
 
 class FileInput extends Component {
   constructor(props) {
@@ -10,13 +13,13 @@ class FileInput extends Component {
   }
 
   onChange(e) {
-    const { input: { onChange }, saveFile } = this.props;
-    onChange(e.target.files[0]);
-    saveFile(e.target.files[0].name);
+    const { input: { onChange }, uploadResume: sendResume, auth } = this.props;
+    sendResume(auth.user, e.target.files[0], onChange);
   }
 
   render() {
     const {
+      input,
       label,
       disabled,
       fileName,
@@ -24,35 +27,40 @@ class FileInput extends Component {
     } = this.props;
     return (
       <div>
-        <label>
+        <InputLabel>
           {label}
-        </label>
+        </InputLabel>
         <input style={{ display: 'none' }} id="files" accept=".pdf" type="file" onChange={this.onChange} onBlur={() => {}} disabled={disabled} />
         <label htmlFor="files">
-          {fileName}
+          <Button variant="outlined" color="primary" component="span">
+            {fileName}
+          </Button>
         </label>
-        <div className="error-message">
-          {touched ? error : ''}
-        </div>
+        {touched && Boolean(error) ? (
+          <FormHelperText>
+            {error}
+          </FormHelperText>
+        ) : '' }
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { fileName: state.file };
+  return { fileName: state.fileName, auth: state.auth };
 }
 
 FileInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
-  saveFile: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   fileName: PropTypes.string.isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
     error: PropTypes.string,
   }).isRequired,
+  uploadResume: PropTypes.func.isRequired,
+  auth: PropTypes.shape({}).isRequired,
 };
 
-export default connect(mapStateToProps, { saveFile })(FileInput);
+export default connect(mapStateToProps, { uploadResume })(FileInput);

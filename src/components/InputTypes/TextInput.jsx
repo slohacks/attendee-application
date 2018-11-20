@@ -1,22 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
 
 const TextInput = ({
   input,
   label,
   disabled,
   meta: { touched, error },
-}) => (
-  <div>
-    <label htmlFor="value">
-      {label}
-      <input {...input} disabled={disabled} />
-    </label>
-    <div className="error-message">
-      {touched ? error : ''}
-    </div>
-  </div>
-);
+}) => {
+  const errorExist = touched && Boolean(error);
+  return (
+    <TextField fullWidth label={label} helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
+  );
+};
 
 
 TextInput.propTypes = {

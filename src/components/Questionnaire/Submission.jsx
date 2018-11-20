@@ -2,27 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import Button from '@material-ui/core/Button';
 import InputType from './InputType';
-import ProgressBar from './ProgressBar';
 import { submitApp } from '../../actions/index';
 
 class Submission extends Component {
   submitApplication(form) {
-    const { submitApp: submitApplication } = this.props;
-    submitApplication(form);
+    const { submitApp: submitApplication, auth } = this.props;
+    submitApplication(auth.user, form);
   }
 
   renderSections() {
     const { questionSections } = this.props;
     return questionSections.map((section) => {
-      return (
-        <div key={section.name}>
-          <h2>
-            {section.name}
-          </h2>
-          {Submission.renderFields(section)}
-        </div>
-      );
+      if (section.id !== questionSections.length - 1) {
+        return (
+          <div key={section.name}>
+            <h2>
+              {section.name}
+            </h2>
+            {Submission.renderFields(section)}
+          </div>
+        );
+      }
     });
   }
 
@@ -32,15 +34,17 @@ class Submission extends Component {
   }
 
   render() {
-    const { invalid, handleSubmit } = this.props;
+    const { valid, handleSubmit, previousPage } = this.props;
     return (
       <div>
-        <ProgressBar />
         <form onSubmit={handleSubmit(this.submitApplication.bind(this))}>
           {this.renderSections()}
-          <button type="submit" disabled={invalid}>
-            Submit Application
-          </button>
+          <Button variant="contained" color="secondary" onClick={previousPage} type="button">
+            BACK
+          </Button>
+          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+            NEXT
+          </Button>
         </form>
       </div>
     );
@@ -48,14 +52,20 @@ class Submission extends Component {
 }
 
 function mapStateToProps(state) {
-  return { questionSections: state.questions.body, responseValues: state.responses };
+  return {
+    questionSections: state.questions.body,
+    responseValues: state.responses,
+    auth: state.auth,
+  };
 }
 
 Submission.propTypes = {
-  invalid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   submitApp: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
+  auth: PropTypes.shape({}).isRequired,
 };
 
 Submission = reduxForm({

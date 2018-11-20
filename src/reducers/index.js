@@ -3,14 +3,14 @@ import { reducer as formReducer } from 'redux-form';
 import authentication from './auth';
 import questionList from './QuestionnaireReducers/questions';
 import formResponses from './QuestionnaireReducers/formResponses';
-import fileName from './QuestionnaireReducers/fileName';
+import resumeResponse from './QuestionnaireReducers/resumeResponse';
 
 const rootReducer = combineReducers({
   form: formReducer,
   auth: authentication,
   questions: questionList,
   responses: formResponses,
-  file: fileName,
+  fileName: resumeResponse,
 });
 
 export default rootReducer;

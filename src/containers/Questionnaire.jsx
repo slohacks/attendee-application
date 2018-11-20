@@ -7,6 +7,7 @@ import PersonalInfo from '../components/Questionnaire/PersonalInfo';
 import BasicInfo from '../components/Questionnaire/BasicInfo';
 import ShortAnswer from '../components/Questionnaire/ShortAnswer';
 import Statistics from '../components/Questionnaire/Statistics';
+import Submission from '../components/Questionnaire/Submission';
 import Miscellaneous from '../components/Questionnaire/Miscellaneous';
 import Required from '../components/Questionnaire/Required';
 
@@ -14,29 +15,85 @@ class Questionaire extends Component {
   constructor() {
     super();
     this.renderNextPage = this.renderNextPage.bind(this);
+    this.renderPreviousPage = this.renderPreviousPage.bind(this);
   }
 
   renderQuestionSection(id) {
     const { questionSections } = this.props;
     switch (id) {
       case '0':
-        return <PersonalInfo nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <PersonalInfo
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '1':
-        return <BasicInfo nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <BasicInfo
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '2':
-        return <ShortAnswer nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <ShortAnswer
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '3':
-        return <Statistics nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <Statistics
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '4':
-        return <Miscellaneous nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <Miscellaneous
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
       case '5':
-        return <Required nextPage={this.renderNextPage} section={questionSections[id]} />;
+        return (
+          <Required
+            previousPage={this.renderPreviousPage}
+            nextPage={this.renderNextPage}
+            section={questionSections[id]}
+          />
+        );
+      case '6':
+        return (
+          <Submission
+            previousPage={this.renderPreviousPage}
+          />
+        );
       default:
         return (
           <h1>
             Hello World
           </h1>
         );
+    }
+  }
+
+  renderPreviousPage() {
+    const {
+      match: { params: { id } },
+      history: { push },
+    } = this.props;
+
+    if (Number(id) === 0) {
+      push('/dashboard');
+    } else {
+      push(`/questionnaire/${Number(id) - 1}`);
     }
   }
 
@@ -58,7 +115,7 @@ class Questionaire extends Component {
     const { match: { params: { id } } } = this.props;
     return (
       <div>
-        <ProgressBar />
+        <ProgressBar id={id} />
         {this.renderQuestionSection(id)}
       </div>
     );
@@ -81,4 +138,4 @@ Questionaire.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps)(requireAuth(Questionaire));
+export default connect(mapStateToProps, null)(requireAuth(Questionaire));

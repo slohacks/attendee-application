@@ -20,16 +20,12 @@
         {          
           "id": "age",
           "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          }
+          "inputType": "checkBox"
         },
         {          
           "id": "college",
           "title": "What college are you studying at?",
-          "inputType": "textInput"
+          "inputType": "listSelect"
         },
         {          
           "id": "major",
@@ -87,6 +83,11 @@
           "title": "What is your personal website?",
           "inputType": "textInput",
           "validate": "none"
+        },
+        {
+          "id": "resume",
+          "title": "Upload your resume.",
+          "inputType": "fileUpload"
         }
       ]
     },
@@ -155,37 +156,26 @@
       "id": 5,
       "name": "Required",
       "questions": [
-        {
+        {          
           "id": "mlh",
           "title": "MLH CoC marked?",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-        "validate": "checked"
+          "inputType": "checkBox"
         },
-        {
+        {          
           "id": "hack_club",
           "title": "Hack Club Liability",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-          "validate": "checked"
+          "inputType": "checkBox"
         },
-        {
+        {          
           "id": "asi",
           "title": "ASI liablility marked?",
-          "inputType": "dropDown",
-          "options": { 
-            "Yes": true, 
-            "No": false
-          },
-          "validate": "checked"
+          "inputType": "checkBox"
         }
       ]
+    },
+    {
+      "id": 6,
+      "name": "Submission"
     }
   ]
 }

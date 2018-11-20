@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 
 class ProgressBar extends Component {
   renderProgressLinks() {
-    const { questionSections } = this.props;
+    const { questionSections, id } = this.props;
     return questionSections.map((section) => {
+      if (section.id.toString() === id) {
+        return (
+          <Step key={section.id}>
+            <StepLabel>
+              {section.name}
+            </StepLabel>
+          </Step>
+        );
+      }
       return (
-        <Link key={section.id} to={`/questionnaire/${section.id}`}>
-          {section.name}
-        </Link>
+        <Step key={section.id}>
+          <StepLabel>
+            {section.name}
+          </StepLabel>
+        </Step>
       );
     });
   }
 
   render() {
+    const { id } = this.props;
     return (
       <div>
-        {this.renderProgressLinks()}
-        <Link to="/submission">
-          Submission
-        </Link>
+        <Stepper activeStep={Number(id)}>
+          {this.renderProgressLinks()}
+        </Stepper>
       </div>
     );
   }
@@ -33,6 +46,7 @@ function mapStateToProps(state) {
 
 ProgressBar.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(ProgressBar);
