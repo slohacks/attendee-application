@@ -32,7 +32,7 @@ class ShortAnswer extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           {ShortAnswer.renderInputs(questions)}
-          <Button variant="contained" color="secondary" onClick={previousPage} type="button">
+          <Button color="secondary" onClick={previousPage} type="button">
             BACK
           </Button>
           <Button variant="contained" color="primary" disabled={!valid} type="submit">
