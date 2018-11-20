@@ -146,7 +146,8 @@
         {
           "id": "misc",
           "title": "Anything else we should know?",
-          "inputType": "textArea"
+          "inputType": "textArea",
+          "validate": "none"
         }
       ]
     },

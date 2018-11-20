@@ -63,6 +63,16 @@ const InputType = (props) => {
           />
         );
       case 'textArea':
+        if (question.validate === 'none') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              name={id}
+              component={TextArea}
+            />
+          );
+        }
         return (
           <Field
             label={title}
