@@ -15,7 +15,16 @@ const TextArea = ({
       <InputLabel error={errorExist}>
         {label}
       </InputLabel>
-      <TextField multiline fullwidth helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
+      <br />
+      <TextField
+        multiline
+        rows="4"
+        fullwidth
+        helperText={errorExist ? error : ''}
+        error={errorExist}
+        {...input}
+        disabled={disabled}
+      />
     </div>
   );
 };
