@@ -2,6 +2,7 @@ import * as types from './types';
 import { firebase, applicationsRef } from '../config/firebase';
 
 export const signUp = values => (dispatch) => {
+  dispatch({ type: types.SIGN_UP_ATTEMPT });
   firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
     .then((userCredential) => {
       firebase.auth().currentUser.sendEmailVerification()
@@ -29,6 +30,7 @@ export const login = values => (dispatch) => {
     });
 };
 export const forgotPassword = values => (dispatch) => {
+  dispatch({ type: types.FORGOT_PASS_ATTEMPT });
   firebase.auth().sendPasswordResetEmail(values.email)
     .then((userCredential) => {
       dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
