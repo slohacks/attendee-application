@@ -9,6 +9,11 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case types.LOGIN_ATTEMPT:
+      return {
+        ...state,
+        errorMessage: '',
+      };
     case types.LOGIN_GUCCI:
       return {
         ...state,

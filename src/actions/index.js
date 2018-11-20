@@ -13,6 +13,7 @@ export const signUp = values => (dispatch) => {
 };
 
 export const login = values => (dispatch) => {
+  dispatch({ type: types.LOGIN_ATTEMPT });
   firebase.auth().signInWithEmailAndPassword(values.email, values.password)
     .then((userCredential) => {
       const {
@@ -21,7 +22,7 @@ export const login = values => (dispatch) => {
       if (emailVerified) {
         dispatch({ type: types.LOGIN_GUCCI, userCredential });
       } else {
-        dispatch({ type: types.LOGIN_FAIL, errorMessage: 'Email Not Verified' });
+        dispatch({ type: types.LOGIN_FAIL, error: { message: 'Email not verified, please verify your email.' } });
       }
     }).catch((error) => {
       dispatch({ type: types.LOGIN_FAIL, error });
