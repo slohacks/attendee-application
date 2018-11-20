@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   auth: authentication,
   questions: questionList,
   responses: formResponses,
-  fileName: resumeResponse,
+  file: resumeResponse,
 });
 
 export default rootReducer;

@@ -55,14 +55,19 @@ export function submitResponse(formProps) {
 }
 
 export const uploadResume = (user, resume, onChange) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_RESUME_ATTEMPT });
   const storageRef = firebase.storage().ref().child('resumes').child(`${user.uid}.pdf`);
 
-  storageRef.put(resume).then(() => {
-    dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
-    onChange(resume.name);
-  }).catch((error) => {
-    dispatch({ type: types.UPLOAD_RESUME_FAIL, error });
-  });
+  try {
+    storageRef.put(resume).then(() => {
+      dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
+      onChange(resume.name);
+    }).catch(() => {
+      dispatch({ type: types.UPLOAD_RESUME_FAIL, error: "File submitted isn't of type PDF or is too large." });
+    });
+  } catch (error) {
+    dispatch({ type: types.UPLOAD_RESUME_FAIL });
+  }
 };
 
 export const submitApp = (user, form) => (dispatch) => {

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import FormLabel from '@material-ui/core/FormLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { uploadResume } from '../../actions/index';
 
@@ -19,35 +20,43 @@ class FileInput extends Component {
 
   render() {
     const {
-      input,
       label,
       disabled,
       fileName,
-      meta: { touched, error },
+      errorMessage,
+      loading,
     } = this.props;
     return (
       <div>
-        <InputLabel>
-          {label}
-        </InputLabel>
+        <div>
+          <FormLabel>
+            {label}
+          </FormLabel>
+        </div>
         <input style={{ display: 'none' }} id="files" accept=".pdf" type="file" onChange={this.onChange} onBlur={() => {}} disabled={disabled} />
         <label htmlFor="files">
           <Button variant="outlined" color="primary" component="span">
             {fileName}
           </Button>
+          {loading ? <CircularProgress color="primary" /> : null}
         </label>
-        {touched && Boolean(error) ? (
+        {errorMessage ? (
           <FormHelperText>
-            {error}
+            {errorMessage}
           </FormHelperText>
-        ) : '' }
+        ) : null }
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { fileName: state.fileName, auth: state.auth };
+  return {
+    fileName: state.file.fileName,
+    loading: state.file.loading,
+    errorMessage: state.file.errorMessage,
+    auth: state.auth,
+  };
 }
 
 FileInput.propTypes = {
@@ -55,12 +64,10 @@ FileInput.propTypes = {
   input: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool.isRequired,
   fileName: PropTypes.string.isRequired,
-  meta: PropTypes.shape({
-    touched: PropTypes.bool,
-    error: PropTypes.string,
-  }).isRequired,
   uploadResume: PropTypes.func.isRequired,
   auth: PropTypes.shape({}).isRequired,
+  errorMessage: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, { uploadResume })(FileInput);

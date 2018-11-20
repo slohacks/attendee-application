@@ -13,3 +13,4 @@ export const SUBMIT_FAIL = 'submit_app_fail';
 export const SAVE_RESPONSE = 'save_response';
 export const UPLOAD_RESUME_GUCCI = 'upload_resume_gucci';
 export const UPLOAD_RESUME_FAIL = 'upload_resume_fail';
+export const UPLOAD_RESUME_ATTEMPT = 'upload_resume_attempt';
