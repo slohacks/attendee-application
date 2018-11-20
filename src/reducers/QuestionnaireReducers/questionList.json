@@ -72,15 +72,15 @@
       [
         {         
           "id": "github",
-          "title": "What is your Github username?",
+          "title": "What is your Github?",
           "inputType": "textInput",
-          "validate": "none"
+          "validate": "github"
         },
         {          
           "id": "linkedin",
-          "title": "What is your linkedin?",
+          "title": "What is your LinkedIn?",
           "inputType": "textInput",
-          "validate": "none"
+          "validate": "linkedin"
         },
         {          
           "id": "website",
