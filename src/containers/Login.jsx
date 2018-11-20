@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '../components/InputTypes/TextInput';
 import { login } from '../actions/index';
 
@@ -30,7 +31,7 @@ class Login extends Component {
   }
 
   render() {
-    const { handleSubmit, valid } = this.props;
+    const { handleSubmit, valid, errorMessage } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -50,6 +51,11 @@ class Login extends Component {
             Login!
           </Button>
         </form>
+        {errorMessage ? (
+          <FormHelperText error>
+            {errorMessage}
+          </FormHelperText>
+        ) : null}
         <div>
           <Link to="/lostpassword">
             <Button color="primary" type="button">
@@ -88,7 +94,7 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth.authenticated };
+  return { auth: state.auth.authenticated, errorMessage: state.auth.errorMessage };
 }
 
 Login.propTypes = {
@@ -97,6 +103,7 @@ Login.propTypes = {
   auth: PropTypes.bool.isRequired,
   history: PropTypes.shape().isRequired,
   valid: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default reduxForm({

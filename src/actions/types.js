@@ -1,4 +1,5 @@
 export const FILE_NAME = 'file_name';
+export const LOGIN_ATTEMPT = 'login_attempt';
 export const LOGIN_GUCCI = 'login_gucci';
 export const LOGIN_FAIL = 'login_fail';
 export const FORGOT_PASS_GUCCI = 'forogt_pass_gucci';
