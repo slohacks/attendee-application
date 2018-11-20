@@ -12,6 +12,7 @@ export default (state = INITIAL_STATE, action) => {
     case types.LOGIN_ATTEMPT:
       return {
         ...state,
+        error: false,
         errorMessage: '',
       };
     case types.LOGIN_GUCCI:
