@@ -69,7 +69,7 @@ class Login extends Component {
 
         </form>
         <div>
-          <Link to="placeholder">
+          <Link to="/lostpassword">
           Forgot Password
           </Link>
         </div>

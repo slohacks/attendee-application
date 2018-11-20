@@ -20,6 +20,14 @@ export const login = values => (dispatch) => {
       dispatch({ type: types.LOGIN_FAIL, error });
     });
 };
+export const forgotPassword = values => (dispatch) => {
+  firebase.auth().sendPasswordResetEmail(values.email)
+    .then((userCredential) => {
+      dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
+    }).catch((error) => {
+      dispatch({ type: types.FORGOT_PASS_FAIL, error });
+    });
+};
 
 export const signout = () => (dispatch) => {
   firebase.auth().signOut()
