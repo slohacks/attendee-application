@@ -30,7 +30,7 @@
         {          
           "id": "major",
           "title": "What major are you currently studying?",
-          "inputType": "textInput"
+          "inputType": "majorSelect"
         },
         {
           "id": "grad_date",
