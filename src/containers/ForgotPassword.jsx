@@ -2,37 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import { forgotPassword } from '../actions/index';
+import TextInput from '../components/InputTypes/TextInput';
 
 class ForgotPassword extends Component {
   onSubmit(values) {
     const { forgotPassword: forgotPass } = this.props;
     forgotPass(values);
-  }
-
-  static renderField(field) {
-    const {
-      label,
-      type,
-      input,
-      meta: { touched, error },
-    } = field;
-    return (
-      <div className="input-wrapper">
-        <label htmlFor="value" className="label-field">
-          {label}
-          <input
-            type={type}
-            className="input-box"
-            {...input}
-          />
-        </label>
-
-        <div className="input-error">
-          {touched ? error : ''}
-        </div>
-      </div>
-    );
   }
 
   render() {
@@ -43,13 +20,11 @@ class ForgotPassword extends Component {
           label="Email"
           name="email"
           type="text"
-          component={ForgotPassword.renderField}
+          component={TextInput}
         />
-        <button
-          type="submit"
-        >
-        Submit
-        </button>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
       </form>
     );
   }

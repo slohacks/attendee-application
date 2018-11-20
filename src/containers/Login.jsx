@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import TextInput from '../components/InputTypes/TextInput';
 import { login } from '../actions/index';
 
 class Login extends Component {
@@ -27,27 +29,8 @@ class Login extends Component {
     loginActionCreator(values);
   }
 
-  static renderField(field) {
-    return (
-      <div className="input-wrapper">
-        <label htmlFor="value" className="label-field">
-          {field.label}
-          <input
-            type={field.type}
-            className="input-box"
-            {...field.input}
-          />
-        </label>
-        <div className="input-error">
-          {field.meta.touched ? field.meta.error : ''}
-        </div>
-      </div>
-    );
-  }
-
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit, valid } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -55,27 +38,30 @@ class Login extends Component {
             label="Email"
             name="email"
             type="text"
-            component={Login.renderField}
+            component={TextInput}
           />
           <Field
             label="Enter a password (8 or more characters)"
             name="password"
             type="password"
-            component={Login.renderField}
+            component={TextInput}
           />
-          <button type="submit">
-          Submit
-          </button>
-
+          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+            Login!
+          </Button>
         </form>
         <div>
           <Link to="/lostpassword">
-          Forgot Password
+            <Button color="primary" type="button">
+                Forgot Password
+            </Button>
           </Link>
         </div>
         <div>
           <Link to="/signup">
-            Create Account
+            <Button color="primary" type="button">
+              Create Account
+            </Button>
           </Link>
         </div>
       </div>
@@ -110,6 +96,7 @@ Login.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   auth: PropTypes.bool.isRequired,
   history: PropTypes.shape().isRequired,
+  valid: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
