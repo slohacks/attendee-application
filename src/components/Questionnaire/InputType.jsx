@@ -10,10 +10,16 @@ import DateInput from '../InputTypes/DateInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+const linkedin = value => (!value.includes('https://www.linkedin.com/in/') ? 'Invalid LinkedIn link' : '');
+const github = value => (!value.includes('https://github.com/') ? 'Invalid GitHub link' : '');
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
 const checked = value => (value === 'false' ? 'Required' : '');
+const process = (date) => {
+  return new Date(date).getTime();
+};
+const date = value => (!(process(value) >= process('02/01/2019')) ? 'Invalid Graduation Date' : '');
 
 const InputType = (props) => {
   function renderFields(question) {
@@ -53,6 +59,28 @@ const InputType = (props) => {
             />
           );
         }
+        if (question.validate === 'linkedin') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              validate={[required, linkedin]}
+              name={id}
+              component={TextInput}
+            />
+          );
+        }
+        if (question.validate === 'github') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              validate={[required, github]}
+              name={id}
+              component={TextInput}
+            />
+          );
+        }
         return (
           <Field
             label={title}
@@ -63,6 +91,16 @@ const InputType = (props) => {
           />
         );
       case 'textArea':
+        if (question.validate === 'none') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              name={id}
+              component={TextArea}
+            />
+          );
+        }
         return (
           <Field
             label={title}
@@ -127,6 +165,7 @@ const InputType = (props) => {
             label={title}
             disabled={disabled}
             name={id}
+            validate={[required, date]}
             component={DateInput}
           />
         );
