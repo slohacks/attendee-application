@@ -8,6 +8,7 @@ import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 import CheckInput from '../InputTypes/CheckBox';
 import CollegeListSelect from './CollegeListSelect';
+import MajorListSelect from './MajorListSelect';
 import DateInput from '../InputTypes/DateInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -154,6 +155,10 @@ const InputType = (props) => {
         return (
           <CollegeListSelect title={title} id={id} disabled={disabled} required={required} />
         );
+      case 'majorSelect':
+        return (
+          <MajorListSelect title={title} id={id} disabled={disabled} required={required} />
+        );
       case 'fileUpload':
         return (
           <Field
@@ -179,7 +184,6 @@ const InputType = (props) => {
           <Field
             label={title}
             disabled={disabled}
-            validate={[required]}
             name={id}
             validate={[required, date]}
             component={DateInput}
