@@ -1,61 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
+import TextInput from '../components/InputTypes/TextInput';
 
 class SignUp extends Component {
   onSubmit(values) {
     this.props.signUp(values); // eslint-disable-line react/destructuring-assignment
   }
 
-  static renderField(field) {
-    return (
-      <div className="input-wrapper">
-        <label htmlFor="value" className="label-field">
-          {field.label}
-          <input
-            type={field.type}
-            className="input-box"
-            {...field.input}
-          />
-        </label>
-
-        <div className="input-error">
-          {field.meta.touched ? field.meta.error : ''}
-        </div>
-      </div>
-    );
-  }
-
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, valid } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Email"
           name="email"
           type="text"
-          component={SignUp.renderField}
+          component={TextInput}
         />
         <Field
           label="Enter a password (8 or more characters)"
           name="password"
           type="password"
-          component={SignUp.renderField}
+          component={TextInput}
         />
         <Field
           label="Confirm Password"
           name="confirm_password"
           type="password"
-          component={SignUp.renderField}
+          component={TextInput}
         />
-        <button
-          type="submit"
-          className=""
-        >
-        Submit
-        </button>
+        <Button variant="contained" color="primary" disabled={!valid} type="submit">
+          Sign up!
+        </Button>
       </form>
     );
   }
@@ -95,6 +75,7 @@ function validate(values) {
 SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
