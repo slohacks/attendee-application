@@ -12,8 +12,8 @@ import DateInput from '../InputTypes/DateInput';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-const linkedin = value => (!value.includes('https://linkedin.com/in/') ? 'Invalid LinkedIn link' : '');
-const github = value => (!value.includes('https://github.com/') ? 'Invalid GitHub link' : '');
+const linkedin = value => (!value.includes('linkedin.com/in/') ? 'Invalid LinkedIn link' : '');
+const github = value => (!value.includes('github.com/') ? 'Invalid GitHub link' : '');
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
