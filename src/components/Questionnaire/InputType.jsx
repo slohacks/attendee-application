@@ -7,9 +7,10 @@ import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 import CheckInput from '../InputTypes/CheckBox';
-import CollegeListSelect from './CollegeListSelect';
-import MajorListSelect from './MajorListSelect';
+import ListSelect from '../InputTypes/ListSelect';
 import DateInput from '../InputTypes/DateInput';
+import colleges from '../../reducers/QuestionnaireReducers/colleges.json';
+import majors from '../../reducers/QuestionnaireReducers/majors.json';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -153,11 +154,25 @@ const InputType = (props) => {
         );
       case 'listSelect':
         return (
-          <CollegeListSelect title={title} id={id} disabled={disabled} required={required} />
+          <Field
+            label={title}
+            suggestions={colleges}
+            component={ListSelect}
+            name={id}
+            disabled={disabled}
+            validate={[required]}
+          />
         );
       case 'majorSelect':
         return (
-          <MajorListSelect title={title} id={id} disabled={disabled} required={required} />
+          <Field
+            label={title}
+            suggestions={majors}
+            component={ListSelect}
+            name={id}
+            disabled={disabled}
+            validate={[required]}
+          />
         );
       case 'fileUpload':
         return (
