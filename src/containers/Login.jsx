@@ -48,7 +48,7 @@ class Login extends Component {
             component={TextInput}
           />
           <Button variant="contained" color="primary" disabled={!valid} type="submit">
-            Login!
+            Login
           </Button>
         </form>
         {errorMessage ? (
