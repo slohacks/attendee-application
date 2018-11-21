@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -23,8 +23,8 @@ const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
-    <HashRouter>
-      <div className="sides">
+    <BrowserRouter>
+      <div>
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/lostpassword" component={ForgotPassword} />
@@ -36,7 +36,7 @@ ReactDOM.render(
           <Route component={NotFound} />
         </Switch>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
   document.querySelector('.app'),
 );
