@@ -15,6 +15,8 @@ import Submission from './components/Questionnaire/Submission';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './components/NotFound';
 
+import './index.css';
+
 const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
   applyMiddleware(ReduxThunk),
 ));
@@ -22,7 +24,7 @@ const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
     <HashRouter>
-      <div>
+      <div className="sides">
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/lostpassword" component={ForgotPassword} />

@@ -1,0 +1,10 @@
+.sides {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 992px) {
+  .sides {
+    width: 61.8vw;
+  }
+}
