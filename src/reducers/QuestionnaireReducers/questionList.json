@@ -34,7 +34,7 @@
         },
         {
           "id": "grad_date",
-          "title": "When will be graduating?",
+          "title": "When will you be graduating?",
           "inputType": "dateInput"
         },
         {          
