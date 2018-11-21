@@ -77,9 +77,9 @@ class Questionaire extends Component {
         );
       default:
         return (
-          <h1>
-            Hello World
-          </h1>
+          <p>
+            Default
+          </p>
         );
     }
   }
@@ -115,6 +115,9 @@ class Questionaire extends Component {
     const { match: { params: { id } } } = this.props;
     return (
       <div>
+        <h1>
+          Questionnaire
+        </h1>
         <ProgressBar id={id} />
         {this.renderQuestionSection(id)}
       </div>

@@ -16,6 +16,9 @@ class SignUp extends Component {
     const { handleSubmit, valid, errorMessage } = this.props;
     return (
       <div>
+        <h1>
+          Sign Up
+        </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -35,8 +38,8 @@ class SignUp extends Component {
             type="password"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" disabled={!valid} type="submit">
-            Sign up!
+          <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+            Sign up
           </Button>
         </form>
         {errorMessage ? (

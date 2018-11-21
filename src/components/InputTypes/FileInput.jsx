@@ -27,18 +27,26 @@ class FileInput extends Component {
       loading,
     } = this.props;
     return (
-      <div>
+      <div
+        style={{ marginBottom: '1rem' }}
+      >
         <div>
           <FormLabel>
             {label}
           </FormLabel>
         </div>
         <input style={{ display: 'none' }} id="files" accept=".pdf" type="file" onChange={this.onChange} onBlur={() => {}} disabled={disabled} />
-        <label htmlFor="files">
-          <Button variant="outlined" color="primary" component="span">
+        <label
+          htmlFor="files"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Button variant="contained" color="primary" component="span">
             {fileName}
           </Button>
-          {loading ? <CircularProgress color="primary" /> : null}
+          {loading ? <CircularProgress color="primary" style={{ marginLeft: '1rem' }} /> : null}
         </label>
         {errorMessage ? (
           <FormHelperText>

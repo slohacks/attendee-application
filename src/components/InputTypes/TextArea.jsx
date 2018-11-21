@@ -24,6 +24,7 @@ const TextArea = ({
         error={errorExist}
         {...input}
         disabled={disabled}
+        style={{ marginBottom: '1rem' }}
       />
     </div>
   );

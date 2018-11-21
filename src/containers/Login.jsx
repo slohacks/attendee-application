@@ -34,6 +34,9 @@ class Login extends Component {
     const { handleSubmit, valid, errorMessage } = this.props;
     return (
       <div>
+        <h1>
+          SLO Hacks 2019 Application
+        </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -47,8 +50,14 @@ class Login extends Component {
             type="password"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" disabled={!valid} type="submit">
-            Login!
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={!valid}
+            type="submit"
+            style={{ marginBottom: '1rem' }}
+          >
+            Login
           </Button>
         </form>
         {errorMessage ? (
@@ -57,16 +66,14 @@ class Login extends Component {
           </FormHelperText>
         ) : null}
         <div>
-          <Link to="/lostpassword">
-            <Button color="primary" type="button">
-                Forgot Password
-            </Button>
-          </Link>
-        </div>
-        <div>
           <Link to="/signup">
             <Button color="primary" type="button">
               Create Account
+            </Button>
+          </Link>
+          <Link to="/lostpassword">
+            <Button color="primary" type="button">
+                Forgot Password
             </Button>
           </Link>
         </div>

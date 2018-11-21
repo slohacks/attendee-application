@@ -14,9 +14,12 @@ class ForgotPassword extends Component {
   }
 
   render() {
-    const { handleSubmit, errorMessage } = this.props;
+    const { handleSubmit, errorMessage, valid } = this.props;
     return (
       <div>
+        <h1>
+          Password Reset
+        </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -24,7 +27,7 @@ class ForgotPassword extends Component {
             type="text"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="outlined" color="primary" type="submit" disabled={!valid}>
             Submit
           </Button>
         </form>
@@ -59,6 +62,7 @@ function mapStateToProps(state) {
 ForgotPassword.propTypes = {
   forgotPassword: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
 };
 

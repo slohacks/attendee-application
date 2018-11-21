@@ -12,6 +12,7 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
+    "file-loader": "^2.0.0",
     "firebase": "^5.5.5",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",

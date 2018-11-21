@@ -18,11 +18,6 @@
           "validate": "phoneNumber"
         },
         {          
-          "id": "age",
-          "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "checkBox"
-        },
-        {          
           "id": "college",
           "title": "What college are you studying at?",
           "inputType": "listSelect"
@@ -34,7 +29,7 @@
         },
         {
           "id": "grad_date",
-          "title": "When will be graduating?",
+          "title": "When will you be graduating?",
           "inputType": "dateInput"
         },
         {          
@@ -58,6 +53,11 @@
           "id": "allergies",
           "title": "Do you have any allergies?",
           "inputType": "textInput"
+        },
+        {          
+          "id": "age",
+          "title": "Will you at least be 18 years old before February 1, 2019",
+          "inputType": "checkBox"
         }
       ]
     },

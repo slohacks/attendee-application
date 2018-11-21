@@ -27,7 +27,9 @@ class SelectInput extends Component {
     } = this.props;
     const errorExist = touched && Boolean(error);
     return (
-      <div>
+      <div
+        style={{ marginBottom: '1rem' }}
+      >
         <FormControl fullWidth error={errorExist} disabled={disabled}>
           <InputLabel>
             {label}

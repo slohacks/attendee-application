@@ -15,6 +15,8 @@ import Submission from './components/Questionnaire/Submission';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './components/NotFound';
 
+import './index.css';
+
 const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
   applyMiddleware(ReduxThunk),
 ));

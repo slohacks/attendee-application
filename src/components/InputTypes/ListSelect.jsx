@@ -141,7 +141,9 @@ class Input extends React.PureComponent {
     const { filteredSuggestions } = this.state;
     const { classes } = this.props;
     return (
-      <div>
+      <div
+        style={{ marginBottom: '1rem' }}
+      >
         <AutoSuggest
           suggestions={filteredSuggestions}
           onSuggestionsFetchRequested={this.handleFetch}
