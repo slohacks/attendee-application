@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
@@ -12,31 +13,38 @@ class SignUp extends Component {
   }
 
   render() {
-    const { handleSubmit, valid } = this.props;
+    const { handleSubmit, valid, errorMessage } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field
-          label="Email"
-          name="email"
-          type="text"
-          component={TextInput}
-        />
-        <Field
-          label="Enter a password (8 or more characters)"
-          name="password"
-          type="password"
-          component={TextInput}
-        />
-        <Field
-          label="Confirm Password"
-          name="confirm_password"
-          type="password"
-          component={TextInput}
-        />
-        <Button variant="contained" color="primary" disabled={!valid} type="submit">
-          Sign up!
-        </Button>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field
+            label="Email"
+            name="email"
+            type="text"
+            component={TextInput}
+          />
+          <Field
+            label="Enter a password (8 or more characters)"
+            name="password"
+            type="password"
+            component={TextInput}
+          />
+          <Field
+            label="Confirm Password"
+            name="confirm_password"
+            type="password"
+            component={TextInput}
+          />
+          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+            Sign up!
+          </Button>
+        </form>
+        {errorMessage ? (
+          <FormHelperText error>
+            {errorMessage}
+          </FormHelperText>
+        ) : null}
+      </div>
     );
   }
 }
@@ -72,15 +80,20 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return { auth: state.auth.authenticated, errorMessage: state.newUser.errorMessage };
+}
+
 SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   valid: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default reduxForm({
   validate,
   form: 'SignUpForm',
 })(
-  connect(null, { signUp })(SignUp),
+  connect(mapStateToProps, { signUp })(SignUp),
 );
