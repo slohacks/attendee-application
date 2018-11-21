@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
             type="text"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="outlined" color="primary" type="submit">
             Submit
           </Button>
         </form>

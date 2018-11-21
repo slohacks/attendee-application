@@ -38,8 +38,8 @@ class SignUp extends Component {
             type="password"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" disabled={!valid} type="submit">
-            Sign up!
+          <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+            Sign up
           </Button>
         </form>
         {errorMessage ? (

@@ -35,7 +35,7 @@ class ShortAnswer extends Component {
           <Button color="secondary" onClick={previousPage} type="button">
             BACK
           </Button>
-          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+          <Button variant="outlined" color="primary" disabled={!valid} type="submit">
             NEXT
           </Button>
         </form>
