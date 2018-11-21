@@ -17,6 +17,9 @@ class ForgotPassword extends Component {
     const { handleSubmit, errorMessage } = this.props;
     return (
       <div>
+        <h1>
+          Password Reset
+        </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"

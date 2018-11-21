@@ -34,6 +34,9 @@ class Login extends Component {
     const { handleSubmit, valid, errorMessage } = this.props;
     return (
       <div>
+        <h1>
+          SLO Hacks 2019 Application
+        </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"

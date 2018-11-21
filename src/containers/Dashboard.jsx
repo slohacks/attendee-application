@@ -19,6 +19,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <h1>
+          Hello!
+        </h1>
         <button type="button" onClick={this.boundSignOut}>
           Logout
         </button>
