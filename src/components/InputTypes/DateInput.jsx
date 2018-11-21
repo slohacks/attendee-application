@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import FormLabel from '@material-ui/core/FormLabel';
 
 const DateInput = ({
   input,
@@ -11,12 +10,16 @@ const DateInput = ({
 }) => {
   const errorExist = touched && Boolean(error);
   return (
-    <div>
-      <FormLabel error={errorExist}>
-        {label}
-      </FormLabel>
-      <TextField type="date" fullWidth helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
-    </div>
+    <TextField
+      type="date"
+      fullWidth
+      label={label}
+      InputLabelProps={{ shrink: true }}
+      helperText={errorExist ? error : ''}
+      error={errorExist}
+      {...input}
+      disabled={disabled}
+    />
   );
 };
 
