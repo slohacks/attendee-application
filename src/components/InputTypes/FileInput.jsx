@@ -27,7 +27,9 @@ class FileInput extends Component {
       loading,
     } = this.props;
     return (
-      <div>
+      <div
+        style={{ marginBottom: '1rem' }}
+      >
         <div>
           <FormLabel>
             {label}

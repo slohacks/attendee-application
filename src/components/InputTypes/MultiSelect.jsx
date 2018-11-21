@@ -33,7 +33,9 @@ const MultiSelect = (props) => {
   }
 
   return (
-    <div>
+    <div
+      style={{ marginBottom: '1rem' }}
+    >
       <FormControl fullWidth error={(mainError)} disabled={disabled}>
         <InputLabel>
           {label}

@@ -19,6 +19,7 @@ const DateInput = ({
       error={errorExist}
       {...input}
       disabled={disabled}
+      style={{ marginBottom: '1rem' }}
     />
   );
 };

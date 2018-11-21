@@ -10,11 +10,22 @@ const CheckInput = ({
   meta: { touched, error },
 }) => {
   return (
-    <div>
+    <div
+      style={{ marginBottom: '1rem' }}
+    >
       <InputLabel error={touched && Boolean(error)}>
         {label}
       </InputLabel>
-      <CheckBox {...input} value={String(input.value)} checked={input.value} disabled={disabled} />
+      <CheckBox
+        {...input}
+        value={String(input.value)}
+        checked={input.value}
+        disabled={disabled}
+        style={{
+          paddingTop: 0,
+          paddingBottom: 0,
+        }}
+      />
     </div>
   );
 };

@@ -11,7 +11,16 @@ const TextInput = ({
 }) => {
   const errorExist = touched && Boolean(error);
   return (
-    <TextField type={type} fullWidth label={label} helperText={errorExist ? error : ''} error={errorExist} {...input} disabled={disabled} />
+    <TextField
+      type={type}
+      fullWidth
+      label={label}
+      helperText={errorExist ? error : ''}
+      error={errorExist}
+      {...input}
+      disabled={disabled}
+      style={{ marginBottom: '1rem' }}
+    />
   );
 };
 

@@ -50,7 +50,13 @@ class Login extends Component {
             type="password"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" disabled={!valid} type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!valid}
+            type="submit"
+            style={{ marginBottom: '1rem' }}
+          >
             Login
           </Button>
         </form>
@@ -60,16 +66,14 @@ class Login extends Component {
           </FormHelperText>
         ) : null}
         <div>
-          <Link to="/lostpassword">
-            <Button color="primary" type="button">
-                Forgot Password
-            </Button>
-          </Link>
-        </div>
-        <div>
           <Link to="/signup">
             <Button color="primary" type="button">
               Create Account
+            </Button>
+          </Link>
+          <Link to="/lostpassword">
+            <Button color="primary" type="button">
+                Forgot Password
             </Button>
           </Link>
         </div>
