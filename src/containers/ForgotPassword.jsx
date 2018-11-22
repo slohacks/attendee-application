@@ -17,7 +17,6 @@ class ForgotPassword extends Component {
       open: false,
     };
     this.handleClose = this.handleClose.bind(this);
-    this.routeLogin = this.routeLogin.bind(this);
   }
 
   onSubmit(values) {
@@ -31,13 +30,8 @@ class ForgotPassword extends Component {
     this.setState({ open: false });
   }
 
-  routeLogin() {
-    const { history: { push } } = this.props;
-    push('/login');
-  }
-
   render() {
-    const { handleSubmit, errorMessage, valid } = this.props;
+    const { handleSubmit, errorMessage, valid, history: { push } } = this.props;
     const { open } = this.state;
     return (
       <div>
@@ -51,13 +45,21 @@ class ForgotPassword extends Component {
             type="text"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" type="button" onClick={this.routeLogin} style={{ marginRight: '1rem' }}>
-            Back to login
-          </Button>
-          <Button variant="outlined" color="primary" type="submit" disabled={!valid}>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            type="submit"
+            disabled={!valid}
+          >
             Submit
           </Button>
+
+          <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginRight: '1rem' }}>
+            Back
+          </Button>
         </form>
+
         <Dialog onClose={this.handleClose} open={open}>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -65,6 +67,7 @@ class ForgotPassword extends Component {
             </DialogContentText>
           </DialogContent>
         </Dialog>
+
         {errorMessage ? (
           <FormHelperText error>
             {errorMessage}
