@@ -19,7 +19,7 @@ const TextArea = ({
       <TextField
         multiline
         rows="4"
-        fullwidth
+        fullWidth
         helperText={errorExist ? error : ''}
         error={errorExist}
         {...input}

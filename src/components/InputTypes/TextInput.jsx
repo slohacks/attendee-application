@@ -28,7 +28,7 @@ const TextInput = ({
 TextInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
     error: PropTypes.string,

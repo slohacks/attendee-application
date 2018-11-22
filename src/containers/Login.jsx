@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TextInput from '../components/InputTypes/TextInput';
 import { login } from '../actions/index';
 
@@ -31,7 +31,13 @@ class Login extends Component {
   }
 
   render() {
-    const { handleSubmit, valid, errorMessage } = this.props;
+    const {
+      handleSubmit,
+      valid,
+      errorMessage,
+      loading,
+      history: { push },
+    } = this.props;
     return (
       <div>
         <h1>
@@ -50,32 +56,32 @@ class Login extends Component {
             type="password"
             component={TextInput}
           />
-          <Button
-            variant="outlined"
-            color="primary"
-            disabled={!valid}
-            type="submit"
-            style={{ marginBottom: '1rem' }}
-          >
-            Login
-          </Button>
+          {errorMessage ? (
+            <FormHelperText style={{ marginBottom: '1rem' }} error>
+              {errorMessage}
+            </FormHelperText>
+          ) : null}
+          {loading ? <CircularProgress color="primary" /> : (
+            <Button
+              variant="outlined"
+              color="primary"
+              disabled={!valid}
+              type="submit"
+              style={{ marginBottom: '1rem' }}
+            >
+              Login!
+            </Button>
+          )}
         </form>
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
+
         <div>
-          <Link to="/signup">
-            <Button color="primary" type="button">
-              Create Account
-            </Button>
-          </Link>
-          <Link to="/lostpassword">
-            <Button color="primary" type="button">
-                Forgot Password
-            </Button>
-          </Link>
+          <Button onClick={() => push('/signup')} color="primary" type="button">
+            Create Account
+          </Button>
+
+          <Button onClick={() => push('/lostpassword')} color="primary" type="button" style={{ marginLeft: '1rem' }}>
+            Forgot Password
+          </Button>
         </div>
       </div>
     );
@@ -101,7 +107,11 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth.authenticated, errorMessage: state.auth.errorMessage };
+  return {
+    auth: state.auth.authenticated,
+    errorMessage: state.auth.errorMessage,
+    loading: state.auth.loading,
+  };
 }
 
 Login.propTypes = {
@@ -111,6 +121,7 @@ Login.propTypes = {
   history: PropTypes.shape().isRequired,
   valid: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({

@@ -130,7 +130,8 @@
   font-style: normal;
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'Brandon Grotesque', sans-serif;
   text-transform: uppercase;
   color: #4D4A6A;

@@ -1,0 +1,7 @@
+.ProgressBar {
+  margin: 1rem auto;
+}
+
+.ProgressBar > div {
+  width: 100%;
+}

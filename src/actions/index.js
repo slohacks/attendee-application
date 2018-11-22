@@ -1,13 +1,15 @@
 import * as types from './types';
-import { firebase, applicationsRef } from '../config/firebase';
+import { firebase, applicationsRef, firestore } from '../config/firebase';
 
-export const signUp = values => (dispatch) => {
+export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
   firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
     .then((userCredential) => {
       firebase.auth().currentUser.sendEmailVerification()
-        .then(() => dispatch({ type: types.SIGN_UP_GUCCI, userCredential }))
-        .catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
+        .then(() => {
+          dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
+          callback();
+        }).catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
     }).catch((error) => {
       dispatch({ type: types.SIGN_UP_FAIL, error });
     });
@@ -18,10 +20,22 @@ export const login = values => (dispatch) => {
   firebase.auth().signInWithEmailAndPassword(values.email, values.password)
     .then((userCredential) => {
       const {
-        user: { emailVerified },
+        user: { emailVerified, uid },
       } = userCredential;
       if (emailVerified) {
-        dispatch({ type: types.LOGIN_GUCCI, userCredential });
+        const docRef = firestore.collection('applications').doc(`${uid}`);
+        docRef.get().then((doc) => {
+          if (doc.exists) {
+            dispatch({ type: types.LOGIN_GUCCI, userCredential });
+            dispatch({ type: types.UPDATE_APPLICATION_TRUE });
+          } else {
+            dispatch({ type: types.LOGIN_GUCCI, userCredential });
+            dispatch({ type: types.UPDATE_APPLICATION_FALSE });
+          }
+        }).catch(() => {
+          dispatch({ type: types.LOGIN_GUCCI, userCredential });
+          dispatch({ type: types.UPDATE_APPLICATION_FALSE });
+        });
       } else {
         dispatch({ type: types.LOGIN_FAIL, error: { message: 'Email not verified, please verify your email.' } });
       }
@@ -29,11 +43,13 @@ export const login = values => (dispatch) => {
       dispatch({ type: types.LOGIN_FAIL, error });
     });
 };
-export const forgotPassword = values => (dispatch) => {
+
+export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
   firebase.auth().sendPasswordResetEmail(values.email)
     .then((userCredential) => {
       dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
+      callback();
     }).catch((error) => {
       dispatch({ type: types.FORGOT_PASS_FAIL, error });
     });
@@ -73,10 +89,12 @@ export const uploadResume = (user, resume, onChange) => (dispatch) => {
 };
 
 export const submitApp = (user, form) => (dispatch) => {
+  dispatch({ type: types.ATTEMPT_SUBMISSION });
   const newForm = { ...form, time: firebase.firestore.Timestamp.now() };
   applicationsRef.doc(user.uid).set(newForm).then(() => {
-    dispatch({ type: types.SUBMIT_GUCCI });
+    dispatch({ type: types.UPDATE_APPLICATION_TRUE });
+    dispatch({ type: types.SUBMISSION_GUCCI });
   }).catch((error) => {
-    dispatch({ type: types.SUBMIT_FAIL, error });
+    dispatch({ type: types.SUBMISSION_FAIL, error });
   });
 };

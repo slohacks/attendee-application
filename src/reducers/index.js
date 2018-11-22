@@ -6,6 +6,7 @@ import forgotPassword from './forgotPassword';
 import questionList from './QuestionnaireReducers/questions';
 import formResponses from './QuestionnaireReducers/formResponses';
 import resumeResponse from './QuestionnaireReducers/resumeResponse';
+import submissionResponse from './QuestionnaireReducers/submission';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   questions: questionList,
   responses: formResponses,
   file: resumeResponse,
+  submission: submissionResponse,
 });
 
 export default rootReducer;

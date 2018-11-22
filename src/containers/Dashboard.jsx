@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import { signout } from '../actions/index';
 import requireAuth from '../components/requireAuth';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.boundSignOut = this.handleSignOut.bind(this);
+  constructor(props) {
+    super(props);
+    this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleApplicationStart = this.handleApplicationStart.bind(this);
   }
 
   handleSignOut() {
@@ -16,25 +17,56 @@ class Dashboard extends Component {
     signoutActionCreator();
   }
 
+  handleApplicationStart() {
+    const { history: { push } } = this.props;
+    push('/questionnaire/0');
+  }
+
   render() {
+    const { completedApp, user: { email } } = this.props;
     return (
       <div>
         <h1>
-          Hello!
+          {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
         </h1>
-        <button type="button" onClick={this.boundSignOut}>
+
+        {completedApp ? (
+          <Button variant="outlined" color="primary" disabled type="submit">
+            Application Submitted
+          </Button>
+        ) : (
+          <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
+            Start Application
+          </Button>
+        )}
+
+        <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
           Logout
-        </button>
-        <Link to="/questionnaire/0">
-          Start application
-        </Link>
+        </Button>
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
-  signout: PropTypes.func.isRequired,
+function mapStateToProps(state) {
+  return { completedApp: state.auth.completedApplication, user: state.auth.user };
+}
+
+Dashboard.defaultProps = {
+  user: PropTypes.shape({
+    email: '!',
+  }),
 };
 
-export default connect(null, { signout })(requireAuth(Dashboard));
+Dashboard.propTypes = {
+  signout: PropTypes.func.isRequired,
+  completedApp: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  user: PropTypes.shape({
+    email: PropTypes.string,
+  }),
+};
+
+export default connect(mapStateToProps, { signout })(requireAuth(Dashboard));

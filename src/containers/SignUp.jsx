@@ -1,24 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+  }
+
   onSubmit(values) {
-    this.props.signUp(values); // eslint-disable-line react/destructuring-assignment
+    const { signUp: createAccount } = this.props;
+    createAccount(values, () => {
+      this.setState({ open: true });
+    });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
   }
 
   render() {
-    const { handleSubmit, valid, errorMessage } = this.props;
+    const {
+      handleSubmit,
+      valid,
+      errorMessage,
+      history: { push },
+    } = this.props;
+
+    const { open } = this.state;
     return (
       <div>
         <h1>
           Sign Up
         </h1>
+
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -26,22 +53,43 @@ class SignUp extends Component {
             type="text"
             component={TextInput}
           />
+
           <Field
             label="Enter a password (8 or more characters)"
             name="password"
             type="password"
             component={TextInput}
           />
+
           <Field
             label="Confirm Password"
             name="confirm_password"
             type="password"
             component={TextInput}
           />
+
           <Button variant="outlined" color="primary" disabled={!valid} type="submit">
             Sign up
           </Button>
+
+          <Button
+            color="primary"
+            type="button"
+            onClick={() => push('/login')}
+            style={{ marginLeft: '1rem' }}
+          >
+            Back
+          </Button>
         </form>
+
+        <Dialog onClose={this.handleClose} open={open}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                You have successfully created an account, check your email and verify your account.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+
         {errorMessage ? (
           <FormHelperText error>
             {errorMessage}
@@ -92,6 +140,9 @@ SignUp.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   valid: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default reduxForm({

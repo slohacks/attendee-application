@@ -18,8 +18,15 @@ class Questionaire extends Component {
     this.renderPreviousPage = this.renderPreviousPage.bind(this);
   }
 
+  componentWillMount() {
+    const { completedApp, history: { push } } = this.props;
+    if (completedApp) {
+      push('/dashboard');
+    }
+  }
+
   renderQuestionSection(id) {
-    const { questionSections } = this.props;
+    const { questionSections, history: { push } } = this.props;
     switch (id) {
       case '0':
         return (
@@ -73,6 +80,7 @@ class Questionaire extends Component {
         return (
           <Submission
             previousPage={this.renderPreviousPage}
+            pushConfirmation={push}
           />
         );
       default:
@@ -126,7 +134,7 @@ class Questionaire extends Component {
 }
 
 function mapStateToProps(state) {
-  return { questionSections: state.questions.body };
+  return { questionSections: state.questions.body, completedApp: state.auth.completedApplication };
 }
 
 Questionaire.propTypes = {
@@ -139,6 +147,7 @@ Questionaire.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  completedApp: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, null)(requireAuth(Questionaire));
