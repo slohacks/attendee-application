@@ -13,7 +13,6 @@ export default (state = INITIAL_STATE, action) => {
         errorMessage: '',
       };
     case types.FORGOT_PASS_FAIL:
-      console.log(action.error);
       return {
         ...state,
         errorMessage: action.error.message,

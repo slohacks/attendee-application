@@ -75,7 +75,7 @@ FileInput.propTypes = {
   uploadResume: PropTypes.func.isRequired,
   auth: PropTypes.shape({}).isRequired,
   errorMessage: PropTypes.string,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, { uploadResume })(FileInput);

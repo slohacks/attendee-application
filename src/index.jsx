@@ -14,6 +14,7 @@ import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './components/NotFound';
+import Confirmation from './containers/Confirmation';
 
 import './index.css';
 
@@ -28,6 +29,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/lostpassword" component={ForgotPassword} />
+          <Route path="/confirmation" component={Confirmation} />
           <Route path="/signup" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/submission" component={Submission} />
