@@ -11,10 +11,10 @@ const Confirmation = (props) => {
 
   return (
     <div>
-      <p>
+      <h1>
         Thank you for submitting your application!
-      </p>
-      <Button onClick={handleClick}>
+      </h1>
+      <Button variant="outlined" color="primary" type="button" onClick={handleClick} style={{ marginTop: '1rem' }}>
         Back to Dashboard
       </Button>
     </div>

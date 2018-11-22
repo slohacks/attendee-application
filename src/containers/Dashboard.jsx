@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { signout } from '../actions/index';
@@ -10,6 +9,7 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.boundSignOut = this.handleSignOut.bind(this);
+    this.handleApplicationStart = this.handleApplicationStart.bind(this);
   }
 
   handleSignOut() {
@@ -17,33 +17,33 @@ class Dashboard extends Component {
     signoutActionCreator();
   }
 
+  handleApplicationStart() {
+    const { history: { push } } = this.props;
+    push('/questionnaire/0');
+  }
+
   render() {
     const { completedApp } = this.props;
     return (
       <div>
         <h1>
-          Hello!
+          Hello Applicant!
         </h1>
-        <button type="button" onClick={this.boundSignOut}>
+
+        <Button variant="outlined" color="primary" type="button" onClick={this.boundSignOut} style={{ marginRight: '1rem' }}>
           Logout
-        </button>
+        </Button>
 
         {completedApp ? (
-          <Button color="primary" disabled type="submit">
-            <Link to="/questionnaire/0">
-                Application Submitted
-            </Link>
+          <Button variant="outlined" color="primary" disabled type="submit">
+            Application Submitted
           </Button>
         ) : (
-          <Button variant="contained" color="primary" type="submit">
-            <Link to="/questionnaire/0">
-                Start Application
-            </Link>
+          <Button onClick={this.handleApplicationStart} variant="contained" color="primary" type="submit">
+            Start Application
           </Button>
         )
       }
-
-
       </div>
     );
   }
@@ -56,6 +56,9 @@ function mapStateToProps(state) {
 Dashboard.propTypes = {
   signout: PropTypes.func.isRequired,
   completedApp: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, { signout })(requireAuth(Dashboard));
