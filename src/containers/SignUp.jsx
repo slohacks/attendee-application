@@ -18,7 +18,6 @@ class SignUp extends Component {
       open: false,
     };
     this.handleClose = this.handleClose.bind(this);
-    this.routeLogin = this.routeLogin.bind(this);
   }
 
   onSubmit(values) {
@@ -32,19 +31,21 @@ class SignUp extends Component {
     this.setState({ open: false });
   }
 
-  routeLogin() {
-    const { history: { push } } = this.props;
-    push('/login');
-  }
-
   render() {
-    const { handleSubmit, valid, errorMessage } = this.props;
+    const {
+      handleSubmit,
+      valid,
+      errorMessage,
+      history: { push },
+    } = this.props;
+
     const { open } = this.state;
     return (
       <div>
         <h1>
           Sign Up
         </h1>
+
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -52,25 +53,35 @@ class SignUp extends Component {
             type="text"
             component={TextInput}
           />
+
           <Field
             label="Enter a password (8 or more characters)"
             name="password"
             type="password"
             component={TextInput}
           />
+
           <Field
             label="Confirm Password"
             name="confirm_password"
             type="password"
             component={TextInput}
           />
-          <Button variant="contained" color="primary" type="button" onClick={this.routeLogin} style={{ marginRight: '1rem' }}>
-            Back to login
-          </Button>
+
           <Button variant="outlined" color="primary" disabled={!valid} type="submit">
             Sign up
           </Button>
+
+          <Button
+            color="primary"
+            type="button"
+            onClick={() => push('/login')}
+            style={{ marginRight: '1rem' }}
+          >
+            Back
+          </Button>
         </form>
+
         <Dialog onClose={this.handleClose} open={open}>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -78,6 +89,7 @@ class SignUp extends Component {
             </DialogContentText>
           </DialogContent>
         </Dialog>
+
         {errorMessage ? (
           <FormHelperText error>
             {errorMessage}
