@@ -76,7 +76,7 @@ class SignUp extends Component {
             color="primary"
             type="button"
             onClick={() => push('/login')}
-            style={{ marginRight: '1rem' }}
+            style={{ marginLeft: '1rem' }}
           >
             Back
           </Button>

@@ -55,7 +55,7 @@ class ForgotPassword extends Component {
             Submit
           </Button>
 
-          <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginRight: '1rem' }}>
+          <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginLeft: '1rem' }}>
             Back
           </Button>
         </form>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -37,6 +36,7 @@ class Login extends Component {
       valid,
       errorMessage,
       loading,
+      history: { push },
     } = this.props;
     return (
       <div>
@@ -73,17 +73,15 @@ class Login extends Component {
             </Button>
           )}
         </form>
+
         <div>
-          <Link to="/signup">
-            <Button color="primary" type="button">
-              Create Account
-            </Button>
-          </Link>
-          <Link to="/lostpassword">
-            <Button color="primary" type="button">
-                Forgot Password
-            </Button>
-          </Link>
+          <Button onClick={() => push('/signup')} color="primary" type="button">
+            Create Account
+          </Button>
+
+          <Button onClick={() => push('/lostpassword')} color="primary" type="button" style={{ marginLeft: '1rem' }}>
+            Forgot Password
+          </Button>
         </div>
       </div>
     );
