@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.routeLogin = this.routeLogin.bind(this);
+  }
+
   onSubmit(values) {
-    this.props.signUp(values); // eslint-disable-line react/destructuring-assignment
+    const { signUp: createAccount } = this.props;
+    createAccount(values, () => {
+      this.setState({ open: true });
+    });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  routeLogin() {
+    const { history: { push } } = this.props;
+    push('/login');
   }
 
   render() {
     const { handleSubmit, valid, errorMessage } = this.props;
+    const { open } = this.state;
     return (
       <div>
         <h1>
@@ -38,10 +64,20 @@ class SignUp extends Component {
             type="password"
             component={TextInput}
           />
+          <Button variant="contained" color="primary" type="button" onClick={this.routeLogin} style={{ marginRight: '1rem' }}>
+            Back to login
+          </Button>
           <Button variant="outlined" color="primary" disabled={!valid} type="submit">
             Sign up
           </Button>
         </form>
+        <Dialog onClose={this.handleClose} open={open}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                You have successfully created an account, check your email and verify your account.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
         {errorMessage ? (
           <FormHelperText error>
             {errorMessage}
@@ -92,6 +128,9 @@ SignUp.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   valid: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default reduxForm({

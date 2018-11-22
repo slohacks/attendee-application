@@ -57,7 +57,7 @@ class Login extends Component {
             component={TextInput}
           />
           {loading ? <CircularProgress color="primary" /> : (
-            <Button variant="outlined" color="primary" disabled={!valid} type="submit" style={{ marginBottom: '1rem' }}>
+            <Button variant="outlined" color="primary" disabled={!valid} type="submit">
               Login!
             </Button>
           )}

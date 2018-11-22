@@ -4,17 +4,41 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import { forgotPassword } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
 
 class ForgotPassword extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.routeLogin = this.routeLogin.bind(this);
+  }
+
   onSubmit(values) {
     const { forgotPassword: forgotPass } = this.props;
-    forgotPass(values);
+    forgotPass(values, () => {
+      this.setState({ open: true });
+    });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  routeLogin() {
+    const { history: { push } } = this.props;
+    push('/login');
   }
 
   render() {
     const { handleSubmit, errorMessage, valid } = this.props;
+    const { open } = this.state;
     return (
       <div>
         <h1>
@@ -27,10 +51,20 @@ class ForgotPassword extends Component {
             type="text"
             component={TextInput}
           />
+          <Button variant="contained" color="primary" type="button" onClick={this.routeLogin} style={{ marginRight: '1rem' }}>
+            Back to login
+          </Button>
           <Button variant="outlined" color="primary" type="submit" disabled={!valid}>
             Submit
           </Button>
         </form>
+        <Dialog onClose={this.handleClose} open={open}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                An email has been to sent to the email address you entered to reset your password.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
         {errorMessage ? (
           <FormHelperText error>
             {errorMessage}
@@ -64,6 +98,9 @@ ForgotPassword.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   valid: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default reduxForm({

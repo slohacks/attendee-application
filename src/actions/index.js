@@ -1,13 +1,15 @@
 import * as types from './types';
 import { firebase, applicationsRef, firestore } from '../config/firebase';
 
-export const signUp = values => (dispatch) => {
+export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
   firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
     .then((userCredential) => {
       firebase.auth().currentUser.sendEmailVerification()
-        .then(() => dispatch({ type: types.SIGN_UP_GUCCI, userCredential }))
-        .catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
+        .then(() => {
+          dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
+          callback();
+        }).catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
     }).catch((error) => {
       dispatch({ type: types.SIGN_UP_FAIL, error });
     });
@@ -42,11 +44,12 @@ export const login = values => (dispatch) => {
     });
 };
 
-export const forgotPassword = values => (dispatch) => {
+export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
   firebase.auth().sendPasswordResetEmail(values.email)
     .then((userCredential) => {
       dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
+      callback();
     }).catch((error) => {
       dispatch({ type: types.FORGOT_PASS_FAIL, error });
     });
