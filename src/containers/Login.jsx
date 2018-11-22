@@ -56,17 +56,23 @@ class Login extends Component {
             type="password"
             component={TextInput}
           />
+          {errorMessage ? (
+            <FormHelperText style={{ marginBottom: '1rem' }} error>
+              {errorMessage}
+            </FormHelperText>
+          ) : null}
           {loading ? <CircularProgress color="primary" /> : (
-            <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+            <Button
+              variant="outlined"
+              color="primary"
+              disabled={!valid}
+              type="submit"
+              style={{ marginBottom: '1rem' }}
+            >
               Login!
             </Button>
           )}
         </form>
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
         <div>
           <Link to="/signup">
             <Button color="primary" type="button">
