@@ -6,9 +6,9 @@ import { signout } from '../actions/index';
 import requireAuth from '../components/requireAuth';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.boundSignOut = this.handleSignOut.bind(this);
+  constructor(props) {
+    super(props);
+    this.handleSignOut = this.handleSignOut.bind(this);
     this.handleApplicationStart = this.handleApplicationStart.bind(this);
   }
 
@@ -23,35 +23,40 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { completedApp } = this.props;
+    const { completedApp, user: { email } } = this.props;
     return (
       <div>
         <h1>
-          Hello Applicant!
+          {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
         </h1>
-
-        <Button variant="outlined" color="primary" type="button" onClick={this.boundSignOut} style={{ marginRight: '1rem' }}>
-          Logout
-        </Button>
 
         {completedApp ? (
           <Button variant="outlined" color="primary" disabled type="submit">
             Application Submitted
           </Button>
         ) : (
-          <Button onClick={this.handleApplicationStart} variant="contained" color="primary" type="submit">
+          <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
             Start Application
           </Button>
-        )
-      }
+        )}
+
+        <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
+          Logout
+        </Button>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { completedApp: state.auth.completedApplication };
+  return { completedApp: state.auth.completedApplication, user: state.auth.user };
 }
+
+Dashboard.defaultProps = {
+  user: PropTypes.shape({
+    email: '!',
+  }),
+};
 
 Dashboard.propTypes = {
   signout: PropTypes.func.isRequired,
@@ -59,6 +64,9 @@ Dashboard.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  user: PropTypes.shape({
+    email: PropTypes.string,
+  }),
 };
 
 export default connect(mapStateToProps, { signout })(requireAuth(Dashboard));
