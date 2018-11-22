@@ -25,7 +25,7 @@ const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
     <BrowserRouter>
-      <div>
+      <div className="sides">
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/lostpassword" component={ForgotPassword} />
