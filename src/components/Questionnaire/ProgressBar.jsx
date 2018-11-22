@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Stepper from '@material-ui/core/Stepper';
+import MobileStepper from '@material-ui/core/MobileStepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+
+import './ProgressBar.css';
 
 class ProgressBar extends Component {
   renderProgressLinks() {
@@ -29,12 +31,10 @@ class ProgressBar extends Component {
   }
 
   render() {
-    const { id } = this.props;
+    const { id, questionSections: { length } } = this.props;
     return (
       <div>
-        <Stepper activeStep={Number(id)}>
-          {this.renderProgressLinks()}
-        </Stepper>
+        <MobileStepper className="ProgressBar" position="static" variant="progress" steps={length} activeStep={Number(id)} />
       </div>
     );
   }
