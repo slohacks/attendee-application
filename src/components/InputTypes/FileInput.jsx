@@ -55,7 +55,7 @@ class FileInput extends Component {
           {specs}
         </FormHelperText>
         {errorMessage ? (
-          <FormHelperText>
+          <FormHelperText error>
             {errorMessage}
           </FormHelperText>
         ) : null }

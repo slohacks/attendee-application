@@ -88,7 +88,7 @@ const InputType = (props) => {
               label={title}
               disabled={disabled}
               name={id}
-              component={TextAdornment}
+              component={TextArea}
             />
           );
         }
