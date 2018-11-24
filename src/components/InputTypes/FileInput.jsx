@@ -25,6 +25,7 @@ class FileInput extends Component {
       fileName,
       errorMessage,
       loading,
+      specs,
     } = this.props;
     return (
       <div
@@ -43,11 +44,16 @@ class FileInput extends Component {
             alignItems: 'center',
           }}
         >
-          <Button variant="contained" color="primary" component="span">
-            {fileName}
-          </Button>
+          <div>
+            <Button color="primary" component="span" disabled={disabled} variant="contained">
+              {fileName}
+            </Button>
+          </div>
           {loading ? <CircularProgress color="primary" style={{ marginLeft: '1rem' }} /> : null}
         </label>
+        <FormHelperText>
+          {specs}
+        </FormHelperText>
         {errorMessage ? (
           <FormHelperText>
             {errorMessage}
