@@ -59,7 +59,7 @@ class Submission extends Component {
           </Button>
           {loading ? <CircularProgress color="primary" /> : (
             <Button variant="contained" color="primary" disabled={!valid} type="submit">
-              Submit Application!
+              Submit Application
             </Button>
           )}
         </form>
