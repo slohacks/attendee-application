@@ -8,7 +8,7 @@
       [
         {         
           "id": "name",
-          "title": "What is your name?",
+          "title": "What is your full name?",
           "inputType": "textInput"
         },
         {
@@ -69,14 +69,14 @@
         {         
           "id": "github",
           "title": "What is your Github?",
-          "inputType": "textInput",
-          "validate": "github"
+          "inputType": "textAdornment",
+          "adornmentText": "github.com/"
         },
         {          
           "id": "linkedin",
           "title": "What is your LinkedIn?",
-          "inputType": "textInput",
-          "validate": "linkedin"
+          "inputType": "textAdornment",
+          "adornmentText": "linkedin.com/in/"
         },
         {          
           "id": "website",
@@ -87,7 +87,8 @@
         {
           "id": "resume",
           "title": "Upload your resume.",
-          "inputType": "fileUpload"
+          "inputType": "fileUpload",
+          "spec": "(PDF File, 1MB Max)"
         }
       ]
     },
