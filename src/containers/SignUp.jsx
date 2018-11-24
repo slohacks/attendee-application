@@ -85,7 +85,7 @@ class SignUp extends Component {
         <Dialog onClose={this.handleClose} open={open}>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-                You have successfully created an account, check your email and verify your account.
+              To complete the sign up process, check your inbox for a link to verify your email.
             </DialogContentText>
           </DialogContent>
         </Dialog>
