@@ -36,7 +36,7 @@ class ForgotPassword extends Component {
     return (
       <div>
         <h1>
-          Password Reset
+          Forgot Password
         </h1>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
