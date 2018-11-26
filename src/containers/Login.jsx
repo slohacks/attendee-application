@@ -69,17 +69,17 @@ class Login extends Component {
               type="submit"
               style={{ marginBottom: '1rem' }}
             >
-              Login!
+              Login
             </Button>
           )}
         </form>
 
         <div>
           <Button onClick={() => push('/signup')} color="primary" type="button">
-            Create Account
+            Sign Up
           </Button>
 
-          <Button onClick={() => push('/lostpassword')} color="primary" type="button" style={{ marginLeft: '1rem' }}>
+          <Button onClick={() => push('/forgotpassword')} color="primary" type="button" style={{ marginLeft: '1rem' }}>
             Forgot Password
           </Button>
         </div>

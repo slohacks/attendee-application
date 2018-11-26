@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, Fields } from 'redux-form';
 import TextInput from '../InputTypes/TextInput';
 import TextArea from '../InputTypes/TextArea';
+import TextAdornment from '../InputTypes/TextAdornment';
 import SelectInput from '../InputTypes/SelectInput';
 import MultiSelect from '../InputTypes/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
@@ -14,8 +15,6 @@ import majors from '../../reducers/QuestionnaireReducers/majors.json';
 
 const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-const linkedin = value => (!value.includes('linkedin.com/in/') ? 'Invalid LinkedIn link' : '');
-const github = value => (!value.includes('github.com/') ? 'Invalid GitHub link' : '');
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
@@ -63,28 +62,6 @@ const InputType = (props) => {
             />
           );
         }
-        if (question.validate === 'linkedin') {
-          return (
-            <Field
-              label={title}
-              disabled={disabled}
-              validate={[required, linkedin]}
-              name={id}
-              component={TextInput}
-            />
-          );
-        }
-        if (question.validate === 'github') {
-          return (
-            <Field
-              label={title}
-              disabled={disabled}
-              validate={[required, github]}
-              name={id}
-              component={TextInput}
-            />
-          );
-        }
         return (
           <Field
             label={title}
@@ -92,6 +69,16 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={TextInput}
+          />
+        );
+      case 'textAdornment':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            name={id}
+            adornment={question.adornmentText}
+            component={TextAdornment}
           />
         );
       case 'textArea':
@@ -179,8 +166,8 @@ const InputType = (props) => {
           <Field
             disabled={disabled}
             label={title}
-            validate={[required]}
             name={id}
+            specs={question.spec}
             component={FileInput}
           />
         );
