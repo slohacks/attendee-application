@@ -65,11 +65,11 @@ class ForgotPassword extends Component {
                 Back
               </Button>
             </form>
-
+            
             <Dialog onClose={this.handleClose} open={open}>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    An email has been to sent to the email address you entered to reset your password.
+                    If the account exists, you will receive an email to reset your password.
                 </DialogContentText>
               </DialogContent>
             </Dialog>
