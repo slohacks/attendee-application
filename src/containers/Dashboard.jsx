@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { signout } from '../actions/index';
 import requireAuth from '../components/requireAuth';
+import Scenic from '../components/Scenic';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -25,24 +26,31 @@ class Dashboard extends Component {
   render() {
     const { completedApp, user: { email } } = this.props;
     return (
-      <div>
-        <h1>
-          {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
-        </h1>
+      <div className="container">
+        <div className="subContainer">
+          <Scenic />
+        </div>
+        <div className="subContainer">
+          <div className="containerPadding">
+            <h1>
+              {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
+            </h1>
 
-        {completedApp ? (
-          <Button variant="outlined" color="primary" disabled type="submit">
-            Application Submitted
-          </Button>
-        ) : (
-          <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
-            Start Application
-          </Button>
-        )}
+            {completedApp ? (
+              <Button variant="outlined" color="primary" disabled type="submit">
+                Application Submitted
+              </Button>
+            ) : (
+              <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
+                Start Application
+              </Button>
+            )}
 
-        <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
-          Logout
-        </Button>
+            <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
+              Logout
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }

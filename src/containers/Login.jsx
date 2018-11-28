@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextInput from '../components/InputTypes/TextInput';
+import Scenic from '../components/Scenic';
 import { login } from '../actions/index';
 
 class Login extends Component {
@@ -39,49 +40,60 @@ class Login extends Component {
       history: { push },
     } = this.props;
     return (
-      <div>
-        <h1>
-          SLO Hacks 2019 Application
-        </h1>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="Email"
-            name="email"
-            type="text"
-            component={TextInput}
-          />
-          <Field
-            label="Enter a password (8 or more characters)"
-            name="password"
-            type="password"
-            component={TextInput}
-          />
-          {errorMessage ? (
-            <FormHelperText style={{ marginBottom: '1rem' }} error>
-              {errorMessage}
-            </FormHelperText>
-          ) : null}
-          {loading ? <CircularProgress color="primary" /> : (
-            <Button
-              variant="outlined"
-              color="primary"
-              disabled={!valid}
-              type="submit"
-              style={{ marginBottom: '1rem' }}
-            >
-              Login
-            </Button>
-          )}
-        </form>
+      <div className="container">
+        <div className="subContainer">
+          <Scenic />
+        </div>
+        <div className="subContainer">
+          <div className="containerPadding">
+            <h1>
+              <span className="sh">
+                SLO Hacks
+              </span>
+              <br />
+              Attendee Application
+            </h1>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <Field
+                label="Email"
+                name="email"
+                type="text"
+                component={TextInput}
+              />
+              <Field
+                label="Enter a password (8 or more characters)"
+                name="password"
+                type="password"
+                component={TextInput}
+              />
+              {errorMessage ? (
+                <FormHelperText style={{ marginBottom: '1rem' }} error>
+                  {errorMessage}
+                </FormHelperText>
+              ) : null}
+              {loading ? <CircularProgress color="primary" /> : (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  disabled={!valid}
+                  type="submit"
+                  style={{ marginBottom: '1rem' }}
+                >
+                  Login
+                </Button>
+              )}
+            </form>
 
-        <div>
-          <Button onClick={() => push('/signup')} color="primary" type="button">
-            Sign Up
-          </Button>
-
-          <Button onClick={() => push('/forgotpassword')} color="primary" type="button" style={{ marginLeft: '1rem' }}>
-            Forgot Password
-          </Button>
+            <div>
+              <Button onClick={() => push('/signup')} color="primary" type="button">
+                Sign Up
+              </Button>
+              <br />
+              <Button onClick={() => push('/forgotpassword')} color="primary" type="button">
+                Forgot Password
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     );
