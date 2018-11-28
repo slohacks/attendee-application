@@ -88,6 +88,12 @@ export const uploadResume = (user, resume, onChange) => (dispatch) => {
   }
 };
 
+export const clearResume = () => {
+  return {
+    type: types.CLEAR_RESUME_ERROR,
+  };
+};
+
 export const submitApp = (user, form) => (dispatch) => {
   dispatch({ type: types.ATTEMPT_SUBMISSION });
   const newForm = { ...form, time: firebase.firestore.Timestamp.now() };

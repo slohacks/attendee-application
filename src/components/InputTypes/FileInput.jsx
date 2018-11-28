@@ -5,12 +5,17 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import { uploadResume } from '../../actions/index';
+import { uploadResume, clearResume } from '../../actions/index';
 
 class FileInput extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentWillUnmount() {
+    const { clearResume: clearError } = this.props;
+    clearError();
   }
 
   onChange(e) {
@@ -82,6 +87,7 @@ FileInput.propTypes = {
   auth: PropTypes.shape({}).isRequired,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
+  clearResume: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { uploadResume })(FileInput);
+export default connect(mapStateToProps, { uploadResume, clearResume })(FileInput);

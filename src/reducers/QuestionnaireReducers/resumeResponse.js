@@ -14,6 +14,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, loading: false, fileName: action.resume.name };
     case types.UPLOAD_RESUME_FAIL:
       return { ...state, loading: false, errorMessage: action.error };
+    case types.CLEAR_RESUME_ERROR:
+      return { ...state, errorMessage: '' };
     default:
       return state;
   }
