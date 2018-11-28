@@ -22,14 +22,12 @@
         {          
           "id": "college",
           "title": "What college are you studying at?",
-          "inputType": "listSelect",
-          "placeholder": "Cal Poly"
+          "inputType": "listSelect"
         },
         {          
           "id": "major",
           "title": "What major are you currently studying?",
-          "inputType": "majorSelect",
-          "placeholder": "Computer Science"
+          "inputType": "majorSelect"
         },
         {
           "id": "grad_date",
