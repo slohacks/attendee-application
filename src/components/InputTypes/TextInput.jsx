@@ -7,6 +7,7 @@ const TextInput = ({
   type,
   label,
   disabled,
+  placeholder,
   meta: { touched, error },
 }) => {
   const errorExist = touched && Boolean(error);
@@ -18,6 +19,7 @@ const TextInput = ({
       helperText={errorExist ? error : ''}
       error={errorExist}
       {...input}
+      placeholder={placeholder}
       disabled={disabled}
       style={{ marginBottom: '1rem' }}
     />
@@ -34,6 +36,10 @@ TextInput.propTypes = {
     error: PropTypes.string,
   }).isRequired,
   type: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+TextInput.defaultProps = {
+  placeholder: null,
 };
 
 export default TextInput;
