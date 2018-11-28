@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import AutoSuggest from 'react-autosuggest';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import deburr from 'lodash/deburr';
 import Paper from '@material-ui/core/Paper';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
@@ -55,7 +54,7 @@ class Input extends React.PureComponent {
 
   handleFetch({ value }) {
     const { suggestions } = this.props;
-    const inputValue = deburr(value.trim()).toLowerCase();
+    const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
 
