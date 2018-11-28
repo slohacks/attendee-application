@@ -16,6 +16,7 @@ export const SAVE_RESPONSE = 'save_response';
 export const UPLOAD_RESUME_GUCCI = 'upload_resume_gucci';
 export const UPLOAD_RESUME_FAIL = 'upload_resume_fail';
 export const UPLOAD_RESUME_ATTEMPT = 'upload_resume_attempt';
+export const CLEAR_RESUME_ERROR = 'clear_resume_error';
 export const UPDATE_APPLICATION_TRUE = 'update_application_true';
 export const UPDATE_APPLICATION_FALSE = 'update_application_false';
 export const ATTEMPT_SUBMISSION = 'attempt_submission';
