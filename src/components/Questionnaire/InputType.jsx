@@ -202,6 +202,7 @@ const InputType = (props) => {
             disabled={disabled}
             validate={[required]}
             name={id}
+            linkText={question.linkText}
             link={question.link}
             component={CodeOfConduct}
           />

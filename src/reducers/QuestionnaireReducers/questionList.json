@@ -160,6 +160,7 @@
         {          
           "id": "mlh",
           "title": "Do you agree to abide by the ",
+          "linkText": "MLH Code of Conduct",
           "link": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",
           "inputType": "codeOfConduct"
         }
