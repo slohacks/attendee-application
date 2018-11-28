@@ -33,6 +33,12 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(png)$/,
+        use: {
+          loader: 'file-loader',
+        },
+      },
     ],
   },
   resolve: {

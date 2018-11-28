@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
+import Scenic from '../components/Scenic';
 
 class SignUp extends Component {
   constructor(props) {
@@ -41,60 +41,67 @@ class SignUp extends Component {
 
     const { open } = this.state;
     return (
-      <div>
-        <h1>
-          Sign Up
-        </h1>
+      <div className="container">
+        <div className="subContainer">
+          <Scenic />
+        </div>
+        <div className="subContainer">
+          <div className="containerPadding">
+            <h1>
+              Sign Up
+            </h1>
 
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="Email"
-            name="email"
-            type="text"
-            component={TextInput}
-          />
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <Field
+                label="Email"
+                name="email"
+                type="text"
+                component={TextInput}
+              />
 
-          <Field
-            label="Enter a password (8 or more characters)"
-            name="password"
-            type="password"
-            component={TextInput}
-          />
+              <Field
+                label="Enter a password (8 or more characters)"
+                name="password"
+                type="password"
+                component={TextInput}
+              />
 
-          <Field
-            label="Confirm Password"
-            name="confirm_password"
-            type="password"
-            component={TextInput}
-          />
+              <Field
+                label="Confirm Password"
+                name="confirm_password"
+                type="password"
+                component={TextInput}
+              />
 
-          <Button variant="outlined" color="primary" disabled={!valid} type="submit">
-            Sign up
-          </Button>
+              <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+                Sign up
+              </Button>
 
-          <Button
-            color="primary"
-            type="button"
-            onClick={() => push('/login')}
-            style={{ marginLeft: '1rem' }}
-          >
-            Back
-          </Button>
-        </form>
+              <Button
+                color="primary"
+                type="button"
+                onClick={() => push('/login')}
+                style={{ marginLeft: '1rem' }}
+              >
+                Back
+              </Button>
+            </form>
 
-        <Dialog onClose={this.handleClose} open={open}>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              To complete the sign up process, check your inbox for a link to verify your email.
-            </DialogContentText>
-          </DialogContent>
-        </Dialog>
+            <Dialog onClose={this.handleClose} open={open}>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  To complete the sign up process, check your inbox for a link to verify your email.
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
 
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
+            {errorMessage ? (
+              <FormHelperText error>
+                {errorMessage}
+              </FormHelperText>
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }

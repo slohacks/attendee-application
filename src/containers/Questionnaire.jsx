@@ -122,7 +122,7 @@ class Questionaire extends Component {
   render() {
     const { match: { params: { id } } } = this.props;
     return (
-      <div>
+      <div className="sides">
         <h1>
           Questionnaire
         </h1>

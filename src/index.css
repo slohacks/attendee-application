@@ -1,23 +1,5 @@
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Medium.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Medium.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Medium.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Black.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Black.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Black.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
+body {
+  margin: 0;
 }
 
 @font-face {
@@ -28,105 +10,6 @@
     url('./assets/fonts/BrandonGrotesque-Bold.woff') format('woff'),
     url('./assets/fonts/BrandonGrotesque-Bold.ttf') format('truetype');
   font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-RegularItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-RegularItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-RegularItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-RegularItalic.ttf') format('truetype');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-MediumItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-MediumItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-MediumItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-LightItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-LightItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-LightItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-ThinItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-ThinItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-ThinItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-BoldItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-BoldItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-BoldItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-BoldItalic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Regular.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Regular.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Regular.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-BlackItalic.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-BlackItalic.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-BlackItalic.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Thin.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Thin.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Thin.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Light.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Light.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Light.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Light.ttf') format('truetype');
-  font-weight: 300;
   font-style: normal;
 }
 
@@ -141,6 +24,105 @@ h2 {
 .sides {
   width: 90vw;
   margin: 0 auto;
+}
+
+.container {
+  width: 100vw;
+  display: block;
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    display: grid;
+    grid-template-columns: 61.8% 1fr;
+  }
+}
+
+.subContainer {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 992px) {
+  .subContainer {
+    height: 100vh;
+  }
+}
+
+.containerPadding {
+  padding: 0 2rem;
+}
+
+.scenic {
+  display: none;
+  grid-area: scenic;
+  background-image: url('./assets/hills.png'), linear-gradient(#90B5ED 20vh, #FEC08A 80vh);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: 100vh;
+  position: relative;
+}
+
+@media screen and (min-width: 992px) {
+  .scenic {
+    display: block;
+  }
+}
+
+.scenicContainer {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-areas:
+    '. scenicNav .'
+    '. scenicContent .'
+    '. scenicButton .';
+}
+
+.scenicNav {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-areas: '. navLogo .';
+  grid-area: scenicNav;
+}
+
+.scenicLogo {
+  grid-area: navLogo;
+  display: flex;
+  justify-content: center;
+}
+
+.scenicLogo img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 8rem;
+}
+
+@media screen and (min-width: 992px) {
+  .sh {
+    display: none;
+  }
+}
+
+.scenicContent {
+  grid-area: scenicContent;
+  display: flex;
+  margin-top: 7vh;
+  align-items: center;
+  flex-direction: column;
+}
+
+.scenicTheme {
+  display: flex;
+  justify-content: center;
+}
+
+.scenicTheme img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 9rem;
 }
 
 @media screen and (min-width: 992px) {

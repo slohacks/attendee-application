@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { forgotPassword } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
+import Scenic from '../components/Scenic';
 
 class ForgotPassword extends Component {
   constructor(props) {
@@ -34,45 +35,52 @@ class ForgotPassword extends Component {
     const { handleSubmit, errorMessage, valid, history: { push } } = this.props;
     const { open } = this.state;
     return (
-      <div>
-        <h1>
-          Forgot Password
-        </h1>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="Email"
-            name="email"
-            type="text"
-            component={TextInput}
-          />
+      <div className="container">
+        <div className="subContainer">
+          <Scenic />
+        </div>
+        <div className="subContainer">
+          <div className="containerPadding">
+            <h1>
+              Forgot Password
+            </h1>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <Field
+                label="Email"
+                name="email"
+                type="text"
+                component={TextInput}
+              />
 
-          <Button
-            variant="outlined"
-            color="primary"
-            type="submit"
-            disabled={!valid}
-          >
-            Submit
-          </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                type="submit"
+                disabled={!valid}
+              >
+                Submit
+              </Button>
 
-          <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginLeft: '1rem' }}>
-            Back
-          </Button>
-        </form>
+              <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginLeft: '1rem' }}>
+                Back
+              </Button>
+            </form>
+            
+            <Dialog onClose={this.handleClose} open={open}>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    If the account exists, you will receive an email to reset your password.
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
 
-        <Dialog onClose={this.handleClose} open={open}>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              If the account exists, you will receive an email to reset your password.
-            </DialogContentText>
-          </DialogContent>
-        </Dialog>
-
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
+            {errorMessage ? (
+              <FormHelperText error>
+                {errorMessage}
+              </FormHelperText>
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }
