@@ -10,6 +10,7 @@ import FileInput from '../InputTypes/FileInput';
 import CheckInput from '../InputTypes/CheckBox';
 import ListSelect from '../InputTypes/ListSelect';
 import DateInput from '../InputTypes/DateInput';
+import CodeOfConduct from '../InputTypes/CodeOfConduct';
 import colleges from '../../reducers/QuestionnaireReducers/colleges.json';
 import majors from '../../reducers/QuestionnaireReducers/majors.json';
 
@@ -192,6 +193,17 @@ const InputType = (props) => {
             name={id}
             validate={[required, date]}
             component={DateInput}
+          />
+        );
+      case 'codeOfConduct':
+        return (
+          <Field
+            label={title}
+            disabled={disabled}
+            validate={[required]}
+            name={id}
+            link={question.link}
+            component={CodeOfConduct}
           />
         );
       default:

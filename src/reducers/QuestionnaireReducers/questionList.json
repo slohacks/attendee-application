@@ -9,15 +9,13 @@
         {         
           "id": "name",
           "title": "What is your full name?",
-          "inputType": "textInput",
-          "placeholder": "Jane Doe"
+          "inputType": "textInput"
         },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
           "inputType": "textInput",
-          "validate": "phoneNumber",
-          "placeholder": "(555) 012-3456"
+          "validate": "phoneNumber"
         },
         {          
           "id": "college",
@@ -37,8 +35,7 @@
         {          
           "id": "city",
           "title": "Which city will you be traveling from?",
-          "inputType": "textInput",
-          "placeholder": "San Luis Obispo, CA"
+          "inputType": "textInput"
         },
         {          
           "id": "diet",
@@ -162,18 +159,9 @@
       "questions": [
         {          
           "id": "mlh",
-          "title": "MLH Code Of Conduct",
-          "inputType": "checkBox"
-        },
-        {          
-          "id": "hack_club",
-          "title": "Hack Club Liability",
-          "inputType": "checkBox"
-        },
-        {          
-          "id": "asi",
-          "title": "ASI Liablility",
-          "inputType": "checkBox"
+          "title": "Do you agree to abide by the ",
+          "link": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",
+          "inputType": "codeOfConduct"
         }
       ]
     },
