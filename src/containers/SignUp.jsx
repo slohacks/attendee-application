@@ -29,6 +29,8 @@ class SignUp extends Component {
 
   handleClose() {
     this.setState({ open: false });
+    const { history: { push } } = this.props;
+    push('/login');
   }
 
   render() {
