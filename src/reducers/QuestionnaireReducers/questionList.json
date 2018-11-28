@@ -9,11 +9,13 @@
         {         
           "id": "name",
           "title": "What is your full name?",
+          "placeholder": "Jane Doe",
           "inputType": "textInput"
         },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
+          "placeholder": "5550123456",
           "inputType": "textInput",
           "validate": "phoneNumber"
         },
@@ -35,6 +37,7 @@
         {          
           "id": "city",
           "title": "Which city will you be traveling from?",
+          "placeholder": "San Luis Obispo, CA",
           "inputType": "textInput"
         },
         {          
