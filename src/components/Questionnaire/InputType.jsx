@@ -28,6 +28,7 @@ const InputType = (props) => {
   function renderFields(question) {
     const { title, id } = question;
     const { disabled } = props;
+    const placeholder = question.placeholder ? question.placeholder : null;
     switch (question.inputType) {
       case 'textInput':
         if (question.validate === 'none') {
@@ -59,6 +60,7 @@ const InputType = (props) => {
               validate={[required, phoneNumber]}
               name={id}
               component={TextInput}
+              placeholder={placeholder}
             />
           );
         }
@@ -69,6 +71,7 @@ const InputType = (props) => {
             validate={[required]}
             name={id}
             component={TextInput}
+            placeholder={placeholder}
           />
         );
       case 'textAdornment':

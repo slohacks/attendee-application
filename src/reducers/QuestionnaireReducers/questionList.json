@@ -9,23 +9,27 @@
         {         
           "id": "name",
           "title": "What is your full name?",
-          "inputType": "textInput"
+          "inputType": "textInput",
+          "placeholder": "Jane Doe"
         },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
           "inputType": "textInput",
-          "validate": "phoneNumber"
+          "validate": "phoneNumber",
+          "placeholder": "(555) 012-3456"
         },
         {          
           "id": "college",
           "title": "What college are you studying at?",
-          "inputType": "listSelect"
+          "inputType": "listSelect",
+          "placeholder": "Cal Poly"
         },
         {          
           "id": "major",
           "title": "What major are you currently studying?",
-          "inputType": "majorSelect"
+          "inputType": "majorSelect",
+          "placeholder": "Computer Science"
         },
         {
           "id": "grad_date",
@@ -35,7 +39,8 @@
         {          
           "id": "city",
           "title": "Which city will you be traveling from?",
-          "inputType": "textInput"
+          "inputType": "textInput",
+          "placeholder": "San Luis Obispo, CA"
         },
         {          
           "id": "diet",
