@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import requireAuth from '../components/requireAuth';
+import Scenic from '../components/Scenic';
 
 const Confirmation = (props) => {
   function handleClick() {
@@ -10,13 +11,20 @@ const Confirmation = (props) => {
   }
 
   return (
-    <div>
-      <h1>
-        Thank you for submitting your application!
-      </h1>
-      <Button variant="outlined" color="primary" type="button" onClick={handleClick} style={{ marginTop: '1rem' }}>
-        Back to Dashboard
-      </Button>
+    <div className="container">
+      <div className="subContainer">
+        <Scenic />
+      </div>
+      <div className="subContainer">
+        <div className="containerPadding">
+          <h1>
+            Thank you for submitting your application!
+          </h1>
+          <Button variant="outlined" color="primary" type="button" onClick={handleClick} style={{ marginTop: '1rem' }}>
+            Back to Dashboard
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
