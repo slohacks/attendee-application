@@ -1,0 +1,8 @@
+{
+  "short_name": "SLO Hacks App",
+  "name": "SLO Hacks Attendee Application",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
