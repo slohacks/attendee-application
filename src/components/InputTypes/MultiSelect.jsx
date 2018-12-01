@@ -46,7 +46,7 @@ const MultiSelect = (props) => {
         </Select>
         {mainInput.value === ('Other')
           ? (
-            <TextField fullWidth label={label} helperText={otherMeta.touched && otherError ? otherMeta.error : ''} error={otherError} {...otherInput} disabled={disabled} />
+            <TextField fullWidth label={label} helperText={otherMeta.touched && otherError ? otherMeta.error : ''} error={otherError} {...otherInput} disabled={disabled} style={{ marginTop: '1rem' }} />
           ) : null }
         {mainError ? (
           <FormHelperText>
