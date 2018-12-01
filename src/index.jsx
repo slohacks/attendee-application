@@ -32,7 +32,6 @@ ReactDOM.render(
         <Route path="/confirmation" component={Confirmation} />
         <Route path="/signup" component={SignUp} />
         <Route path="/questionnaire/:id" component={Questionnaire} />
-        <Route path="/submission" component={Submission} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
