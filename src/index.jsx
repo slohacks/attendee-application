@@ -25,7 +25,7 @@ const createStoreWithMiddleware = createStore(
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/forgotpassword" component={ForgotPassword} />
@@ -37,7 +37,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.querySelector('.app'),
 );
