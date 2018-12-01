@@ -12,7 +12,7 @@ import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import Submission from './components/Questionnaire/Submission';
 import ForgotPassword from './containers/ForgotPassword';
-import NotFound from './components/NotFound';
+import NotFound from './containers/NotFound';
 import Confirmation from './containers/Confirmation';
 
 import './index.css';
