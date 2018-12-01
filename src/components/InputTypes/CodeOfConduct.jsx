@@ -7,6 +7,7 @@ const CodeOfConduct = ({
   input,
   label,
   link,
+  linkText,
   disabled,
   meta: { touched, error },
 }) => {
@@ -17,7 +18,7 @@ const CodeOfConduct = ({
       <InputLabel error={touched && Boolean(error)}>
         {label}
         <a href={link} target="_blank" rel="noopener noreferrer">
-        MLH Code of Conduct
+        {linkText}
         </a>
         ?
       </InputLabel>
