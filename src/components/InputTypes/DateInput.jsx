@@ -11,7 +11,7 @@ const DateInput = ({
   const errorExist = touched && Boolean(error);
   return (
     <TextField
-      type="date"
+      type="month"
       fullWidth
       label={label}
       InputLabelProps={{ shrink: true }}
