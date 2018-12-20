@@ -1,0 +1,22 @@
+branches:
+  only:
+  - master
+language: node_js
+node_js:
+  - "node"
+script:
+  - ./node_modules/.bin/eslint src/**/*.js*
+  - npm run test
+before_deploy:
+  - npm run build
+deploy:
+  skip-cleanup: true
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  local-dir: build
+  target-branch: gh-pages
+  keep-history: true
+  email: 34457519+slohacksbot@users.noreply.github.com
+  name: SLO Hacks Bot
+  on:
+    branch: master
