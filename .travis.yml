@@ -6,7 +6,6 @@ node_js:
   - "node"
 script:
   - ./node_modules/.bin/eslint src/**/*.js*
-  - npm run test
 before_deploy:
   - npm run build
 deploy:
