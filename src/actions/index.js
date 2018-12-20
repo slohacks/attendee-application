@@ -96,7 +96,11 @@ export const clearResume = () => {
 
 export const submitApp = (user, form) => (dispatch) => {
   dispatch({ type: types.ATTEMPT_SUBMISSION });
-  const newForm = { ...form, time: firebase.firestore.Timestamp.now() };
+  const newForm = {
+    ...form,
+    time: firebase.firestore.Timestamp.now(),
+    email: firebase.auth().currentUser.email,
+  };
   applicationsRef.doc(user.uid).set(newForm).then(() => {
     dispatch({ type: types.UPDATE_APPLICATION_TRUE });
     dispatch({ type: types.SUBMISSION_GUCCI });
