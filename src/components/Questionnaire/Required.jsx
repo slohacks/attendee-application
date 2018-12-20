@@ -35,7 +35,7 @@ class Required extends Component {
           <Button color="secondary" onClick={previousPage} type="button">
             BACK
           </Button>
-          <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+          <Button variant="outlined" color="primary" disabled={!valid} type="submit" style={{ marginLeft: '1rem' }}>
             NEXT
           </Button>
         </form>

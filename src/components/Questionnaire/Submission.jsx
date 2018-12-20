@@ -58,7 +58,7 @@ class Submission extends Component {
             BACK
           </Button>
           {loading ? <CircularProgress color="primary" /> : (
-            <Button variant="contained" color="primary" disabled={!valid} type="submit">
+            <Button variant="contained" color="primary" disabled={!valid} type="submit" style={{ marginLeft: '1rem' }}>
               Submit Application
             </Button>
           )}
