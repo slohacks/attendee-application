@@ -52,7 +52,7 @@ class Submission extends Component {
     } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.submitApplication.bind(this))}>
+        <form onSubmit={handleSubmit(this.submitApplication.bind(this))} style={{ marginBottom: '1rem' }}>
           {this.renderSections()}
           <Button color="secondary" onClick={previousPage} type="button">
             BACK
