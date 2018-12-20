@@ -114,9 +114,11 @@ ForgotPassword.propTypes = {
     push: PropTypes.func,
   }).isRequired,
 };
+
 ForgotPassword.defaultProps = {
   errorMessage: null,
 };
+
 export default reduxForm({
   validate,
   form: 'ForgotPasswordForm',
