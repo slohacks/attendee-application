@@ -35,12 +35,16 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "babel-preset-airbnb": "^2.5.2",
-    "babel-preset-env": "^1.7.0",
     "css-loader": "^1.0.0",
     "cz-conventional-changelog": "^2.1.0",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   },
   "config": {
     "commitizen": {
