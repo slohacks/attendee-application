@@ -32,7 +32,9 @@ class ForgotPassword extends Component {
   }
 
   render() {
-    const { handleSubmit, errorMessage, valid, history: { push } } = this.props;
+    const {
+      handleSubmit, errorMessage, valid, history: { push },
+    } = this.props;
     const { open } = this.state;
     return (
       <div className="container">
@@ -65,7 +67,6 @@ class ForgotPassword extends Component {
                 Back
               </Button>
             </form>
-            
             <Dialog onClose={this.handleClose} open={open}>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -112,6 +113,10 @@ ForgotPassword.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+};
+
+ForgotPassword.defaultProps = {
+  errorMessage: null,
 };
 
 export default reduxForm({
