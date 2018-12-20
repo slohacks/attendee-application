@@ -136,6 +136,10 @@ Login.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
+Login.defaultProps = {
+  errorMessage: null,
+};
+
 export default reduxForm({
   validate,
   form: 'LoginForm',

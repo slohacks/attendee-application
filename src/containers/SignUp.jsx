@@ -154,6 +154,10 @@ SignUp.propTypes = {
   }).isRequired,
 };
 
+SignUp.defaultProps = {
+  errorMessage: null,
+};
+
 export default reduxForm({
   validate,
   form: 'SignUpForm',
