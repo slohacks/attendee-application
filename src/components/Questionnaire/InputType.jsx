@@ -23,7 +23,7 @@ const checked = value => (value === 'false' ? 'Required' : '');
 const process = (date) => {
   return new Date(date).getTime();
 };
-const date = value => (!(process(value) >= process('02/01/2019')) ? 'Invalid Graduation Date' : '');
+const date = value => (!(process(value) >= process('08/01/2018')) ? 'Invalid Graduation Date' : '');
 
 const InputType = (props) => {
   function renderFields(question) {

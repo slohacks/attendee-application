@@ -55,7 +55,8 @@
         {          
           "id": "allergies",
           "title": "Do you have any allergies?",
-          "inputType": "textInput"
+          "inputType": "textInput",
+          "validate": "none"
         },
         {          
           "id": "age",
