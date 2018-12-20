@@ -82,6 +82,12 @@
           "adornmentText": "linkedin.com/in/"
         },
         {          
+          "id": "other_link",
+          "title": "Any other relevant links?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
           "id": "website",
           "title": "What is your personal website?",
           "inputType": "textInput",
