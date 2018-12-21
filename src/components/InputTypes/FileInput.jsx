@@ -90,4 +90,8 @@ FileInput.propTypes = {
   clearResume: PropTypes.func.isRequired,
 };
 
+FileInput.defaultProps = {
+  errorMessage: null,
+};
+
 export default connect(mapStateToProps, { uploadResume, clearResume })(FileInput);
