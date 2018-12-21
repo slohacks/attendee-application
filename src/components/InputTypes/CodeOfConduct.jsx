@@ -18,7 +18,7 @@ const CodeOfConduct = ({
       <InputLabel error={touched && Boolean(error)}>
         {label}
         <a href={link} target="_blank" rel="noopener noreferrer">
-        {linkText}
+          {linkText}
         </a>
         ?
       </InputLabel>

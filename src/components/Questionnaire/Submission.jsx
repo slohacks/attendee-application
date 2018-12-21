@@ -34,6 +34,7 @@ class Submission extends Component {
           </div>
         );
       }
+      return (null);
     });
   }
 
@@ -95,6 +96,10 @@ Submission.propTypes = {
   submissionStatus: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+};
+
+Submission.defaultProps = {
+  errorMessage: null,
 };
 
 Submission = reduxForm({

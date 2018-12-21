@@ -88,6 +88,11 @@ FileInput.propTypes = {
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   clearResume: PropTypes.func.isRequired,
+  specs: PropTypes.string.isRequired,
+};
+
+FileInput.defaultProps = {
+  errorMessage: null,
 };
 
 export default connect(mapStateToProps, { uploadResume, clearResume })(FileInput);

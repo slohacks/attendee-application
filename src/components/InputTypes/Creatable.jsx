@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Creatable as ReactSelectCreatable } from 'react-select';
 
-class Creatable extends Component {
-  render() {
-    return (
-      <ReactSelectCreatable {...this.props} />
-    );
-  }
-}
+
+const Creatable = (props) => {
+  return <ReactSelectCreatable {...props} />;
+};
 
 export default Creatable;
