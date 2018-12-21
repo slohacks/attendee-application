@@ -88,6 +88,7 @@ FileInput.propTypes = {
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   clearResume: PropTypes.func.isRequired,
+  specs: PropTypes.string.isRequired,
 };
 
 FileInput.defaultProps = {
