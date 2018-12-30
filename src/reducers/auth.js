@@ -3,7 +3,6 @@ import * as types from '../actions/types';
 const INITIAL_STATE = {
   authenticated: false,
   user: {},
-  completedApplication: false,
   error: false,
   errorMessage: '',
   loading: false,
@@ -11,16 +10,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.UPDATE_APPLICATION_TRUE:
-      return {
-        ...state,
-        completedApplication: true,
-      };
-    case types.UPDATE_APPLICATION_FALSE:
-      return {
-        ...state,
-        completedApplication: false,
-      };
     case types.LOGIN_ATTEMPT:
       return {
         ...state,

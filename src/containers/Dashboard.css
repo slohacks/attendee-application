@@ -1,0 +1,11 @@
+.cardStyle {
+  display: inline-block;
+  margin: 1rem 2rem;
+  padding: 1rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: Roboto, 'Brandon Grotesque', Sans-serif;
+  font-weight: 400;
+}
