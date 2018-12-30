@@ -23,31 +23,8 @@ class Dashboard extends Component {
     push('/questionnaire/0');
   }
 
-  handleApplicationButton() {
-    const { completedApp, user: { email } } = this.props;
-    if (completedApp) {
-      return (
-        <Button variant="outlined" color="primary" disabled type="submit">
-          Application Submitted
-        </Button>
-      );
-    }
-    if (!completedApp && email.match('.*@calpoly[.]edu')) {
-      return (
-        <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
-          Start Application
-        </Button>
-      );
-    }
-    return (
-      <Button variant="outlined" color="primary" disabled type="submit">
-        Applications closed, hope to you see next year!
-      </Button>
-    );
-  }
-
   render() {
-    const { user: { email } } = this.props;
+    const { completedApp, user: { email } } = this.props;
     return (
       <div className="container">
         <div className="subContainer">
@@ -58,8 +35,29 @@ class Dashboard extends Component {
             <h1>
               {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-            {email ? this.handleApplicationButton() : null}
-            <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
+            {!completedApp && email && email.match('.*@calpoly[.]edu') && (
+              <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
+                Start Application
+              </Button>
+            )}
+            {!completedApp && email && !email.match('.*@calpoly[.]edu') && (
+              <div>
+                <p>Applications are now closed for non-Cal Poly students!</p>
+                <p>
+                  {'Please use your '}
+                  <em>calpoly.edu</em>
+                  {' address to continue.'}
+                </p>
+              </div>
+            )}
+            {completedApp && (
+              <div>
+                <p>Your application has been successfully delivered!</p>
+                <p>We will notify you of your application status via email.</p>
+              </div>
+            )}
+            <br />
+            <Button color="primary" type="button" onClick={this.handleSignOut}>
               Logout
             </Button>
           </div>
