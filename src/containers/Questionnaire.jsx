@@ -19,8 +19,8 @@ class Questionaire extends Component {
   }
 
   componentWillMount() {
-    const { completedApp, history: { push } } = this.props;
-    if (completedApp) {
+    const { completedApp, history: { push }, user: { email } } = this.props;
+    if (completedApp || (email && !email.match('.*@calpoly[.]edu'))) {
       push('/dashboard');
     }
   }
@@ -134,7 +134,11 @@ class Questionaire extends Component {
 }
 
 function mapStateToProps(state) {
-  return { questionSections: state.questions.body, completedApp: state.auth.completedApplication };
+  return {
+    questionSections: state.questions.body,
+    completedApp: state.auth.completedApplication,
+    user: state.auth.user,
+  };
 }
 
 Questionaire.propTypes = {
@@ -148,6 +152,7 @@ Questionaire.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   completedApp: PropTypes.bool.isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps, null)(requireAuth(Questionaire));

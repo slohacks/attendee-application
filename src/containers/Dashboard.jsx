@@ -23,8 +23,31 @@ class Dashboard extends Component {
     push('/questionnaire/0');
   }
 
-  render() {
+  handleApplicationButton() {
     const { completedApp, user: { email } } = this.props;
+    if (completedApp) {
+      return (
+        <Button variant="outlined" color="primary" disabled type="submit">
+          Application Submitted
+        </Button>
+      );
+    }
+    if (!completedApp && email.match('.*@calpoly[.]edu')) {
+      return (
+        <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
+          Start Application
+        </Button>
+      );
+    }
+    return (
+      <Button variant="outlined" color="primary" disabled type="submit">
+        Applications closed, hope to you see next year!
+      </Button>
+    );
+  }
+
+  render() {
+    const { user: { email } } = this.props;
     return (
       <div className="container">
         <div className="subContainer">
@@ -35,17 +58,7 @@ class Dashboard extends Component {
             <h1>
               {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-
-            {completedApp ? (
-              <Button variant="outlined" color="primary" disabled type="submit">
-                Application Submitted
-              </Button>
-            ) : (
-              <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
-                Start Application
-              </Button>
-            )}
-
+            {email ? this.handleApplicationButton() : null}
             <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
               Logout
             </Button>
