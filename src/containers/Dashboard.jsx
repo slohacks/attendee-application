@@ -35,18 +35,29 @@ class Dashboard extends Component {
             <h1>
               {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-
-            {completedApp ? (
-              <Button variant="outlined" color="primary" disabled type="submit">
-                Application Submitted
-              </Button>
-            ) : (
+            {!completedApp && email && email.match('.*@calpoly[.]edu') && (
               <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
                 Start Application
               </Button>
             )}
-
-            <Button color="primary" type="button" onClick={this.handleSignOut} style={{ marginLeft: '1rem' }}>
+            {!completedApp && email && !email.match('.*@calpoly[.]edu') && (
+              <div>
+                <p>Applications are now closed for non-Cal Poly students!</p>
+                <p>
+                  {'Please use your '}
+                  <em>calpoly.edu</em>
+                  {' address to continue.'}
+                </p>
+              </div>
+            )}
+            {completedApp && (
+              <div>
+                <p>Your application has been successfully delivered!</p>
+                <p>We will notify you of your application status via email.</p>
+              </div>
+            )}
+            <br />
+            <Button color="primary" type="button" onClick={this.handleSignOut}>
               Logout
             </Button>
           </div>
