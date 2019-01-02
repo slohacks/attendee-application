@@ -69,22 +69,32 @@ class Dashboard extends Component {
             <h1>
               {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-            {completedApp
-              && application.status === 0 && (<p>Your application has been submitted</p>)}
-            {!completedApp && email && email.match('.*@calpoly[.]edu') && (
-              <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
-                Start Application
-              </Button>
+            {completedApp && application.status === 0 && (
+              <p>Your application has been submitted</p>
             )}
-            {!completedApp && email && !email.match('.*@calpoly[.]edu') && (
-              <div>
-                <p>Applications are now closed for non-Cal Poly students!</p>
-                <p>
-                  {'Please use your '}
-                  <em>calpoly.edu</em>
-                  {' address to continue'}
-                </p>
-              </div>
+            {!completedApp && email && (
+              email.match('.*@calpoly[.]edu') ? (
+                <div>
+                  <Button
+                    onClick={this.handleApplicationStart}
+                    variant="outlined"
+                    color="primary"
+                    type="submit"
+                  >
+                    Start Application
+                  </Button>
+                  <br />
+                </div>
+              ) : (
+                <div>
+                  <p>Applications are now closed for non-Cal Poly students!</p>
+                  <p>
+                    {'Please use your '}
+                    <em>calpoly.edu</em>
+                    {' address to continue'}
+                  </p>
+                </div>
+              )
             )}
             {application && (
               <div>
@@ -97,7 +107,7 @@ class Dashboard extends Component {
                     <p>Please RSVP to confirm your spot.</p>
                     <Button
                       color="primary"
-                      variant="contained"
+                      variant="outlined"
                       onClick={this.handleRSVP}
                     >
                         RSVP Now
@@ -106,7 +116,6 @@ class Dashboard extends Component {
                 )}
               </div>
             )}
-            <br />
             <Button
               color="primary"
               type="button"
