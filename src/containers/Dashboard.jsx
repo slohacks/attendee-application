@@ -7,8 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
 import { signout, rsvpResponse } from '../actions/index';
 import requireAuth from '../components/requireAuth';
 import Scenic from '../components/Scenic';
@@ -38,17 +36,12 @@ class Dashboard extends Component {
     super(props);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleApplicationStart = this.handleApplicationStart.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.handleRSVP = this.handleRSVP.bind(this);
-    this.state = {
-      open: false,
-    };
   }
 
-  handleRSVP(decision) {
-    const { rsvpResponse: sendRsvp, user } = this.props;
-    sendRsvp(user, decision, this.handleClose);
+  handleRSVP() {
+    const { history } = this.props;
+    history.push('/rsvp');
   }
 
   handleSignOut() {
@@ -61,18 +54,6 @@ class Dashboard extends Component {
     push('/questionnaire/0');
   }
 
-  handleOpen() {
-    this.setState({
-      open: true,
-    });
-  }
-
-  handleClose() {
-    this.setState({
-      open: false,
-    });
-  }
-
   render() {
     const
       {
@@ -80,10 +61,8 @@ class Dashboard extends Component {
         user,
         application,
         rsvp,
-        classes,
       } = this.props;
 
-    const { open } = this.state;
     return (
       <div className="container">
         <div className="subContainer">
@@ -96,79 +75,44 @@ class Dashboard extends Component {
             </h1>
 
             {completedApp ? (
-              <Button variant="outlined" color="primary" disabled type="submit">
-                Application Submitted
-              </Button>
+              application.status === 0 && (<p>Your application has been submitted.</p>)
             ) : (
               <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
                 Start Application
               </Button>
             )}
-
+            {application && (
+              <div>
+                <p>
+                  {`Your application status is ${parseAppStatus(application.status)}.`}
+                </p>
+                {rsvp && application.status === 1 && <p>Your RSVP is submitted!</p>}
+                { !rsvp && application.status === 1 && (
+                  <div>
+                    <p>Please RSVP to confirm your spot.</p>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={this.handleRSVP}
+                    >
+                        RSVP Now
+                    </Button>
+                  </div>
+                )}
+              </div>
+            )}
+            <br />
             <Button
               color="primary"
               type="button"
               onClick={this.handleSignOut}
               style={{
-                marginLeft: '1rem',
+                marginTop: '1rem',
               }}
             >
               Logout
             </Button>
           </div>
-          {application ? (
-            <Card className="cardStyle">
-              <CardContent>
-                <h3 className="cardTitle">Application Decision</h3>
-                <ListItem>
-                  <ListItemText primary="Status" secondary={parseAppStatus(application.status)} />
-                </ListItem>
-                {rsvp && application.status === 1 ? <p>Thank you for your response!</p> : null}
-                { !rsvp && application.status === 1
-                  ? (
-                    <div>
-                      <Button
-                        size="small"
-                        color="primary"
-                        variant="text"
-                        onClick={this.handleOpen}
-                      >
-                          RSVP Now
-                      </Button>
-                      <Modal
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                        open={open}
-                        onClose={this.handleClose}
-                      >
-                        <div className={classes.paper}>
-                          <Typography variant="h6" id="modal-title">
-                            Please let us know if you are coming by January 7th, 2019
-                          </Typography>
-                          <Button
-                            size="small"
-                            color="primary"
-                            variant="contained"
-                            onClick={() => this.handleRSVP(true)}
-                          >
-                          GOING
-                          </Button>
-                          <Button
-                            size="small"
-                            color="secondary"
-                            variant="contained"
-                            onClick={() => this.handleRSVP(false)}
-                          >
-                          NOT GOING
-                          </Button>
-                        </div>
-                      </Modal>
-                    </div>
-                  ) : null
-                }
-              </CardContent>
-            </Card>
-          ) : null}
         </div>
       </div>
     );
@@ -201,11 +145,8 @@ Dashboard.propTypes = {
   user: PropTypes.shape({
     email: PropTypes.string,
   }),
-  rsvpResponse: PropTypes.func.isRequired,
   rsvp: PropTypes.bool,
   application: PropTypes.shape(),
-  classes: PropTypes.shape().isRequired,
-
 };
 
 const DashboardWrapped = withStyles(styles)(Dashboard);
