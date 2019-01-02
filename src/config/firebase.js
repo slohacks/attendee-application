@@ -23,5 +23,11 @@ const settings = {
 firestore.settings(settings);
 
 const applicationsRef = firestore.collection('applications');
+const rsvpRef = firestore.collection('rsvp');
 
-export { firebase, firestore, applicationsRef };
+export {
+  firebase,
+  firestore,
+  applicationsRef,
+  rsvpRef,
+};
