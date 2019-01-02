@@ -69,7 +69,8 @@ class Dashboard extends Component {
             <h1>
               {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-            {completedApp && application.status === 0 && (<p>Your application has been submitted</p>)}
+            {completedApp
+              && application.status === 0 && (<p>Your application has been submitted</p>)}
             {!completedApp && email && email.match('.*@calpoly[.]edu') && (
               <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
                 Start Application

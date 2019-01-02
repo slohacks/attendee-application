@@ -143,7 +143,8 @@ function mapStateToProps(state) {
 
 Questionaire.defaultProps = {
   completedApp: null,
-}
+};
+
 Questionaire.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   match: PropTypes.shape({
