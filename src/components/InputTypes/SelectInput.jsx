@@ -11,7 +11,7 @@ class SelectInput extends Component {
     const { options } = this.props;
     return Object.keys(options).map((option) => {
       return (
-        <MenuItem key={option} value={option}>
+        <MenuItem key={option} value={options[option]}>
           {option}
         </MenuItem>
       );
