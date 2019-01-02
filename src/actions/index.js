@@ -1,5 +1,10 @@
 import * as types from './types';
-import { firebase, applicationsRef, firestore } from '../config/firebase';
+import {
+  firebase,
+  applicationsRef,
+  firestore,
+  rsvpRef,
+} from '../config/firebase';
 
 export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
@@ -23,18 +28,27 @@ export const login = values => (dispatch) => {
         user: { emailVerified, uid },
       } = userCredential;
       if (emailVerified) {
-        const docRef = firestore.collection('applications').doc(`${uid}`);
-        docRef.get().then((doc) => {
-          if (doc.exists) {
-            dispatch({ type: types.LOGIN_GUCCI, userCredential });
-            dispatch({ type: types.UPDATE_APPLICATION_TRUE });
+        const appRef = firestore.collection('applications').doc(`${uid}`);
+        const attendRef = firestore.collection('rsvp').doc(`${uid}`);
+        appRef.get().then((app) => {
+          if (app.exists) {
+            attendRef.get().then((rsvp) => {
+              const appData = app.data();
+              if (!rsvp.exists && appData.status === 1) {
+                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: false });
+                dispatch({ type: types.LOGIN_GUCCI, userCredential });
+              } else {
+                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: true });
+                dispatch({ type: types.LOGIN_GUCCI, userCredential });
+              }
+            });
           } else {
-            dispatch({ type: types.LOGIN_GUCCI, userCredential });
             dispatch({ type: types.UPDATE_APPLICATION_FALSE });
+            dispatch({ type: types.LOGIN_GUCCI, userCredential });
           }
         }).catch(() => {
-          dispatch({ type: types.LOGIN_GUCCI, userCredential });
           dispatch({ type: types.UPDATE_APPLICATION_FALSE });
+          dispatch({ type: types.LOGIN_GUCCI, userCredential });
         });
       } else {
         dispatch({ type: types.LOGIN_FAIL, error: { message: 'Email not verified, please verify your email.' } });
@@ -42,6 +56,13 @@ export const login = values => (dispatch) => {
     }).catch((error) => {
       dispatch({ type: types.LOGIN_FAIL, error });
     });
+};
+
+export const rsvpResponse = (user, form, push) => (dispatch) => {
+  rsvpRef.doc(user.uid).set(form).then(() => {
+    dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
+    push('/dashboard');
+  });
 };
 
 export const forgotPassword = (values, callback) => (dispatch) => {
@@ -102,7 +123,9 @@ export const submitApp = (user, form) => (dispatch) => {
     email: firebase.auth().currentUser.email,
   };
   applicationsRef.doc(user.uid).set(newForm).then(() => {
-    dispatch({ type: types.UPDATE_APPLICATION_TRUE });
+    applicationsRef.doc(user.uid).get().then((doc) => {
+      dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: doc.data(), rsvpInv: false });
+    });
     dispatch({ type: types.SUBMISSION_GUCCI });
   }).catch((error) => {
     dispatch({ type: types.SUBMISSION_FAIL, error });

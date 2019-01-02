@@ -22,3 +22,4 @@ export const UPDATE_APPLICATION_FALSE = 'update_application_false';
 export const ATTEMPT_SUBMISSION = 'attempt_submission';
 export const SUBMISSION_GUCCI = 'submission_gucci';
 export const SUBMISSION_FAIL = 'submission_fail';
+export const UPDATE_RSVP = 'update_rsvp';

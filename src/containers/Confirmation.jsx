@@ -20,7 +20,15 @@ const Confirmation = (props) => {
           <h1>
             Thank you for submitting your application!
           </h1>
-          <Button variant="outlined" color="primary" type="button" onClick={handleClick} style={{ marginTop: '1rem' }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            type="button"
+            onClick={handleClick}
+            style={{
+              marginTop: '1rem',
+            }}
+          >
             Back to Dashboard
           </Button>
         </div>
