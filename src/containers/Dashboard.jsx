@@ -54,7 +54,7 @@ class Dashboard extends Component {
     const
       {
         completedApp,
-        user,
+        user: { email },
         application,
         rsvp,
       } = this.props;
@@ -67,15 +67,23 @@ class Dashboard extends Component {
         <div className="subContainer">
           <div className="containerPadding">
             <h1>
-              {user.email ? `Hello ${user.email.substring(0, user.email.indexOf('@'))}!` : 'Hello!'}
+              {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
             </h1>
-
-            {completedApp ? (
-              application.status === 0 && (<p>Your application has been submitted.</p>)
-            ) : (
+            {completedApp && application.status === 0 && (<p>Your application has been submitted</p>)}
+            {!completedApp && email && email.match('.*@calpoly[.]edu') && (
               <Button onClick={this.handleApplicationStart} variant="outlined" color="primary" type="submit">
                 Start Application
               </Button>
+            )}
+            {!completedApp && email && !email.match('.*@calpoly[.]edu') && (
+              <div>
+                <p>Applications are now closed for non-Cal Poly students!</p>
+                <p>
+                  {'Please use your '}
+                  <em>calpoly.edu</em>
+                  {' address to continue'}
+                </p>
+              </div>
             )}
             {application && (
               <div>
@@ -130,11 +138,12 @@ Dashboard.defaultProps = {
   }),
   rsvp: null,
   application: null,
+  completedApp: null,
 };
 
 Dashboard.propTypes = {
   signout: PropTypes.func.isRequired,
-  completedApp: PropTypes.bool.isRequired,
+  completedApp: PropTypes.bool,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,

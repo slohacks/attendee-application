@@ -141,6 +141,9 @@ function mapStateToProps(state) {
   };
 }
 
+Questionaire.defaultProps = {
+  completedApp: null,
+}
 Questionaire.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   match: PropTypes.shape({
@@ -151,7 +154,7 @@ Questionaire.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-  completedApp: PropTypes.bool.isRequired,
+  completedApp: PropTypes.bool,
   user: PropTypes.shape().isRequired,
 };
 
