@@ -1,5 +1,10 @@
 import * as types from './types';
-import { firebase, applicationsRef, firestore } from '../config/firebase';
+import {
+  firebase,
+  applicationsRef,
+  firestore,
+  rsvpRef,
+} from '../config/firebase';
 
 export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
@@ -23,17 +28,20 @@ export const login = values => (dispatch) => {
         user: { emailVerified, uid },
       } = userCredential;
       if (emailVerified) {
-        const docRef = firestore.collection('applications').doc(`${uid}`);
-        docRef.get().then((doc) => {
-          if (doc.exists) {
-            const appData = doc.data();
-            if (typeof appData.rsvp === 'undefined' && appData.status === 1) {
-              dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: doc.data(), rsvpInv: false });
-              dispatch({ type: types.LOGIN_GUCCI, userCredential });
-            } else {
-              dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: doc.data(), rsvpInv: true });
-              dispatch({ type: types.LOGIN_GUCCI, userCredential });
-            }
+        const appRef = firestore.collection('applications').doc(`${uid}`);
+        const attendRef = firestore.collection('rsvp').doc(`${uid}`);
+        appRef.get().then((app) => {
+          if (app.exists) {
+            attendRef.get().then((rsvp) => {
+              const appData = app.data();
+              if (!rsvp.exists && appData.status === 1) {
+                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: false });
+                dispatch({ type: types.LOGIN_GUCCI, userCredential });
+              } else {
+                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: true });
+                dispatch({ type: types.LOGIN_GUCCI, userCredential });
+              }
+            });
           } else {
             dispatch({ type: types.UPDATE_APPLICATION_FALSE });
             dispatch({ type: types.LOGIN_GUCCI, userCredential });
@@ -50,12 +58,10 @@ export const login = values => (dispatch) => {
     });
 };
 
-export const rsvpResponse = (user, decision, closeModal) => (dispatch) => {
-  applicationsRef.doc(user.uid).update({
-    rsvp: decision,
-  }).then(() => {
+export const rsvpResponse = (user, form, push) => (dispatch) => {
+  rsvpRef.doc(user.uid).set(form).then(() => {
     dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
-    closeModal();
+    push('/dashboard');
   });
 };
 
