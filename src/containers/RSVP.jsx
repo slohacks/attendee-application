@@ -29,9 +29,9 @@ class Rsvp extends Component {
         flight: null,
         buses: null,
       };
-    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'NorCal') {
+    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'Northern California') {
       newForm = { ...formProps, socal: null, flight: null };
-    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'SoCal') {
+    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'Southern California') {
       newForm = { ...formProps, norcal: null, flight: null };
     } else if (formProps.attending && formProps.transportation === 2) {
       newForm = { ...formProps, norcal: null, socal: null };
