@@ -19,10 +19,8 @@ class Questionaire extends Component {
   }
 
   componentWillMount() {
-    const { completedApp, history: { push }, user: { email } } = this.props;
-    if (completedApp || (email && !email.match('.*@calpoly[.]edu'))) {
-      push('/dashboard');
-    }
+    const { history: { push } } = this.props;
+    push('/dashboard');
   }
 
   renderQuestionSection(id) {
@@ -141,10 +139,6 @@ function mapStateToProps(state) {
   };
 }
 
-Questionaire.defaultProps = {
-  completedApp: null,
-};
-
 Questionaire.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   match: PropTypes.shape({
@@ -155,8 +149,6 @@ Questionaire.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-  completedApp: PropTypes.bool,
-  user: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps, null)(requireAuth(Questionaire));
