@@ -72,29 +72,11 @@ class Dashboard extends Component {
             {completedApp && application.status === 0 && (
               <p>Your application has been submitted</p>
             )}
-            {!completedApp && email && (
-              email.match('.*@calpoly[.]edu') ? (
-                <div>
-                  <Button
-                    onClick={this.handleApplicationStart}
-                    variant="outlined"
-                    color="primary"
-                    type="submit"
-                  >
-                    Start Application
-                  </Button>
-                  <br />
-                </div>
-              ) : (
-                <div>
-                  <p>Applications are now closed for non-Cal Poly students!</p>
-                  <p>
-                    {'Please use your '}
-                    <em>calpoly.edu</em>
-                    {' address to continue'}
-                  </p>
-                </div>
-              )
+            {!completedApp && (
+              <div>
+                <p>Applications are now closed for all students!</p>
+                <p>See you next year!</p>
+              </div>
             )}
             {application && (
               <div>
