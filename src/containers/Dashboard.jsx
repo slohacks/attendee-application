@@ -84,16 +84,9 @@ class Dashboard extends Component {
                   {`Your application status is ${parseAppStatus(application.status)}.`}
                 </p>
                 {rsvp && application.status === 1 && <p>Your RSVP is submitted!</p>}
-                { !rsvp && application.status === 1 && (
+                {!rsvp && application.status === 1 && (
                   <div>
-                    <p>Please RSVP to confirm your spot.</p>
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      onClick={this.handleRSVP}
-                    >
-                        RSVP Now
-                    </Button>
+                    <p>RSVPs have been closed.</p>
                   </div>
                 )}
               </div>
