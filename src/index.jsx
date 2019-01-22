@@ -7,13 +7,11 @@ import ReduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
 import SignUp from './containers/SignUp';
-import Questionnaire from './containers/Questionnaire';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './containers/NotFound';
 import Confirmation from './containers/Confirmation';
-import Rsvp from './containers/RSVP';
 
 import './index.css';
 
