@@ -15,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
     case types.SIGN_UP_FAIL:
       return {
         ...state,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;

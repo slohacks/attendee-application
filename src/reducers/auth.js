@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: true,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
         loading: false,
       };
     case types.SIGN_OUT_GUCCI:
@@ -43,7 +43,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: true,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;
