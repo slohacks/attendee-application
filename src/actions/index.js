@@ -17,7 +17,6 @@ export const signUp = (values, callback) => (dispatch) => {
     })
     .then((response) => {
       const userCredential = response.data;
-      console.log('signup:', response, response.result);
       dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
       callback();
     })
