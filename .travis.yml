@@ -3,7 +3,7 @@ branches:
   - master
 language: node_js
 node_js:
-  - "11.8"
+  - "11.10.1"
 script:
   - ./node_modules/.bin/eslint src/**/*.js*
 before_deploy:
