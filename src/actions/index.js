@@ -3,7 +3,6 @@ import * as types from './types';
 import {
   firebase,
   applicationsRef,
-  firestore,
   rsvpRef,
 } from '../config/firebase';
 
