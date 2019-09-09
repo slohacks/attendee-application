@@ -16,12 +16,6 @@ firebase.initializeApp(config);
 
 const firestore = firebase.firestore();
 
-const settings = {
-  timestampsInSnapshots: true,
-};
-
-firestore.settings(settings);
-
 const applicationsRef = firestore.collection('applications');
 const rsvpRef = firestore.collection('rsvp');
 
