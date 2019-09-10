@@ -104,7 +104,7 @@ export const uploadResume = (user, resume, onChange) => (dispatch) => {
       .catch(() => {
         dispatch({
           type: types.UPLOAD_RESUME_FAIL,
-          error: "File submitted isn't of type PDF or is too large.",
+          error: 'File submitted isn\'t of type PDF or is too large.',
         });
       });
   } catch (error) {

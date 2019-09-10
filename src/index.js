@@ -1,1 +1,1 @@
-require("./index.jsx");
+require('./index.jsx');
