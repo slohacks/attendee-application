@@ -38,7 +38,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: false,
         error: false,
-        user: {},
+        user: null,
       };
     case types.SIGN_OUT_FAIL:
       return {

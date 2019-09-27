@@ -23,6 +23,7 @@
     "react-scripts": "^3.1.1",
     "react-select": "^2.1.2",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.8",
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0"
   },
@@ -53,5 +54,10 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

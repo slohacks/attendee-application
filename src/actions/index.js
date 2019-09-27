@@ -68,15 +68,7 @@ export const forgotPassword = (values, callback) => (dispatch) => {
 };
 
 export const signout = () => (dispatch) => {
-  // firebase
-  //   .auth()
-  //   .signOut()
-  //   .then(() => {
-  //     dispatch({ type: types.SIGN_OUT_GUCCI });
-  //   })
-  //   .catch((error) => {
-  //     dispatch({ type: types.SIGN_OUT_FAIL, error });
-  //   });
+  dispatch({ type: types.SIGN_OUT_GUCCI });
 };
 
 export function submitResponse(formProps) {

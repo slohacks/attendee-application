@@ -54,7 +54,7 @@ class Dashboard extends Component {
     const
       {
         completedApp,
-        user: { email },
+        user,
         application,
         rsvp,
       } = this.props;
@@ -67,7 +67,7 @@ class Dashboard extends Component {
         <div className="subContainer">
           <div className="containerPadding">
             <h1>
-              {email ? `Hello ${email.substring(0, email.indexOf('@'))}!` : 'Hello!'}
+              {user ? `Hello ${user.email.substring(0, user.email.indexOf('@'))}!` : 'Hello!'}
             </h1>
             {completedApp && application.status === 0 && (
               <p>Your application has been submitted</p>
