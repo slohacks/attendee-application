@@ -2,7 +2,8 @@ import * as types from '../actions/types';
 
 const INITIAL_STATE = {
   authenticated: false,
-  user: {},
+  user: null,
+  token: null,
   error: false,
   errorMessage: '',
   loading: false,
@@ -22,8 +23,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: true,
         error: false,
-        user: action.userCredential.user,
         loading: false,
+        user: action.userCredential,
       };
     case types.LOGIN_FAIL:
       return {

@@ -1,49 +1,49 @@
-import axios from "axios";
-import * as types from "./types";
+import axios from 'axios';
+import * as types from './types';
 // import {
 //   firebase,
 //   applicationsRef,
 //   rsvpRef,
 // } from '../config/firebase';
 
-const API_PATH = "https://slohacks-backend-api.herokuapp.com";
+const API_PATH = 'https://slohacks-backend-api.herokuapp.com';
 
-export const signUp = (values, callback) => dispatch => {
+export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
   axios
     .post(`${API_PATH}/users/signup`, {
       email: values.email,
-      password: values.password
+      password: values.password,
     })
-    .then(response => {
+    .then((response) => {
       const userCredential = response.data;
       dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
       callback();
     })
-    .catch(error => {
+    .catch((error) => {
       const { errorMessage } = error.response.data;
       dispatch({ type: types.SIGN_UP_FAIL, errorMessage });
     });
 };
 
-export const login = values => dispatch => {
+export const login = values => (dispatch) => {
   dispatch({ type: types.LOGIN_ATTEMPT });
   axios
     .post(`${API_PATH}/users/login`, {
       email: values.email,
-      password: values.password
+      password: values.password,
     })
-    .then(response => {
+    .then((response) => {
       const userCredential = response.data;
       dispatch({ type: types.LOGIN_GUCCI, userCredential });
     })
-    .catch(error => {
+    .catch((error) => {
       const { errorMessage } = error.response.data;
       dispatch({ type: types.LOGIN_FAIL, errorMessage });
     });
 };
 
-export const rsvpResponse = (user, form, push) => dispatch => {
+export const rsvpResponse = (user, form, push) => (dispatch) => {
   // rsvpRef
   //   .doc(user.uid)
   //   .set(form)
@@ -53,7 +53,7 @@ export const rsvpResponse = (user, form, push) => dispatch => {
   //   });
 };
 
-export const forgotPassword = (values, callback) => dispatch => {
+export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
   // firebase
   //   .auth()
@@ -67,7 +67,7 @@ export const forgotPassword = (values, callback) => dispatch => {
   //   });
 };
 
-export const signout = () => dispatch => {
+export const signout = () => (dispatch) => {
   // firebase
   //   .auth()
   //   .signOut()
@@ -82,11 +82,11 @@ export const signout = () => dispatch => {
 export function submitResponse(formProps) {
   return {
     type: types.SAVE_RESPONSE,
-    payload: formProps
+    payload: formProps,
   };
 }
 
-export const uploadResume = (user, resume, onChange) => dispatch => {
+export const uploadResume = (user, resume, onChange) => (dispatch) => {
   dispatch({ type: types.UPLOAD_RESUME_ATTEMPT });
   // const storageRef = firebase
   //   .storage()
@@ -114,11 +114,11 @@ export const uploadResume = (user, resume, onChange) => dispatch => {
 
 export const clearResume = () => {
   return {
-    type: types.CLEAR_RESUME_ERROR
+    type: types.CLEAR_RESUME_ERROR,
   };
 };
 
-export const submitApp = (user, form) => dispatch => {
+export const submitApp = (user, form) => (dispatch) => {
   dispatch({ type: types.ATTEMPT_SUBMISSION });
   // const newForm = {
   //   ...form,

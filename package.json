@@ -32,8 +32,7 @@
     "start": "webpack-dev-server --mode development",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "lint": "eslint src --ext js,jsx",
-    "lint-fix": "eslint src --ext js,jsx --fix",
+    "lint": "./node_modules/.bin/eslint src/**/*.js*",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
