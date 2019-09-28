@@ -3,7 +3,6 @@ import * as types from '../actions/types';
 const INITIAL_STATE = {
   authenticated: false,
   user: null,
-  token: null,
   error: false,
   errorMessage: '',
   loading: false,
