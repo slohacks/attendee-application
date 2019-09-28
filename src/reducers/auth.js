@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const INITIAL_STATE = {
   authenticated: false,
-  user: {},
+  user: null,
   error: false,
   errorMessage: '',
   loading: false,
@@ -22,14 +22,14 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: true,
         error: false,
-        user: action.userCredential.user,
         loading: false,
+        user: action.userCredential,
       };
     case types.LOGIN_FAIL:
       return {
         ...state,
         error: true,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
         loading: false,
       };
     case types.SIGN_OUT_GUCCI:
@@ -37,13 +37,13 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: false,
         error: false,
-        user: {},
+        user: null,
       };
     case types.SIGN_OUT_FAIL:
       return {
         ...state,
         error: true,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;

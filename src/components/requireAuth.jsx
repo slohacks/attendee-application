@@ -24,6 +24,7 @@ export default (ChildComponent) => {
       return <ChildComponent {...this.props} />;
     }
   }
+
   function mapStateToProps(state) {
     return { auth: state.auth.authenticated };
   }

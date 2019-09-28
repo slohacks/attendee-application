@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 import SignUp from './containers/SignUp';
@@ -15,11 +16,9 @@ import Confirmation from './containers/Confirmation';
 
 import './index.css';
 
-const createStoreWithMiddleware = createStore(
-  reducers,
-  {},
+const createStoreWithMiddleware = createStore(reducers, composeWithDevTools(
   applyMiddleware(ReduxThunk),
-);
+));
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware}>

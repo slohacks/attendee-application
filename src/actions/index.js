@@ -1,89 +1,74 @@
+import axios from 'axios';
 import * as types from './types';
-import {
-  firebase,
-  applicationsRef,
-  firestore,
-  rsvpRef,
-} from '../config/firebase';
+// import {
+//   firebase,
+//   applicationsRef,
+//   rsvpRef,
+// } from '../config/firebase';
+
+const API_PATH = 'https://slohacks-backend-api.herokuapp.com';
 
 export const signUp = (values, callback) => (dispatch) => {
   dispatch({ type: types.SIGN_UP_ATTEMPT });
-  firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
-    .then((userCredential) => {
-      firebase.auth().currentUser.sendEmailVerification()
-        .then(() => {
-          dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
-          callback();
-        }).catch(error => dispatch({ type: types.SIGN_UP_FAIL, error }));
-    }).catch((error) => {
-      dispatch({ type: types.SIGN_UP_FAIL, error });
+  axios
+    .post(`${API_PATH}/users/signup`, {
+      email: values.email,
+      password: values.password,
+    })
+    .then((response) => {
+      const userCredential = response.data;
+      dispatch({ type: types.SIGN_UP_GUCCI, userCredential });
+      callback();
+    })
+    .catch((error) => {
+      const { errorMessage } = error.response.data;
+      dispatch({ type: types.SIGN_UP_FAIL, errorMessage });
     });
 };
 
 export const login = values => (dispatch) => {
   dispatch({ type: types.LOGIN_ATTEMPT });
-  firebase.auth().signInWithEmailAndPassword(values.email, values.password)
-    .then((userCredential) => {
-      const {
-        user: { emailVerified, uid },
-      } = userCredential;
-      if (emailVerified) {
-        const appRef = firestore.collection('applications').doc(`${uid}`);
-        const attendRef = firestore.collection('rsvp').doc(`${uid}`);
-        appRef.get().then((app) => {
-          if (app.exists) {
-            attendRef.get().then((rsvp) => {
-              const appData = app.data();
-              if (!rsvp.exists && appData.status === 1) {
-                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: false });
-                dispatch({ type: types.LOGIN_GUCCI, userCredential });
-              } else {
-                dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: appData, rsvpInv: true });
-                dispatch({ type: types.LOGIN_GUCCI, userCredential });
-              }
-            });
-          } else {
-            dispatch({ type: types.UPDATE_APPLICATION_FALSE });
-            dispatch({ type: types.LOGIN_GUCCI, userCredential });
-          }
-        }).catch(() => {
-          dispatch({ type: types.UPDATE_APPLICATION_FALSE });
-          dispatch({ type: types.LOGIN_GUCCI, userCredential });
-        });
-      } else {
-        dispatch({ type: types.LOGIN_FAIL, error: { message: 'Email not verified, please verify your email.' } });
-      }
-    }).catch((error) => {
-      dispatch({ type: types.LOGIN_FAIL, error });
+  axios
+    .post(`${API_PATH}/users/login`, {
+      email: values.email,
+      password: values.password,
+    })
+    .then((response) => {
+      const userCredential = response.data;
+      dispatch({ type: types.LOGIN_GUCCI, userCredential });
+    })
+    .catch((error) => {
+      const { errorMessage } = error.response.data;
+      dispatch({ type: types.LOGIN_FAIL, errorMessage });
     });
 };
 
 export const rsvpResponse = (user, form, push) => (dispatch) => {
-  rsvpRef.doc(user.uid).set(form).then(() => {
-    dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
-    push('/dashboard');
-  });
+  // rsvpRef
+  //   .doc(user.uid)
+  //   .set(form)
+  //   .then(() => {
+  //     dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
+  //     push('/dashboard');
+  //   });
 };
 
 export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
-  firebase.auth().sendPasswordResetEmail(values.email)
-    .then((userCredential) => {
-      dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
-      callback();
-    }).catch((error) => {
-      dispatch({ type: types.FORGOT_PASS_FAIL, error });
-    });
+  // firebase
+  //   .auth()
+  //   .sendPasswordResetEmail(values.email)
+  //   .then((userCredential) => {
+  //     dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
+  //     callback();
+  //   })
+  //   .catch((error) => {
+  //     dispatch({ type: types.FORGOT_PASS_FAIL, error });
+  //   });
 };
 
 export const signout = () => (dispatch) => {
-  firebase.auth().signOut()
-    .then(() => {
-      dispatch({ type: types.SIGN_OUT_GUCCI });
-    })
-    .catch((error) => {
-      dispatch({ type: types.SIGN_OUT_FAIL, error });
-    });
+  dispatch({ type: types.SIGN_OUT_GUCCI });
 };
 
 export function submitResponse(formProps) {
@@ -95,18 +80,28 @@ export function submitResponse(formProps) {
 
 export const uploadResume = (user, resume, onChange) => (dispatch) => {
   dispatch({ type: types.UPLOAD_RESUME_ATTEMPT });
-  const storageRef = firebase.storage().ref().child('resumes').child(`${user.uid}.pdf`);
+  // const storageRef = firebase
+  //   .storage()
+  //   .ref()
+  //   .child('resumes')
+  //   .child(`${user.uid}.pdf`);
 
-  try {
-    storageRef.put(resume).then(() => {
-      dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
-      onChange(resume.name);
-    }).catch(() => {
-      dispatch({ type: types.UPLOAD_RESUME_FAIL, error: "File submitted isn't of type PDF or is too large." });
-    });
-  } catch (error) {
-    dispatch({ type: types.UPLOAD_RESUME_FAIL });
-  }
+  // try {
+  //   storageRef
+  //     .put(resume)
+  //     .then(() => {
+  //       dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
+  //       onChange(resume.name);
+  //     })
+  //     .catch(() => {
+  //       dispatch({
+  //         type: types.UPLOAD_RESUME_FAIL,
+  //         error: 'File submitted isn\'t of type PDF or is too large.',
+  //       });
+  //     });
+  // } catch (error) {
+  //   dispatch({ type: types.UPLOAD_RESUME_FAIL });
+  // }
 };
 
 export const clearResume = () => {
@@ -117,17 +112,28 @@ export const clearResume = () => {
 
 export const submitApp = (user, form) => (dispatch) => {
   dispatch({ type: types.ATTEMPT_SUBMISSION });
-  const newForm = {
-    ...form,
-    time: firebase.firestore.Timestamp.now(),
-    email: firebase.auth().currentUser.email,
-  };
-  applicationsRef.doc(user.uid).set(newForm).then(() => {
-    applicationsRef.doc(user.uid).get().then((doc) => {
-      dispatch({ type: types.UPDATE_APPLICATION_TRUE, app: doc.data(), rsvpInv: false });
-    });
-    dispatch({ type: types.SUBMISSION_GUCCI });
-  }).catch((error) => {
-    dispatch({ type: types.SUBMISSION_FAIL, error });
-  });
+  // const newForm = {
+  //   ...form,
+  //   time: firebase.firestore.Timestamp.now(),
+  //   email: firebase.auth().currentUser.email,
+  // };
+  // applicationsRef
+  //   .doc(user.uid)
+  //   .set(newForm)
+  //   .then(() => {
+  //     applicationsRef
+  //       .doc(user.uid)
+  //       .get()
+  //       .then((doc) => {
+  //         dispatch({
+  //           type: types.UPDATE_APPLICATION_TRUE,
+  //           app: doc.data(),
+  //           rsvpInv: false,
+  //         });
+  //       });
+  //     dispatch({ type: types.SUBMISSION_GUCCI });
+  //   })
+  //   .catch((error) => {
+  //     dispatch({ type: types.SUBMISSION_FAIL, error });
+  //   });
 };
