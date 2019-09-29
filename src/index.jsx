@@ -13,6 +13,7 @@ import Dashboard from './containers/Dashboard';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './containers/NotFound';
 import Confirmation from './containers/Confirmation';
+import Questionnaire from './containers/Questionnaire';
 
 import './index.css';
 
