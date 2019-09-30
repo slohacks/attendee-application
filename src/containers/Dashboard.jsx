@@ -94,6 +94,16 @@ class Dashboard extends Component {
             <Button
               color="primary"
               type="button"
+              onClick={this.handleApplicationStart}
+              style={{
+                marginTop: '1rem',
+              }}
+            >
+              My Application
+            </Button>
+            <Button
+              color="primary"
+              type="button"
               onClick={this.handleSignOut}
               style={{
                 marginTop: '1rem',
