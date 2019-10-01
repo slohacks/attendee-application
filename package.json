@@ -12,7 +12,6 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "file-loader": "^2.0.0",
-    "firebase": "^5.5.5",
     "gh-pages": "^2.0.1",
     "lodash": "^4.17.15",
     "prop-types": "^15.6.2",
@@ -24,6 +23,7 @@
     "react-scripts": "^3.1.1",
     "react-select": "^2.1.2",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.8",
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0"
   },
@@ -44,6 +44,7 @@
     "babel-preset-airbnb": "^4.0.1",
     "css-loader": "^1.0.0",
     "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^6.3.0",
     "style-loader": "^0.23.1",
     "webpack": "4.39.1",
     "webpack-cli": "3.1.2"
