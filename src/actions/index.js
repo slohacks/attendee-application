@@ -134,7 +134,8 @@ export const submitApp = (user, form) => (dispatch) => {
   //   .catch((error) => {
   //     dispatch({ type: types.SUBMISSION_FAIL, error });
   //   });
-  console.log(form);
+  form.grad_date = form.grad_date.replace('-', '');
+  form.status = 0;
 
   axios
     .post(`${API_PATH}/applications`, form, {
@@ -142,10 +143,10 @@ export const submitApp = (user, form) => (dispatch) => {
         Authorization: user.token,
       },
     })
-    .then((doc) => {
+    .then((response) => {
       dispatch({
         type: types.UPDATE_APPLICATION_TRUE,
-        app: doc,
+        app: response.data,
         rsvpInv: false,
       });
       dispatch({ type: types.SUBMISSION_GUCCI });
