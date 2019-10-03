@@ -41,7 +41,7 @@ class FileInput extends Component {
             {label}
           </FormLabel>
         </div>
-        <input style={{ display: 'none' }} id="files" accept=".pdf" type="file" onChange={this.onChange} onBlur={() => {}} disabled={disabled} />
+        <input style={{ display: 'none' }} id="files" accept=".pdf" type="file" name="resume" onChange={this.onChange} onBlur={() => {}} disabled={disabled} />
         <label
           htmlFor="files"
           style={{
