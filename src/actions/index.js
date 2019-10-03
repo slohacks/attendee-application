@@ -134,4 +134,27 @@ export const submitApp = (user, form) => (dispatch) => {
   //   .catch((error) => {
   //     dispatch({ type: types.SUBMISSION_FAIL, error });
   //   });
+  console.log(form);
+
+  axios
+    .post(`${API_PATH}/applications`, form, {
+      headers: {
+        Authorization: user.token,
+      },
+    })
+    .then((doc) => {
+      dispatch({
+        type: types.UPDATE_APPLICATION_TRUE,
+        app: doc,
+        rsvpInv: false,
+      });
+      dispatch({ type: types.SUBMISSION_GUCCI });
+    })
+    .catch((error) => {
+      const { errorMessage } = error.response.data;
+      dispatch({
+        type: types.SUBMISSION_FAIL,
+        error: errorMessage,
+      });
+    });
 };
