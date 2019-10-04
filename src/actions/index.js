@@ -136,7 +136,6 @@ export const submitApp = (user, form) => (dispatch) => {
   //     dispatch({ type: types.SUBMISSION_FAIL, error });
   //   });
   formCopy.grad_date = form.grad_date.replace('-', '');
-  formCopy.status = 0;
 
   axios
     .post(`${API_PATH}/applications`, formCopy, {
