@@ -38,7 +38,7 @@
           "id": "classYear",
           "title": "What is your class year?",
           "inputType": "multiSelect",
-          "options": {
+          "choices": {
             "1st": 1, 
             "2nd": 2,
             "3rd": 3, 
@@ -56,7 +56,7 @@
           "id": "diet",
           "title": "Dietary Restrictions",
           "inputType": "dropDown",
-          "options": {
+          "choices": {
             "None": 0, 
             "Kosher": 1, 
             "Gluten Free": 2, 
@@ -140,7 +140,7 @@
           "id": "gender",
           "title": "What's your gender?",
           "inputType": "multiSelect",
-          "options": {
+          "choices": {
             "Female": 0, 
             "Male": 1,
             "I prefer not to answer": 2, 
@@ -151,7 +151,7 @@
           "id": "ethnicity",
           "title": "What's your ethnicity?",
           "inputType": "multiSelect",
-          "options": {
+          "choices": {
             "American Indian or Alaska Native": 0, 
             "Asian": 1, 
             "Black or African American": 2, 
