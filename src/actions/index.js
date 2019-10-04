@@ -109,6 +109,7 @@ export const clearResume = () => {
 };
 
 export const submitApp = (user, form) => (dispatch) => {
+  const formCopy = form;
   dispatch({ type: types.ATTEMPT_SUBMISSION });
   // const newForm = {
   //   ...form,
@@ -134,11 +135,11 @@ export const submitApp = (user, form) => (dispatch) => {
   //   .catch((error) => {
   //     dispatch({ type: types.SUBMISSION_FAIL, error });
   //   });
-  form.grad_date = form.grad_date.replace('-', '');
-  form.status = 0;
+  formCopy.grad_date = form.grad_date.replace('-', '');
+  formCopy.status = 0;
 
   axios
-    .post(`${API_PATH}/applications`, form, {
+    .post(`${API_PATH}/applications`, formCopy, {
       headers: {
         Authorization: user.token,
       },
