@@ -11,16 +11,11 @@ import Submission from '../components/Questionnaire/Submission';
 import Miscellaneous from '../components/Questionnaire/Miscellaneous';
 import Required from '../components/Questionnaire/Required';
 
-class Questionaire extends Component {
+class Questionnaire extends Component {
   constructor() {
     super();
     this.renderNextPage = this.renderNextPage.bind(this);
     this.renderPreviousPage = this.renderPreviousPage.bind(this);
-  }
-
-  componentWillMount() {
-    const { history: { push } } = this.props;
-    push('/dashboard');
   }
 
   renderQuestionSection(id) {
@@ -139,7 +134,7 @@ function mapStateToProps(state) {
   };
 }
 
-Questionaire.propTypes = {
+Questionnaire.propTypes = {
   questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -151,4 +146,4 @@ Questionaire.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, null)(requireAuth(Questionaire));
+export default connect(mapStateToProps, null)(requireAuth(Questionnaire));

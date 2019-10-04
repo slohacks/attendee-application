@@ -113,7 +113,7 @@ const InputType = (props) => {
               disabled={disabled}
               validate={[required, checked]}
               name={id}
-              options={question.options}
+              choices={question.choices}
               component={SelectInput}
             />
           );
@@ -122,7 +122,7 @@ const InputType = (props) => {
           <Field
             label={title}
             disabled={disabled}
-            options={question.options}
+            choices={question.choices}
             validate={[required]}
             name={id}
             component={SelectInput}
@@ -133,7 +133,7 @@ const InputType = (props) => {
           <Fields
             label={title}
             disabled={disabled}
-            options={question.options}
+            choices={question.choices}
             names={[
               id,
               `other_${id}`,

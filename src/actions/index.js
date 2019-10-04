@@ -80,28 +80,26 @@ export function submitResponse(formProps) {
 
 export const uploadResume = (user, resume, onChange) => (dispatch) => {
   dispatch({ type: types.UPLOAD_RESUME_ATTEMPT });
-  // const storageRef = firebase
-  //   .storage()
-  //   .ref()
-  //   .child('resumes')
-  //   .child(`${user.uid}.pdf`);
+  const data = new FormData();
+  data.append('resume', resume);
 
-  // try {
-  //   storageRef
-  //     .put(resume)
-  //     .then(() => {
-  //       dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
-  //       onChange(resume.name);
-  //     })
-  //     .catch(() => {
-  //       dispatch({
-  //         type: types.UPLOAD_RESUME_FAIL,
-  //         error: 'File submitted isn\'t of type PDF or is too large.',
-  //       });
-  //     });
-  // } catch (error) {
-  //   dispatch({ type: types.UPLOAD_RESUME_FAIL });
-  // }
+  axios
+    .post(`${API_PATH}/resumes`, data, {
+      headers: {
+        Authorization: user.token,
+      },
+    })
+    .then(() => {
+      dispatch({ type: types.UPLOAD_RESUME_GUCCI, resume });
+      onChange(resume.name);
+    })
+    .catch((error) => {
+      const { errorMessage } = error.response.data;
+      dispatch({
+        type: types.UPLOAD_RESUME_FAIL,
+        error: errorMessage,
+      });
+    });
 };
 
 export const clearResume = () => {
@@ -111,6 +109,7 @@ export const clearResume = () => {
 };
 
 export const submitApp = (user, form) => (dispatch) => {
+  const formCopy = form;
   dispatch({ type: types.ATTEMPT_SUBMISSION });
   // const newForm = {
   //   ...form,
@@ -136,4 +135,27 @@ export const submitApp = (user, form) => (dispatch) => {
   //   .catch((error) => {
   //     dispatch({ type: types.SUBMISSION_FAIL, error });
   //   });
+  formCopy.grad_date = form.grad_date.replace('-', '');
+
+  axios
+    .post(`${API_PATH}/applications`, formCopy, {
+      headers: {
+        Authorization: user.token,
+      },
+    })
+    .then((response) => {
+      dispatch({
+        type: types.UPDATE_APPLICATION_TRUE,
+        app: response.data,
+        rsvpInv: false,
+      });
+      dispatch({ type: types.SUBMISSION_GUCCI });
+    })
+    .catch((error) => {
+      const { errorMessage } = error.response.data;
+      dispatch({
+        type: types.SUBMISSION_FAIL,
+        error: errorMessage,
+      });
+    });
 };

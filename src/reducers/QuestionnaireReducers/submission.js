@@ -25,7 +25,7 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        errorMessage: action.error.message,
+        errorMessage: action.error,
       };
     default:
       return state;

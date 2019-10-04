@@ -9,17 +9,17 @@ import TextField from '@material-ui/core/TextField';
 
 const MultiSelect = (props) => {
   const { mainField, otherField } = props;
-  const { label, options, disabled } = props;
+  const { label, choices, disabled } = props;
   const { [mainField]: { input: mainInput, meta: mainMeta } } = props;
   const { [otherField]: { input: otherInput, meta: otherMeta } } = props;
   const mainError = Boolean(mainMeta.error) && mainMeta.touched;
   const otherError = Boolean(otherMeta.error) && otherMeta.touched;
 
-  function renderOptions() {
-    return Object.keys(options).map((option) => {
+  function renderChoices() {
+    return Object.keys(choices).map((choice) => {
       return (
-        <MenuItem key={option} value={option}>
-          {option}
+        <MenuItem key={choice} value={choices[choice]}>
+          {choice}
         </MenuItem>
       );
     });
@@ -27,7 +27,7 @@ const MultiSelect = (props) => {
 
   function updateFields(event) {
     mainInput.onChange(event.target.value);
-    if (Number(event.target.value) !== (Object.keys(options).length - 1)) {
+    if (Number(event.target.value) !== (Object.keys(choices).length - 1)) {
       otherInput.onChange(null);
     }
   }
@@ -42,7 +42,7 @@ const MultiSelect = (props) => {
         </InputLabel>
         <Select onChange={updateFields} value={mainInput.value}>
           <MenuItem value="" />
-          {renderOptions()}
+          {renderChoices()}
         </Select>
         {mainInput.value === ('Other')
           ? (
@@ -63,7 +63,7 @@ MultiSelect.propTypes = {
   otherField: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
-  options: PropTypes.shape({}).isRequired,
+  choices: PropTypes.shape({}).isRequired,
 };
 
 export default MultiSelect;

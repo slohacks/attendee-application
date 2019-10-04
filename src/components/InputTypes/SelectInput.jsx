@@ -7,12 +7,12 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 class SelectInput extends Component {
-  renderOptions() {
-    const { options } = this.props;
-    return Object.keys(options).map((option) => {
+  renderChoices() {
+    const { choices } = this.props;
+    return Object.keys(choices).map((choice) => {
       return (
-        <MenuItem key={option} value={options[option]}>
-          {option}
+        <MenuItem key={choice} value={choices[choice]}>
+          {choice}
         </MenuItem>
       );
     });
@@ -36,7 +36,7 @@ class SelectInput extends Component {
           </InputLabel>
           <Select {...input}>
             <MenuItem value="" />
-            {this.renderOptions()}
+            {this.renderChoices()}
           </Select>
           {errorExist ? (
             <FormHelperText>
@@ -52,7 +52,7 @@ class SelectInput extends Component {
 SelectInput.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
-  options: PropTypes.shape({}).isRequired,
+  choices: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool.isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,

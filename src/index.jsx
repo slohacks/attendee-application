@@ -13,6 +13,7 @@ import Dashboard from './containers/Dashboard';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './containers/NotFound';
 import Confirmation from './containers/Confirmation';
+import Questionnaire from './containers/Questionnaire';
 
 import './index.css';
 
@@ -28,6 +29,7 @@ ReactDOM.render(
         <Route path="/forgotpassword" component={ForgotPassword} />
         <Route path="/confirmation" component={Confirmation} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/questionnaire/:id" component={Questionnaire} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
