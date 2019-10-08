@@ -8,20 +8,26 @@
       [
         {         
           "id": "name",
-          "title": "What is your full name?",
+          "title": "What is your name?",
           "placeholder": "Jane Doe",
           "inputType": "textInput"
         },
         {
           "id": "phoneNumber",
           "title": "What is your phone number?",
-          "placeholder": "5550123456",
+          "placeholder": "555-012-3456",
           "inputType": "textInput",
           "validate": "phoneNumber"
         },
+        {
+          "id": "email",
+          "title": "What is your email?",
+          "placeholder": "janedoe123@gmail.com",
+          "inputType": "textInput"
+        },
         {          
           "id": "college",
-          "title": "What college are you studying at?",
+          "title": "What university are you studying at?",
           "inputType": "listSelect"
         },
         {          
@@ -39,47 +45,62 @@
           "title": "What is your class year?",
           "inputType": "multiSelect",
           "choices": {
-            "1st": 1, 
-            "2nd": 2,
-            "3rd": 3, 
-            "4th": 4,
-            "5+": 5
+            "First": 1, 
+            "Second": 2,
+            "Third": 3, 
+            "Fourth": 4,
+            "Fifth+": 5
           }
-        },
-        {          
-          "id": "city",
-          "title": "Which city will you be traveling from?",
-          "placeholder": "San Luis Obispo, CA",
-          "inputType": "textInput"
-        },
-        {          
-          "id": "diet",
-          "title": "Dietary Restrictions",
-          "inputType": "dropDown",
-          "choices": {
-            "None": 0, 
-            "Kosher": 1, 
-            "Gluten Free": 2, 
-            "Vegan": 3, 
-            "Vegetarian": 4
-          }
-        },
-        {          
-          "id": "allergies",
-          "title": "Do you have any allergies?",
-          "inputType": "textInput",
-          "validate": "none"
-        },
-        {          
-          "id": "age",
-          "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "checkBox"
         }
       ]
     },
     {
       "id": 1,
-      "name": "Basic Info",
+      "name": "Demographics",
+      "questions":
+      [
+        {          
+          "id": "ethnicity",
+          "title": "What's your ethnicity?",
+          "inputType": "multiSelect",
+          "choices": {
+            "American Indian or Alaska Native": 0, 
+            "Asian": 1, 
+            "Black or African American": 2, 
+            "Hispanic or Latino": 3, 
+            "Native Hawaiian or Other Pacific Islander": 4,
+            "White": 5,
+            "Other": 6
+          }
+        },
+        {         
+          "id": "gender",
+          "title": "What's your gender?",
+          "inputType": "multiSelect",
+          "choices": {
+            "Female": 0, 
+            "Male": 1,
+            "I prefer not to answer": 2, 
+            "Other": 3
+          }
+        },
+        {         
+          "id": "pronouns",
+          "title": "What are your pronouns?",
+          "inputType": "multiSelect",
+          "choices": {
+            "He/Him/His": 0, 
+            "She/Her/Hers": 1,
+            "They/Them/Theirs": 2,
+            "I prefer not to answer": 3, 
+            "Other": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Experience",
       "questions":
       [
         {         
@@ -115,49 +136,59 @@
       ]
     },
     {
-      "id": 2,
-      "name": "Short Answers",
+      "id": 3,
+      "name": "Accommodations",
       "questions":
       [
-        {         
-          "id": "project",
-          "title": "Tell us about one of the projects you're most proud of. It doesn't have to be CS-related!",
-          "inputType": "textArea"
+        {          
+          "id": "city",
+          "title": "Which city will you be traveling from?",
+          "placeholder": "San Luis Obispo, CA",
+          "inputType": "textInput"
         },
         {          
-          "id": "challenge",
-          "title": "What's a challenging situation you've run into, and how did you go about solving it?",
-          "inputType": "textArea"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Statistics Info",
-      "questions":
-      [
-        {         
-          "id": "gender",
-          "title": "What's your gender?",
-          "inputType": "multiSelect",
+          "id": "diet",
+          "title": "Dietary Restrictions",
+          "inputType": "dropDown",
           "choices": {
-            "Female": 0, 
-            "Male": 1,
-            "I prefer not to answer": 2, 
-            "Other": 3
+            "None": 0, 
+            "Kosher": 1, 
+            "Gluten Free": 2, 
+            "Vegan": 3, 
+            "Vegetarian": 4
           }
         },
         {          
-          "id": "ethnicity",
-          "title": "What's your ethnicity?",
+          "id": "allergies",
+          "title": "Do you have any allergies?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
+          "id": "travelNeed",
+          "title": "Will you need travel sponsorship?",
+          "inputType": "dropDown",
+          "choices": {
+            "Yes": 0, 
+            "No": 1
+          }
+        },
+        {          
+          "id": "age",
+          "title": "Will you at least be 18 years old before February 1, 2019",
+          "inputType": "checkBox"
+        },
+        {         
+          "id": "reference",
+          "title": "How did you hear about SLO Hacks?",
           "inputType": "multiSelect",
           "choices": {
-            "American Indian or Alaska Native": 0, 
-            "Asian": 1, 
-            "Black or African American": 2, 
-            "Hispanic or Latino": 3, 
-            "Native Hawaiian or Other Pacific Islander": 4,
-            "White": 5,
+            "Facebook": 0, 
+            "LinkedIn": 1,
+            "Instagram": 2,
+            "WOW Showcase": 3, 
+            "Friend": 4,
+            "Organizer": 5,
             "Other": 6
           }
         }
@@ -165,13 +196,18 @@
     },
     {
       "id": 4,
-      "name": "Miscellaneous",
-      "questions": [
-        {
-          "id": "misc",
-          "title": "Anything else we should know?",
-          "inputType": "textArea",
-          "validate": "none"
+      "name": "Essay Questions",
+      "questions":
+      [
+        {         
+          "id": "project",
+          "title": "What would you like to get out of SLO Hacks 2020?",
+          "inputType": "textArea"
+        },
+        {          
+          "id": "challenge",
+          "title": "You wake up and find yourself in Jeff Bezos's body. Your personal assistant Alexa reminds you that today is the day of your big announcement. What is your announcement to the world?",
+          "inputType": "textArea"
         }
       ]
     },
