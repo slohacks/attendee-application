@@ -13,6 +13,13 @@
           "inputType": "textInput"
         },
         {
+          "id": "email",
+          "title": "What is your email?",
+          "placeholder": "janedoe123@gmail.com",
+          "inputType": "textInput",
+          "validate": "email"
+        },
+        {
           "id": "phoneNumber",
           "title": "What is your phone number?",
           "placeholder": "5550123456",
@@ -20,19 +27,14 @@
           "validate": "phoneNumber"
         },
         {          
-          "id": "college",
-          "title": "What college are you studying at?",
+          "id": "university",
+          "title": "What university are you studying at?",
           "inputType": "listSelect"
         },
         {          
           "id": "major",
           "title": "What major are you currently studying?",
           "inputType": "majorSelect"
-        },
-        {
-          "id": "grad_date",
-          "title": "When will you be graduating?",
-          "inputType": "dateInput"
         },
         {
           "id": "classYear",
@@ -43,43 +45,73 @@
             "2nd": 2,
             "3rd": 3, 
             "4th": 4,
-            "5+": 5
+            "5th+": 5
           }
         },
-        {          
-          "id": "city",
-          "title": "Which city will you be traveling from?",
-          "placeholder": "San Luis Obispo, CA",
-          "inputType": "textInput"
-        },
-        {          
-          "id": "diet",
-          "title": "Dietary Restrictions",
-          "inputType": "dropDown",
+        {
+          "id": "shirtSize",
+          "title": "What is your shirt size?",
+          "inputType": "multiSelect",
           "choices": {
-            "None": 0, 
-            "Kosher": 1, 
-            "Gluten Free": 2, 
-            "Vegan": 3, 
-            "Vegetarian": 4
+            "XS": "xs",
+            "S": "s",
+            "M": "m",
+            "L": "l",
+            "XL": "xl",
+            "XXL": "xxl"
           }
-        },
-        {          
-          "id": "allergies",
-          "title": "Do you have any allergies?",
-          "inputType": "textInput",
-          "validate": "none"
-        },
-        {          
-          "id": "age",
-          "title": "Will you at least be 18 years old before February 1, 2019",
-          "inputType": "checkBox"
         }
       ]
     },
     {
       "id": 1,
-      "name": "Basic Info",
+      "name": "Demographics",
+      "questions":
+      [
+        {          
+          "id": "ethnicity",
+          "title": "What's your ethnicity?",
+          "inputType": "multiSelect",
+          "choices": {
+            "White": "White", 
+            "Hispanic and Latino/a": "Hispanic and Latino/a", 
+            "Black or African American": "Black or African American", 
+            "Asian American": "Asian American", 
+            "Native American/Alaska Natives": "Native American/Alaska Natives",
+            "Native Hawaiian or Other Pacific Islander": "Native Hawaiian or Other Pacific Islander",
+            "Two or more races": "Two or more races",
+            "Other": "Other",
+            "Decline to state": "Decline to state"
+          }
+        },
+        {         
+          "id": "gender",
+          "title": "What's your gender?",
+          "inputType": "multiSelect",
+          "choices": {
+            "Male": "Male", 
+            "Female": "Female",
+            "Non-binary": "Non-binary", 
+            "Other": "Other",
+            "Decline to state": "Decline to state"
+          }
+        },
+        {
+          "id": "pronouns",
+          "title": "What are your pronouns?",
+          "inputType": "multiSelect",
+          "choices": {
+            "He/him/his": "He/him/his", 
+            "She/her/hers": "She/her/hers",
+            "They/them/theirs": "They/them/theirs", 
+            "Other": "Other"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Experience",
       "questions":
       [
         {         
@@ -95,13 +127,13 @@
           "adornmentText": "linkedin.com/in/"
         },
         {          
-          "id": "website",
+          "id": "personalSite",
           "title": "What is your personal website?",
           "inputType": "textInput",
           "validate": "none"
         },
         {          
-          "id": "other_link",
+          "id": "otherSite",
           "title": "Any other relevant links?",
           "inputType": "textInput",
           "validate": "none"
@@ -115,72 +147,95 @@
       ]
     },
     {
-      "id": 2,
-      "name": "Short Answers",
+      "id": 3,
+      "name": "Accomodations",
       "questions":
       [
-        {         
-          "id": "project",
-          "title": "Tell us about one of the projects you're most proud of. It doesn't have to be CS-related!",
-          "inputType": "textArea"
+        {          
+          "id": "originCity",
+          "title": "Which city will you be traveling from?",
+          "placeholder": "San Luis Obispo, CA",
+          "inputType": "textInput"
         },
         {          
-          "id": "challenge",
-          "title": "What's a challenging situation you've run into, and how did you go about solving it?",
-          "inputType": "textArea"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Statistics Info",
-      "questions":
-      [
-        {         
-          "id": "gender",
-          "title": "What's your gender?",
-          "inputType": "multiSelect",
+          "id": "campusParking",
+          "title": "Do you require on-campus parking?",
+          "inputType": "dropDown",
           "choices": {
-            "Female": 0, 
-            "Male": 1,
-            "I prefer not to answer": 2, 
-            "Other": 3
+            "Yes": true,
+            "No": false
           }
         },
         {          
-          "id": "ethnicity",
-          "title": "What's your ethnicity?",
-          "inputType": "multiSelect",
+          "id": "travelSponsorship",
+          "title": "Do you require a travel sponsorship?",
+          "inputType": "dropDown",
           "choices": {
-            "American Indian or Alaska Native": 0, 
-            "Asian": 1, 
-            "Black or African American": 2, 
-            "Hispanic or Latino": 3, 
-            "Native Hawaiian or Other Pacific Islander": 4,
-            "White": 5,
-            "Other": 6
+            "Yes": true,
+            "No": false
+          }
+        },
+        {          
+          "id": "validAge",
+          "title": "Will you at least be 18 years old before January 10, 2020?",
+          "inputType": "checkBox"
+        },
+        {          
+          "id": "dietaryRestrictions",
+          "title": "Dietary Restrictions",
+          "inputType": "dropDown",
+          "choices": {
+            "Vegetarian": "Vegetarian",
+            "Vegan": "Vegan", 
+            "Pescatarian": "Pescatarian", 
+            "Kosher": "Kosher", 
+            "Halal": "Halal", 
+            "Other": "Other",
+            "None": "None"
+          }
+        },
+        {          
+          "id": "allergies",
+          "title": "Do you have any allergies?",
+          "inputType": "textInput",
+          "validate": "none"
+        },
+        {          
+          "id": "referral",
+          "title": "How did you hear about SLO Hacks?",
+          "inputType": "dropDown",
+          "choices": {
+            "Instagram": "Instagram",
+            "Facebook": "Facebook", 
+            "Twitter": "Twitter", 
+            "LinkedIn": "LinkedIn"
           }
         }
       ]
     },
     {
       "id": 4,
-      "name": "Miscellaneous",
-      "questions": [
-        {
-          "id": "misc",
-          "title": "Anything else we should know?",
-          "inputType": "textArea",
-          "validate": "none"
+      "name": "Free response",
+      "questions":
+      [
+        {         
+          "id": "personalProject",
+          "title": "Tell us about a project you are passionate about (doesn’t have to be CS-related).",
+          "inputType": "textArea"
+        },
+        {          
+          "id": "hackathonGoal",
+          "title": "What do you want to get out of SLO Hacks?",
+          "inputType": "textArea"
         }
       ]
     },
     {
       "id": 5,
-      "name": "Required",
+      "name": "MLH Code of Conduct",
       "questions": [
         {          
-          "id": "mlh",
+          "id": "mlhSignature",
           "title": "Do you agree to abide by the ",
           "linkText": "MLH Code of Conduct",
           "link": "https://static.mlh.io/docs/mlh-code-of-conduct.pdf",

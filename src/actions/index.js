@@ -1,10 +1,5 @@
 import axios from 'axios';
 import * as types from './types';
-// import {
-//   firebase,
-//   applicationsRef,
-//   rsvpRef,
-// } from '../config/firebase';
 
 const API_PATH = 'https://slohacks-backend-api.herokuapp.com';
 
@@ -111,32 +106,6 @@ export const clearResume = () => {
 export const submitApp = (user, form) => (dispatch) => {
   const formCopy = form;
   dispatch({ type: types.ATTEMPT_SUBMISSION });
-  // const newForm = {
-  //   ...form,
-  //   time: firebase.firestore.Timestamp.now(),
-  //   email: firebase.auth().currentUser.email,
-  // };
-  // applicationsRef
-  //   .doc(user.uid)
-  //   .set(newForm)
-  //   .then(() => {
-  //     applicationsRef
-  //       .doc(user.uid)
-  //       .get()
-  //       .then((doc) => {
-  //         dispatch({
-  //           type: types.UPDATE_APPLICATION_TRUE,
-  //           app: doc.data(),
-  //           rsvpInv: false,
-  //         });
-  //       });
-  //     dispatch({ type: types.SUBMISSION_GUCCI });
-  //   })
-  //   .catch((error) => {
-  //     dispatch({ type: types.SUBMISSION_FAIL, error });
-  //   });
-  formCopy.grad_date = form.grad_date.replace('-', '');
-
   axios
     .post(`${API_PATH}/applications`, formCopy, {
       headers: {
