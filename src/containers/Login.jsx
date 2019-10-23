@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Scenic from '../components/Scenic';
 import { login } from '../actions/index';
 import TextInput from '../components/InputTypes/2019/TextInput';
+import { StyledButton } from '../components/common';
 
 class Login extends Component {
   componentDidMount() {
@@ -74,16 +75,19 @@ class Login extends Component {
                 </FormHelperText>
               ) : null}
               {loading ? <CircularProgress color="primary" /> : (
-                <Button
-                  variant="outlined"
-                  color="primary"
+                <StyledButton
                   disabled={!valid}
                   type="submit"
-                  style={{ marginBottom: '1rem' }}
                 >
-                  Login
-                </Button>
+                  Log in
+                </StyledButton>
               )}
+              <StyledButton
+                disabled={!valid}
+                filled
+              >
+                Register
+              </StyledButton>
             </form>
             <div>
               <Button onClick={() => push('/signup')} color="primary" type="button">
