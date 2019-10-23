@@ -1,22 +1,13 @@
+@import 'https://fonts.googleapis.com/css?family=Proxima+Nova:300,400,500,600,900';
+
 body {
   margin: 0;
   font-family: sans-serif;
 }
 
-@font-face {
-  font-family: 'Brandon Grotesque';
-  src: url('./assets/fonts/BrandonGrotesque-Bold.eot');
-  src:
-    url('./assets/fonts/BrandonGrotesque-Bold.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/BrandonGrotesque-Bold.woff') format('woff'),
-    url('./assets/fonts/BrandonGrotesque-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
 h1,
 h2 {
-  font-family: 'Brandon Grotesque', sans-serif;
+  font-family: 'Proxima Nova', sans-serif;
   text-transform: uppercase;
   color: #4D4A6A;
   margin-bottom: 0;

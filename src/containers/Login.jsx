@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import TextInput from '../components/InputTypes/TextInput';
 import Scenic from '../components/Scenic';
 import { login } from '../actions/index';
+import TextInput from '../components/InputTypes/2019/TextInput';
 
 class Login extends Component {
   componentDidMount() {
@@ -58,12 +58,14 @@ class Login extends Component {
                 label="Email"
                 name="email"
                 type="text"
+                placeholder="Email"
                 component={TextInput}
               />
               <Field
                 label="Enter a password (8 or more characters)"
                 name="password"
                 type="password"
+                placeholder="Password"
                 component={TextInput}
               />
               {errorMessage ? (
@@ -83,7 +85,6 @@ class Login extends Component {
                 </Button>
               )}
             </form>
-
             <div>
               <Button onClick={() => push('/signup')} color="primary" type="button">
                 Sign Up
