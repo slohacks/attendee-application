@@ -21,7 +21,7 @@ const Layout = ({ children }) => (
 
 const LayoutContainer = styled.div`
   position: relative;
-  height: 100vh
+  height: 100vh;
   margin: 0 auto;
   display: grid;
   grid-template-areas: '. content .';
@@ -52,7 +52,7 @@ const LayoutView = styled.div`
 
 const LayoutContent = styled.div`
   grid-area: content;
-  z-index: 5
+  z-index: 5;
 `;
 
 const LayoutRow = styled.div`
