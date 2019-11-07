@@ -7,9 +7,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+
+import { PageContainer } from '../styled/containers';
 import { forgotPassword } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
-import Scenic from '../components/Scenic';
 
 class ForgotPassword extends Component {
   constructor(props) {
@@ -37,52 +38,47 @@ class ForgotPassword extends Component {
     } = this.props;
     const { open } = this.state;
     return (
-      <div className="container">
-        <div className="subContainer">
-          <Scenic />
+      <PageContainer>
+        <div className="containerPadding">
+          <h1>
+            Forgot Password
+          </h1>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field
+              label="Email"
+              name="email"
+              type="text"
+              component={TextInput}
+            />
+
+            <Button
+              variant="outlined"
+              color="primary"
+              type="submit"
+              disabled={!valid}
+            >
+              Submit
+            </Button>
+
+            <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginLeft: '1rem' }}>
+              Back
+            </Button>
+          </form>
+          <Dialog onClose={this.handleClose} open={open}>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                  If the account exists, you will receive an email to reset your password.
+              </DialogContentText>
+            </DialogContent>
+          </Dialog>
+
+          {errorMessage ? (
+            <FormHelperText error>
+              {errorMessage}
+            </FormHelperText>
+          ) : null}
         </div>
-        <div className="subContainer">
-          <div className="containerPadding">
-            <h1>
-              Forgot Password
-            </h1>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Field
-                label="Email"
-                name="email"
-                type="text"
-                component={TextInput}
-              />
-
-              <Button
-                variant="outlined"
-                color="primary"
-                type="submit"
-                disabled={!valid}
-              >
-                Submit
-              </Button>
-
-              <Button color="primary" type="button" onClick={() => push('/login')} style={{ marginLeft: '1rem' }}>
-                Back
-              </Button>
-            </form>
-            <Dialog onClose={this.handleClose} open={open}>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    If the account exists, you will receive an email to reset your password.
-                </DialogContentText>
-              </DialogContent>
-            </Dialog>
-
-            {errorMessage ? (
-              <FormHelperText error>
-                {errorMessage}
-              </FormHelperText>
-            ) : null}
-          </div>
-        </div>
-      </div>
+      </PageContainer>
     );
   }
 }

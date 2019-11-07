@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
   border: 2px solid #2b34b0;
   border-radius: .25rem;
   margin-bottom: 1rem;
-  padding: .75rem 2.5rem;
+  padding: .75rem 2rem;
   margin: 1rem 1rem 1rem 0;
+  cursor: pointer;
 `;

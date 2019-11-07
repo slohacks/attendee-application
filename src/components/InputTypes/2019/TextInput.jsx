@@ -7,7 +7,6 @@ import ErrorText from './ErrorText';
 const TextInput = ({
   input,
   type,
-  label,
   disabled,
   placeholder,
   meta: { touched, error },
@@ -15,7 +14,6 @@ const TextInput = ({
   const errorExist = touched && Boolean(error);
   return (
     <InputContainer>
-      {label && <LabelContainer error={errorExist}>{label}</LabelContainer>}
       <InputField
         {...input}
         type={type}
@@ -28,10 +26,6 @@ const TextInput = ({
   );
 };
 
-const LabelContainer = styled.label`
-  color: ${props => (props.error ? 'red' : 'black')};
-`;
-
 const InputContainer = styled.div`
   font-family: 'Proxima Nova';
 `;
@@ -40,7 +34,7 @@ const InputField = styled.input`
   width: 100%;
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
   padding: .5rem;
-  margin-bottom: .85rem;
+  margin: .5rem 0;
 
   ::-webkit-input-placeholder {
     font-family: 'Proxima Nova', sans-serif;

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Scenic from '../components/Scenic';
+import styled from 'styled-components';
+
+import { PageContainer, SectionHeaderContainer } from '../styled/containers';
+import { SectionHeader, SectionText } from '../styled/headers';
 import { login } from '../actions/index';
 import TextInput from '../components/InputTypes/2019/TextInput';
 import { StyledButton } from '../components/common';
@@ -41,69 +44,82 @@ class Login extends Component {
       history: { push },
     } = this.props;
     return (
-      <div className="container">
-        <div className="subContainer">
-          <Scenic />
-        </div>
-        <div className="subContainer">
-          <div className="containerPadding">
-            <h1>
-              <span className="sh">
-                SLO Hacks
-              </span>
-              <br />
-              Attendee Application
-            </h1>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Field
-                label="Email"
-                name="email"
-                type="text"
-                placeholder="Email"
-                component={TextInput}
-              />
-              <Field
-                label="Enter a password (8 or more characters)"
-                name="password"
-                type="password"
-                placeholder="Password"
-                component={TextInput}
-              />
-              {errorMessage ? (
-                <FormHelperText style={{ marginBottom: '1rem' }} error>
-                  {errorMessage}
-                </FormHelperText>
-              ) : null}
-              {loading ? <CircularProgress color="primary" /> : (
+      <PageContainer>
+        <SectionHeaderContainer>
+          <SectionHeader>Welcome to the SLO Hacks 2020 application system!</SectionHeader>
+          <SectionText>
+            {`
+             If you're applying to attend SLO Hacks 2020, go ahead and 
+            `}
+            <Link to="/signup">register for a new account</Link>
+          </SectionText>
+          <SectionText>If you&#39;re here to edit your application or check the status</SectionText>
+        </SectionHeaderContainer>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <LoginFormContainer>
+            <Field
+              label="Email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              component={TextInput}
+            />
+            <Field
+              label="Enter a password (8 or more characters)"
+              name="password"
+              type="password"
+              placeholder="Password"
+              component={TextInput}
+            />
+            {errorMessage ? (
+              <FormHelperText error>
+                {errorMessage}
+              </FormHelperText>
+            ) : null}
+            <ButtonContainer>
+              <BoxContainer>
+                {loading ? <CircularProgress color="primary" /> : (
+                  <StyledButton
+                    disabled={!valid}
+                    type="submit"
+                  >
+                    Log in
+                  </StyledButton>
+                )}
+              </BoxContainer>
+              <BoxContainer>
                 <StyledButton
-                  disabled={!valid}
-                  type="submit"
+                  filled
+                  onClick={() => push('/signup')}
                 >
-                  Log in
+                  Register
                 </StyledButton>
-              )}
-              <StyledButton
-                disabled={!valid}
-                filled
-              >
-                Register
-              </StyledButton>
-            </form>
-            <div>
-              <Button onClick={() => push('/signup')} color="primary" type="button">
-                Sign Up
-              </Button>
-              <br />
-              <Button onClick={() => push('/forgotpassword')} color="primary" type="button">
-                Forgot Password
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+              </BoxContainer>
+              <div>
+                <Link to="/forgotpassword">Forgot Password</Link>
+              </div>
+            </ButtonContainer>
+          </LoginFormContainer>
+        </form>
+      </PageContainer>
     );
   }
 }
+
+const LoginFormContainer = styled.div`
+  max-width: 450px;
+  margin: 0 auto;
+`;
+
+const ButtonContainer = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+`;
+
+const BoxContainer = styled.div`
+  width: 150px;
+`;
 
 function validate(values) {
   const errors = {};

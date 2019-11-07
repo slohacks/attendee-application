@@ -7,9 +7,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { connect } from 'react-redux';
+
+import { PageContainer } from '../styled/containers';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/TextInput';
-import Scenic from '../components/Scenic';
 
 class SignUp extends Component {
   constructor(props) {
@@ -43,68 +44,62 @@ class SignUp extends Component {
 
     const { open } = this.state;
     return (
-      <div className="container">
-        <div className="subContainer">
-          <Scenic />
+      <PageContainer>
+        <div className="containerPadding">
+          <h1>
+            Sign Up
+          </h1>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field
+              label="Email"
+              name="email"
+              type="text"
+              component={TextInput}
+            />
+
+            <Field
+              label="Enter a password (8 or more characters)"
+              name="password"
+              type="password"
+              component={TextInput}
+            />
+
+            <Field
+              label="Confirm Password"
+              name="confirm_password"
+              type="password"
+              component={TextInput}
+            />
+
+            <Button variant="outlined" color="primary" disabled={!valid} type="submit">
+              Sign up
+            </Button>
+
+            <Button
+              color="primary"
+              type="button"
+              onClick={() => push('/login')}
+              style={{ marginLeft: '1rem' }}
+            >
+              Back
+            </Button>
+          </form>
+
+          <Dialog onClose={this.handleClose} open={open}>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                To complete the sign up process, check your inbox for a link to verify your email.
+              </DialogContentText>
+            </DialogContent>
+          </Dialog>
+
+          {errorMessage ? (
+            <FormHelperText error>
+              {errorMessage}
+            </FormHelperText>
+          ) : null}
         </div>
-        <div className="subContainer">
-          <div className="containerPadding">
-            <h1>
-              Sign Up
-            </h1>
-
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Field
-                label="Email"
-                name="email"
-                type="text"
-                component={TextInput}
-              />
-
-              <Field
-                label="Enter a password (8 or more characters)"
-                name="password"
-                type="password"
-                component={TextInput}
-              />
-
-              <Field
-                label="Confirm Password"
-                name="confirm_password"
-                type="password"
-                component={TextInput}
-              />
-
-              <Button variant="outlined" color="primary" disabled={!valid} type="submit">
-                Sign up
-              </Button>
-
-              <Button
-                color="primary"
-                type="button"
-                onClick={() => push('/login')}
-                style={{ marginLeft: '1rem' }}
-              >
-                Back
-              </Button>
-            </form>
-
-            <Dialog onClose={this.handleClose} open={open}>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  To complete the sign up process, check your inbox for a link to verify your email.
-                </DialogContentText>
-              </DialogContent>
-            </Dialog>
-
-            {errorMessage ? (
-              <FormHelperText error>
-                {errorMessage}
-              </FormHelperText>
-            ) : null}
-          </div>
-        </div>
-      </div>
+      </PageContainer>
     );
   }
 }
