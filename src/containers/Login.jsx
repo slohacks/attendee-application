@@ -96,7 +96,7 @@ class Login extends Component {
                 </StyledButton>
               </BoxContainer>
               <div>
-                <Link to="/forgotpassword">Forgot Password</Link>
+                <Link to="/forgot-password">Forgot Password</Link>
               </div>
             </ButtonContainer>
           </LoginFormContainer>

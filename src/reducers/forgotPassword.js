@@ -15,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
     case types.FORGOT_PASS_FAIL:
       return {
         ...state,
-        errorMessage: action.error.message,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;
