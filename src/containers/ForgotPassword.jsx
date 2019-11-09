@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -12,7 +10,7 @@ import { PageContainer, SectionHeaderContainer } from '../styled/containers';
 import { SectionHeader, SectionText } from '../styled/headers';
 import { forgotPassword } from '../actions/index';
 import TextInput from '../components/InputTypes/2019/TextInput';
-import { StyledButton } from '../components/common';
+import { StyledButton, ErrorText } from '../components/common';
 
 class ForgotPassword extends Component {
   constructor(props) {
@@ -76,11 +74,7 @@ class ForgotPassword extends Component {
           </DialogContent>
         </Dialog>
 
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       </PageContainer>
     );
   }

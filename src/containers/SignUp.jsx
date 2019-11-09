@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import Button from '@material-ui/core/Button';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -12,7 +10,7 @@ import { PageContainer, SectionHeaderContainer } from '../styled/containers';
 import { SectionHeader, SectionText } from '../styled/headers';
 import { signUp } from '../actions/index';
 import TextInput from '../components/InputTypes/2019/TextInput';
-import { StyledButton } from '../components/common';
+import { StyledButton, ErrorText } from '../components/common';
 
 class SignUp extends Component {
   constructor(props) {
@@ -80,10 +78,7 @@ class SignUp extends Component {
             Sign up
           </StyledButton>
 
-          <StyledButton
-            type="button"
-            onClick={() => push('/login')}
-          >
+          <StyledButton type="button" onClick={() => push('/login')}>
             Back
           </StyledButton>
         </form>
@@ -96,11 +91,7 @@ class SignUp extends Component {
           </DialogContent>
         </Dialog>
 
-        {errorMessage ? (
-          <FormHelperText error>
-            {errorMessage}
-          </FormHelperText>
-        ) : null}
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       </PageContainer>
     );
   }
