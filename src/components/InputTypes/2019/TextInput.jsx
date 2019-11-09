@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ErrorText from './ErrorText';
+import { ErrorText } from '../../common';
 
 const TextInput = ({
   input,
@@ -21,7 +21,7 @@ const TextInput = ({
         disabled={disabled}
         error={errorExist}
       />
-      {errorExist && <ErrorText error={error} />}
+      {errorExist && <ErrorText>{error}</ErrorText>}
     </InputContainer>
   );
 };

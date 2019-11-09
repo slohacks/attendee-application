@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+const StyledButton = styled.button`
   font-size: 16px;
   color: ${props => (props.filled ? '#ffffff' : '#2b34b0')};
   background: ${props => (props.filled ? '#2b34b0' : '#ffffff')};
@@ -11,3 +11,13 @@ export const StyledButton = styled.button`
   margin: 1rem 1rem 1rem 0;
   cursor: pointer;
 `;
+
+const ErrorText = styled.p`
+  color: red;
+  margin: 0 0 .25rem 0;
+`;
+
+export {
+  StyledButton,
+  ErrorText,
+};
