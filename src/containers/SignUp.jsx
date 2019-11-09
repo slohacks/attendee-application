@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import Button from '@material-ui/core/Button';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { connect } from 'react-redux';
+
+import { PageContainer, SectionHeaderContainer } from '../styled/containers';
+import { SectionHeader, SectionText } from '../styled/headers';
 import { signUp } from '../actions/index';
-import TextInput from '../components/InputTypes/TextInput';
-import Scenic from '../components/Scenic';
+import TextInput from '../components/InputTypes/2019/TextInput';
+import { StyledButton, ErrorText } from '../components/common';
 
 class SignUp extends Component {
   constructor(props) {
@@ -43,68 +44,55 @@ class SignUp extends Component {
 
     const { open } = this.state;
     return (
-      <div className="container">
-        <div className="subContainer">
-          <Scenic />
-        </div>
-        <div className="subContainer">
-          <div className="containerPadding">
-            <h1>
-              Sign Up
-            </h1>
+      <PageContainer>
+        <SectionHeaderContainer>
+          <SectionHeader>Sign Up</SectionHeader>
+          <SectionText>Please fill out the form below to create an account.</SectionText>
+        </SectionHeaderContainer>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field
+            label="Email"
+            name="email"
+            type="text"
+            placeholder="Email"
+            component={TextInput}
+          />
 
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Field
-                label="Email"
-                name="email"
-                type="text"
-                component={TextInput}
-              />
+          <Field
+            label="Enter a password (8 or more characters)"
+            name="password"
+            type="password"
+            placeholder="Password"
+            component={TextInput}
+          />
 
-              <Field
-                label="Enter a password (8 or more characters)"
-                name="password"
-                type="password"
-                component={TextInput}
-              />
+          <Field
+            label="Confirm Password"
+            name="confirm_password"
+            type="password"
+            placeholder="Confirm Password"
+            component={TextInput}
+          />
 
-              <Field
-                label="Confirm Password"
-                name="confirm_password"
-                type="password"
-                component={TextInput}
-              />
+          <StyledButton filled disabled={!valid} type="submit">
+            Sign up
+          </StyledButton>
 
-              <Button variant="outlined" color="primary" disabled={!valid} type="submit">
-                Sign up
-              </Button>
+          <StyledButton type="button" onClick={() => push('/login')}>
+            Back
+          </StyledButton>
+        </form>
 
-              <Button
-                color="primary"
-                type="button"
-                onClick={() => push('/login')}
-                style={{ marginLeft: '1rem' }}
-              >
-                Back
-              </Button>
-            </form>
+        <Dialog onClose={this.handleClose} open={open}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              To complete the sign up process, check your inbox for a link to verify your email.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
 
-            <Dialog onClose={this.handleClose} open={open}>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  To complete the sign up process, check your inbox for a link to verify your email.
-                </DialogContentText>
-              </DialogContent>
-            </Dialog>
-
-            {errorMessage ? (
-              <FormHelperText error>
-                {errorMessage}
-              </FormHelperText>
-            ) : null}
-          </div>
-        </div>
-      </div>
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+      </PageContainer>
     );
   }
 }

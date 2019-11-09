@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+
+import { PageContainer } from '../styled/containers';
 import { signout, rsvpResponse } from '../actions/index';
 import requireAuth from '../components/requireAuth';
-import Scenic from '../components/Scenic';
-import './Dashboard.css';
 
 function parseAppStatus(status) {
   if (!status) return 'Undecided';
   const statusEnum = ['Undecided', 'Accepted', 'Waitlisted', 'Rejected'];
   return statusEnum[status];
 }
-
-const styles = theme => ({
-  paper: {
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: theme.spacing.unit * 75,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-  },
-});
 
 class Dashboard extends Component {
   constructor(props) {
@@ -60,60 +46,55 @@ class Dashboard extends Component {
       } = this.props;
 
     return (
-      <div className="container">
-        <div className="subContainer">
-          <Scenic />
+      <PageContainer>
+        <div className="containerPadding">
+          <h1>
+            {user ? `Hello ${user.email.substring(0, user.email.indexOf('@'))}!` : 'Hello!'}
+          </h1>
+          {completedApp && application.status === 0 && (
+            <p>Your application has been submitted</p>
+          )}
+          {!completedApp && (
+            <div>
+              <p>Applications are now closed for all students!</p>
+              <p>See you next year!</p>
+            </div>
+          )}
+          {application && (
+            <div>
+              <p>
+                {`Your application status is ${parseAppStatus(application.status)}.`}
+              </p>
+              {rsvp && application.status === 1 && <p>Your RSVP is submitted!</p>}
+              {!rsvp && application.status === 1 && (
+                <div>
+                  <p>RSVPs have been closed.</p>
+                </div>
+              )}
+            </div>
+          )}
+          <Button
+            color="primary"
+            type="button"
+            onClick={this.handleApplicationStart}
+            style={{
+              marginTop: '1rem',
+            }}
+          >
+            My Application
+          </Button>
+          <Button
+            color="primary"
+            type="button"
+            onClick={this.handleSignOut}
+            style={{
+              marginTop: '1rem',
+            }}
+          >
+            Logout
+          </Button>
         </div>
-        <div className="subContainer">
-          <div className="containerPadding">
-            <h1>
-              {user ? `Hello ${user.email.substring(0, user.email.indexOf('@'))}!` : 'Hello!'}
-            </h1>
-            {completedApp && application.status === 0 && (
-              <p>Your application has been submitted</p>
-            )}
-            {!completedApp && (
-              <div>
-                <p>Applications are now closed for all students!</p>
-                <p>See you next year!</p>
-              </div>
-            )}
-            {application && (
-              <div>
-                <p>
-                  {`Your application status is ${parseAppStatus(application.status)}.`}
-                </p>
-                {rsvp && application.status === 1 && <p>Your RSVP is submitted!</p>}
-                {!rsvp && application.status === 1 && (
-                  <div>
-                    <p>RSVPs have been closed.</p>
-                  </div>
-                )}
-              </div>
-            )}
-            <Button
-              color="primary"
-              type="button"
-              onClick={this.handleApplicationStart}
-              style={{
-                marginTop: '1rem',
-              }}
-            >
-              My Application
-            </Button>
-            <Button
-              color="primary"
-              type="button"
-              onClick={this.handleSignOut}
-              style={{
-                marginTop: '1rem',
-              }}
-            >
-              Logout
-            </Button>
-          </div>
-        </div>
-      </div>
+      </PageContainer>
     );
   }
 }
@@ -149,6 +130,4 @@ Dashboard.propTypes = {
   application: PropTypes.shape(),
 };
 
-const DashboardWrapped = withStyles(styles)(Dashboard);
-
-export default connect(mapStateToProps, { signout, rsvpResponse })(requireAuth(DashboardWrapped));
+export default connect(mapStateToProps, { signout, rsvpResponse })(requireAuth(Dashboard));

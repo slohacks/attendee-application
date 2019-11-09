@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ErrorText from './ErrorText';
+import { ErrorText } from '../../common';
 
 const TextInput = ({
   input,
   type,
-  label,
   disabled,
   placeholder,
   meta: { touched, error },
@@ -15,7 +14,6 @@ const TextInput = ({
   const errorExist = touched && Boolean(error);
   return (
     <InputContainer>
-      {label && <LabelContainer error={errorExist}>{label}</LabelContainer>}
       <InputField
         {...input}
         type={type}
@@ -23,14 +21,10 @@ const TextInput = ({
         disabled={disabled}
         error={errorExist}
       />
-      {errorExist && <ErrorText error={error} />}
+      {errorExist && <ErrorText>{error}</ErrorText>}
     </InputContainer>
   );
 };
-
-const LabelContainer = styled.label`
-  color: ${props => (props.error ? 'red' : 'black')};
-`;
 
 const InputContainer = styled.div`
   font-family: 'Proxima Nova';
@@ -39,8 +33,8 @@ const InputContainer = styled.div`
 const InputField = styled.input`
   width: 100%;
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
-  padding: .5rem;
-  margin-bottom: .85rem;
+  padding: .75rem .5rem;
+  margin: .5rem 0;
 
   ::-webkit-input-placeholder {
     font-family: 'Proxima Nova', sans-serif;

@@ -38,15 +38,15 @@ export const login = values => (dispatch) => {
     });
 };
 
-export const rsvpResponse = (user, form, push) => (dispatch) => {
-  // rsvpRef
-  //   .doc(user.uid)
-  //   .set(form)
-  //   .then(() => {
-  //     dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
-  //     push('/dashboard');
-  //   });
-};
+// export const rsvpResponse = (user, form, push) => (dispatch) => {
+//   // rsvpRef
+//   //   .doc(user.uid)
+//   //   .set(form)
+//   //   .then(() => {
+//   //     dispatch({ type: types.UPDATE_RSVP, rsvpVal: true });
+//   //     push('/dashboard');
+//   //   });
+// };
 
 export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
@@ -127,4 +127,27 @@ export const submitApp = (user, form) => (dispatch) => {
         error: errorMessage,
       });
     });
+};
+
+export const emailVerification = token => (dispatch) => {
+  dispatch({ type: types.EMAIL_VERIFICATION_ATTEMPT });
+  axios.post(`${API_PATH}/emails/confirm/${token}`)
+    .then((response) => {
+      dispatch({
+        type: types.EMAIL_VERIFICATION_SUCCESS,
+        payload: response.data,
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: types.EMAIL_VERIFICATION_FAIL,
+        payload: { success: false },
+      });
+    });
+};
+
+export const resendEmailVerification = token => async (dispatch) => {
+  dispatch({ type: types.RESEND_EMAIL_VERIFICATION_ATTEMPT });
+  await axios.post(`${API_PATH}/emails/resend`, { token });
+  dispatch({ type: types.RESEND_EMAIL_VERIFICATION_COMPLETE });
 };
