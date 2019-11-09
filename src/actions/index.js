@@ -50,16 +50,41 @@ export const login = values => (dispatch) => {
 
 export const forgotPassword = (values, callback) => (dispatch) => {
   dispatch({ type: types.FORGOT_PASS_ATTEMPT });
-  // firebase
-  //   .auth()
-  //   .sendPasswordResetEmail(values.email)
-  //   .then((userCredential) => {
-  //     dispatch({ type: types.FORGOT_PASS_GUCCI, userCredential });
-  //     callback();
-  //   })
-  //   .catch((error) => {
-  //     dispatch({ type: types.FORGOT_PASS_FAIL, error });
-  //   });
+  axios
+    .post(`${API_PATH}/forgot-password/request`, {
+      email: values.email,
+    })
+    .then(() => {
+      dispatch({ type: types.FORGOT_PASS_GUCCI });
+      callback();
+    })
+    .catch(() => {
+      dispatch({ type: types.FORGOT_PASS_FAIL, errorMessage: 'Something went wrong, please try again' });
+    });
+};
+
+export const forgotPasswordVerify = token => (dispatch) => {
+  dispatch({ type: types.PASSWORD_VERIFICATION_ATTEMPT });
+  axios.get(`${API_PATH}/forgot-password/verify/${token}`)
+    .then((response) => {
+      dispatch({ type: types.PASSWORD_VERIFICATION_COMPLETE, payload: response.data });
+    }).catch(() => {
+      dispatch({ type: types.PASSWORD_VERIFICATION_COMPLETE, payload: { success: false } });
+    });
+};
+
+export const forgotPasswordConfirm = (values, token) => (dispatch) => {
+  dispatch({ type: types.PASSWORD_CONFIRM_ATTEMPT });
+  axios.post(`${API_PATH}/forgot-password/confirm/${token}`, {
+    password: values.password,
+    confirmPassword: values.confirm_password,
+  })
+    .then((response) => {
+      dispatch({ type: types.PASSWORD_CONFIRM_COMPLETE, payload: response.data });
+    })
+    .catch(() => {
+      dispatch({ type: types.PASSWORD_CONFIRM_COMPLETE, payload: { success: false } });
+    });
 };
 
 export const signout = () => (dispatch) => {

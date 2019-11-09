@@ -11,6 +11,7 @@ import SignUp from './containers/SignUp';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import EmailVerification from './containers/EmailVerification';
+import ForgotPasswordVerification from './containers/ForgotPasswordVerification';
 import ForgotPassword from './containers/ForgotPassword';
 import NotFound from './containers/NotFound';
 import Confirmation from './containers/Confirmation';
@@ -29,14 +30,15 @@ ReactDOM.render(
     <HashRouter>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/forgotpassword" component={ForgotPassword} />
           <Route path="/confirmation" component={Confirmation} />
           <Route path="/signup" component={SignUp} />
           <Route path="/questionnaire/:id" component={Questionnaire} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/login" component={Login} />
           <Route path="/email/verify" component={EmailVerification} />
+          <Route path="/forgot-password/verify" component={ForgotPasswordVerification} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styled from 'styled-components';
 
@@ -11,7 +10,7 @@ import { PageContainer, SectionHeaderContainer } from '../styled/containers';
 import { SectionHeader, SectionText } from '../styled/headers';
 import { login } from '../actions/index';
 import TextInput from '../components/InputTypes/2019/TextInput';
-import { StyledButton } from '../components/common';
+import { StyledButton, ErrorText } from '../components/common';
 
 class Login extends Component {
   componentDidMount() {
@@ -71,11 +70,6 @@ class Login extends Component {
               placeholder="Password"
               component={TextInput}
             />
-            {errorMessage ? (
-              <FormHelperText error>
-                {errorMessage}
-              </FormHelperText>
-            ) : null}
             <ButtonContainer>
               <BoxContainer>
                 {loading ? <CircularProgress color="primary" /> : (
@@ -96,9 +90,10 @@ class Login extends Component {
                 </StyledButton>
               </BoxContainer>
               <div>
-                <Link to="/forgotpassword">Forgot Password</Link>
+                <Link to="/forgot-password">Forgot Password</Link>
               </div>
             </ButtonContainer>
+            {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
           </LoginFormContainer>
         </form>
       </PageContainer>

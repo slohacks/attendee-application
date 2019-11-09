@@ -9,6 +9,7 @@ import resumeResponse from './QuestionnaireReducers/resumeResponse';
 import submissionResponse from './QuestionnaireReducers/submission';
 import applicationResponse from './application';
 import emailVerificationResponse from './emailVerification';
+import passwordVerificationResponse from './passwordVerification';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   submission: submissionResponse,
   application: applicationResponse,
   emailVerification: emailVerificationResponse,
+  passwordVerification: passwordVerificationResponse,
 });
 
 export default rootReducer;

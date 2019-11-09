@@ -28,3 +28,7 @@ export const EMAIL_VERIFICATION_SUCCESS = 'email_verification_success';
 export const EMAIL_VERIFICATION_FAIL = 'email_verification_fail';
 export const RESEND_EMAIL_VERIFICATION_ATTEMPT = 'resend_email_verification_attempt';
 export const RESEND_EMAIL_VERIFICATION_COMPLETE = 'resend_email_verification_complete';
+export const PASSWORD_VERIFICATION_ATTEMPT = 'password_verification_attempt';
+export const PASSWORD_VERIFICATION_COMPLETE = 'password_verification_complete';
+export const PASSWORD_CONFIRM_ATTEMPT = 'password_confirm_attempt';
+export const PASSWORD_CONFIRM_COMPLETE = 'password_confirm_complete';
