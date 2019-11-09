@@ -32,4 +32,3 @@ export const PASSWORD_VERIFICATION_ATTEMPT = 'password_verification_attempt';
 export const PASSWORD_VERIFICATION_COMPLETE = 'password_verification_complete';
 export const PASSWORD_CONFIRM_ATTEMPT = 'password_confirm_attempt';
 export const PASSWORD_CONFIRM_COMPLETE = 'password_confirm_complete';
-

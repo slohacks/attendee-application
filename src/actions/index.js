@@ -64,7 +64,6 @@ export const forgotPassword = (values, callback) => (dispatch) => {
 };
 
 export const forgotPasswordVerify = token => (dispatch) => {
-  console.log(token)
   dispatch({ type: types.PASSWORD_VERIFICATION_ATTEMPT });
   axios.get(`${API_PATH}/forgot-password/verify/${token}`)
     .then((response) => {

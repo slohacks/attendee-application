@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import { PageContainer } from '../styled/containers';
-import { signout, rsvpResponse } from '../actions/index';
+import { signout } from '../actions/index';
 import requireAuth from '../components/requireAuth';
 
 function parseAppStatus(status) {
@@ -81,7 +81,7 @@ class Dashboard extends Component {
               marginTop: '1rem',
             }}
           >
-            My Application
+            Start Application
           </Button>
           <Button
             color="primary"
@@ -130,4 +130,4 @@ Dashboard.propTypes = {
   application: PropTypes.shape(),
 };
 
-export default connect(mapStateToProps, { signout, rsvpResponse })(requireAuth(Dashboard));
+export default connect(mapStateToProps, { signout })(requireAuth(Dashboard));

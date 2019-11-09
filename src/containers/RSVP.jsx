@@ -4,7 +4,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import InputType from '../components/Questionnaire/InputType';
-import { rsvpResponse } from '../actions/index';
+// import { rsvpResponse } from '../actions/index';
 import data from './data/rsvpData.json';
 import requireAuth from '../components/requireAuth';
 
@@ -16,35 +16,39 @@ class Rsvp extends Component {
     }
   }
 
-  submitRsvp(formProps) {
-    const { rsvpResponse: submitRsvp, user, history: { push } } = this.props;
-    let newForm = null;
-    if (formProps.attending === 0) {
-      newForm = { attending: formProps.attending, misc: formProps.misc };
-    } else if (formProps.attending === 1 && formProps.transportation === 3) {
-      newForm = {
-        ...formProps,
-        norcal: null,
-        socal: null,
-        flight: null,
-        buses: null,
-      };
-    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'Northern California') {
-      newForm = { ...formProps, socal: null, flight: null };
-    } else if (formProps.attending === 1 && formProps.transportation === 1 && formProps.buses === 'Southern California') {
-      newForm = { ...formProps, norcal: null, flight: null };
-    } else if (formProps.attending && formProps.transportation === 2) {
-      newForm = { ...formProps, norcal: null, socal: null };
-    } else {
-      newForm = {
-        ...formProps,
-        flight: null,
-        socal: null,
-        norcal: null,
-      };
-    }
-    submitRsvp(user, newForm, push);
-  }
+  // submitRsvp(formProps) {
+  //   const { rsvpResponse: submitRsvp, user, history: { push } } = this.props;
+  //   let newForm = null;
+  //   if (formProps.attending === 0) {
+  //     newForm = { attending: formProps.attending, misc: formProps.misc };
+  //   } else if (formProps.attending === 1 && formProps.transportation === 3) {
+  //     newForm = {
+  //       ...formProps,
+  //       norcal: null,
+  //       socal: null,
+  //       flight: null,
+  //       buses: null,
+  //     };
+  //   } else if (formProps.attending
+  // === 1 && formProps.transportation
+  // === 1 && formProps.buses === 'Northern California') {
+  //     newForm = { ...formProps, socal: null, flight: null };
+  //   } else if (formProps.attending
+  // === 1 && formProps.transportation
+  // === 1 && formProps.buses === 'Southern California') {
+  //     newForm = { ...formProps, norcal: null, flight: null };
+  //   } else if (formProps.attending && formProps.transportation === 2) {
+  //     newForm = { ...formProps, norcal: null, socal: null };
+  //   } else {
+  //     newForm = {
+  //       ...formProps,
+  //       flight: null,
+  //       socal: null,
+  //       norcal: null,
+  //     };
+  //   }
+  //   submitRsvp(user, newForm, push);
+  // }
 
   render() {
     const {
@@ -166,8 +170,8 @@ Rsvp.propTypes = {
   flightQuestion: PropTypes.string,
   valid: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  rsvpResponse: PropTypes.func.isRequired,
-  user: PropTypes.shape().isRequired,
+  // rsvpResponse: PropTypes.func.isRequired,
+  // user: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
   application: PropTypes.shape(),
   rsvp: PropTypes.bool,
@@ -200,7 +204,7 @@ Rsvp = connect(
       rsvp,
     };
   },
-  { rsvpResponse },
+  null,
 )(Rsvp);
 
 export default requireAuth(Rsvp);
