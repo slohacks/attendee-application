@@ -33,7 +33,7 @@ const InputContainer = styled.div`
 const InputField = styled.input`
   width: 100%;
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
-  padding: .5rem;
+  padding: .75rem .5rem;
   margin: .5rem 0;
 
   ::-webkit-input-placeholder {

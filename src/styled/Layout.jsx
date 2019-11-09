@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import EventLogo from '../assets/slohacks_event_logo.png';
 import BackgroundImg from '../assets/blue_pattern.png';
 
 const Layout = ({ children }) => (
@@ -48,6 +47,8 @@ const LayoutView = styled.div`
   min-height: 500px;
   padding: 2rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LayoutContent = styled.div`
