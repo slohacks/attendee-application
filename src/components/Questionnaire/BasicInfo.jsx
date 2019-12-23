@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
+
+import { QuestionContainer } from '../common';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
@@ -31,7 +33,9 @@ class BasicInfo extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          {BasicInfo.renderInputs(questions)}
+          <QuestionContainer>
+            {BasicInfo.renderInputs(questions)}
+          </QuestionContainer>
           <Button color="secondary" onClick={previousPage} type="button">
             BACK
           </Button>
@@ -42,6 +46,41 @@ class BasicInfo extends Component {
       </div>
     );
   }
+}
+
+function validate(values) {
+  const errors = {};
+  if (!values.gender) {
+    errors.gender = 'Required';
+  }
+
+  if (values.gender === 'Other') {
+    if (!values.other_gender) {
+      errors.other_gender = 'Cannot be empty';
+    }
+  }
+
+  if (!values.ethnicity) {
+    errors.ethnicity = 'Required';
+  }
+
+  if (values.ethnicity === 'Other') {
+    if (!values.other_ethnicity) {
+      errors.other_ethnicity = 'Cannot be empty';
+    }
+  }
+
+  if (!values.pronouns) {
+    errors.ethnicity = 'Required';
+  }
+
+  if (values.pronouns === 'Other') {
+    if (!values.other_pronouns) {
+      errors.other_pronouns = 'Cannot be empty';
+    }
+  }
+
+  return errors;
 }
 
 BasicInfo.propTypes = {
@@ -55,6 +94,7 @@ BasicInfo.propTypes = {
 
 export default reduxForm({
   form: 'Basic Info',
+  validate,
   destroyOnUnmount: false,
 })(
   connect(null, { submitResponse })(BasicInfo),

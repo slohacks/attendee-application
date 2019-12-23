@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
+
+import { QuestionnairePage } from '../common';
+import { SectionHeaderContainer } from '../../styled/containers';
+import { SectionHeader, SectionText } from '../../styled/headers';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
@@ -29,20 +34,38 @@ class PersonalInfo extends Component {
     const { section: { questions }, previousPage } = this.props;
     const { handleSubmit, valid } = this.props;
     return (
-      <div>
+      <QuestionnairePage>
+        <SectionHeaderContainer>
+          <SectionHeader>Tell me about yourself!</SectionHeader>
+          <SectionText>Let&apos;s start by answering a couple of questions!</SectionText>
+        </SectionHeaderContainer>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          {PersonalInfo.renderInputs(questions)}
-          <Button color="secondary" onClick={previousPage} type="button">
-            BACK
-          </Button>
-          <Button variant="outlined" color="primary" disabled={!valid} type="submit" style={{ marginLeft: '1rem' }}>
-            NEXT
-          </Button>
+          <QuestionContainer>
+            {PersonalInfo.renderInputs(questions)}
+          </QuestionContainer>
+          <div>
+            <Button color="secondary" onClick={previousPage} type="button">
+              BACK
+            </Button>
+            <Button variant="outlined" color="primary" disabled={!valid} type="submit" style={{ marginLeft: '1rem' }}>
+              NEXT
+            </Button>
+          </div>
         </form>
-      </div>
+        <div>
+          <h1>Hello world</h1>
+        </div>
+      </QuestionnairePage>
     );
   }
 }
+
+const QuestionContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-column-gap: 2rem;
+`;
 
 PersonalInfo.propTypes = {
   handleSubmit: PropTypes.func.isRequired,

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
 import requireAuth from '../components/requireAuth';
-import ProgressBar from '../components/Questionnaire/ProgressBar';
 import PersonalInfo from '../components/Questionnaire/PersonalInfo';
 import BasicInfo from '../components/Questionnaire/BasicInfo';
 import ShortAnswer from '../components/Questionnaire/ShortAnswer';
@@ -115,16 +116,16 @@ class Questionnaire extends Component {
   render() {
     const { match: { params: { id } } } = this.props;
     return (
-      <div className="sides">
-        <h1>
-          Questionnaire
-        </h1>
-        <ProgressBar id={id} />
+      <QuestionnaireWrapper>
         {this.renderQuestionSection(id)}
-      </div>
+      </QuestionnaireWrapper>
     );
   }
 }
+
+const QuestionnaireWrapper = styled.div`
+  width: 100%;
+`;
 
 function mapStateToProps(state) {
   return {

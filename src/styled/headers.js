@@ -9,3 +9,7 @@ export const SectionText = styled.p`
   font-size: 14px;
   color: #3e3e3e;
 `;
+
+export const QuestionnaireHeader = styled.h1`
+  font-size: 25px;
+`;

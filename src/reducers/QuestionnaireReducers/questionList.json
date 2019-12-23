@@ -39,19 +39,19 @@
         {
           "id": "classYear",
           "title": "What is your class year?",
-          "inputType": "multiSelect",
+          "inputType": "dropDown",
           "choices": {
-            "1st": 1, 
-            "2nd": 2,
-            "3rd": 3, 
-            "4th": 4,
-            "5th+": 5
+            "1st Year": 1, 
+            "2nd Year": 2,
+            "3rd Year": 3, 
+            "4th Year": 4,
+            "5th+ Years": 5
           }
         },
         {
           "id": "shirtSize",
           "title": "What is your shirt size?",
-          "inputType": "multiSelect",
+          "inputType": "dropDown",
           "choices": {
             "XS": "xs",
             "S": "s",

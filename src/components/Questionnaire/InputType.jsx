@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, Fields } from 'redux-form';
-import TextInput from '../InputTypes/TextInput';
+import TextInput from '../InputTypes/2019/TextInput';
 import TextArea from '../InputTypes/TextArea';
-import TextAdornment from '../InputTypes/TextAdornment';
-import SelectInput from '../InputTypes/SelectInput';
-import MultiSelect from '../InputTypes/MultiSelect';
+import TextAdornment from '../InputTypes/2019/TextAdornment';
+import SelectInput from '../InputTypes/2019/SelectInput';
+import MultiSelect from '../InputTypes/2019/MultiSelect';
 import FileInput from '../InputTypes/FileInput';
 import CheckInput from '../InputTypes/CheckBox';
 import ListSelect from '../InputTypes/ListSelect';
@@ -50,6 +50,7 @@ const InputType = (props) => {
               validate={[required, email]}
               name={id}
               component={TextInput}
+              placeholder={placeholder}
             />
           );
         }
@@ -150,6 +151,7 @@ const InputType = (props) => {
             suggestions={colleges}
             component={ListSelect}
             name={id}
+            placeholder="School"
             disabled={disabled}
             validate={[required]}
           />
@@ -161,6 +163,7 @@ const InputType = (props) => {
             suggestions={majors}
             component={ListSelect}
             name={id}
+            placeholder="Major"
             disabled={disabled}
             validate={[required]}
           />
