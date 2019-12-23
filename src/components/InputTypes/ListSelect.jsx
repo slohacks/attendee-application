@@ -1,12 +1,13 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import AutoSuggest from 'react-autosuggest';
-import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import { withStyles } from '@material-ui/core/styles';
+import ListInput from './2019/ListInput';
 
 const styles = theme => ({
   root: {
@@ -107,42 +108,24 @@ class Input extends React.PureComponent {
   }
 
   renderInput(inputProps) {
-    const { label, meta: { touched, error } } = this.props;
-    const errorExist = touched && Boolean(error);
-    const {
-      classes,
-      inputRef = () => {},
-      ref,
-      ...other
-    } = inputProps;
+    const { meta } = this.props;
+    const inputTypeProps = { ...inputProps };
+    console.log(inputProps)
+    delete inputTypeProps.ref;
     return (
-      <TextField
-        fullWidth
-        helperText={errorExist ? error : ''}
-        error={errorExist}
-        label={label}
-        InputProps={{
-          inputRef: (node) => {
-            ref(node);
-            inputRef(node);
-          },
-          classes: {
-            input: classes.input,
-          },
-        }}
-        {...other}
+      <ListInput
+        {...inputTypeProps}
+        meta={meta}
       />
     );
   }
 
   render() {
-    const { input, disabled } = this.props;
+    const { input, disabled, placeholder, label } = this.props;
     const { filteredSuggestions } = this.state;
     const { classes } = this.props;
     return (
-      <div
-        style={{ marginBottom: '1rem' }}
-      >
+      <div>
         <AutoSuggest
           suggestions={filteredSuggestions}
           onSuggestionsFetchRequested={this.handleFetch}
@@ -150,7 +133,13 @@ class Input extends React.PureComponent {
           getSuggestionValue={Input.handleGetSuggestion}
           renderSuggestion={Input.renderSuggestion}
           onSuggestionSelected={this.handleSuggestionSelected}
-          inputProps={{ classes, ...input, disabled }}
+          inputProps={{
+            classes,
+            ...input,
+            disabled,
+            placeholder,
+            label,
+          }}
           renderInputComponent={this.renderInput}
           renderSuggestionsContainer={options => (
             <Paper {...options.containerProps} square>
@@ -163,6 +152,7 @@ class Input extends React.PureComponent {
             suggestionsList: classes.suggestionsList,
             suggestion: classes.suggestion,
           }}
+          focusInputOnSuggestionClick={false}
         />
       </div>
     );

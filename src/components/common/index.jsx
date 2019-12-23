@@ -27,7 +27,21 @@ const ErrorText = styled.p`
   margin: 0 0 .25rem 0;
 `;
 
+const QuestionContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-column-gap: 2rem;
+`;
+
+const QuestionnairePage = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+`;
+
 export {
   StyledButton,
   ErrorText,
+  QuestionContainer,
+  QuestionnairePage,
 };

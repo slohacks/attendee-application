@@ -2,23 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TextInput = ({
-  input,
-  label,
-  type,
-  disabled,
-  placeholder,
-  meta: { touched, error },
-}) => {
+const ListInput = (props) => {
+  const {
+    meta: { touched, error },
+    label,
+  } = props;
   const errorExist = touched && Boolean(error);
   return (
     <InputContainer>
       {label && <p>{label}</p>}
       <InputField
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
+        {...props}
         error={errorExist}
       />
     </InputContainer>
@@ -27,13 +21,15 @@ const TextInput = ({
 
 const InputContainer = styled.div`
   font-family: 'Proxima Nova';
-
   p {
     margin: .25rem 0;
   }
 `;
 
 const InputField = styled.input`
+  width: 100%;
+  height: 43px;
+  outline: none;
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
   padding: .75rem .5rem;
   margin: .5rem 0;
@@ -53,9 +49,8 @@ const InputField = styled.input`
 
 `;
 
-TextInput.propTypes = {
+ListInput.propTypes = {
   label: PropTypes.string,
-  input: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
@@ -64,11 +59,11 @@ TextInput.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
 };
-TextInput.defaultProps = {
+ListInput.defaultProps = {
   placeholder: null,
   type: null,
   disabled: false,
   label: '',
 };
 
-export default TextInput;
+export default ListInput;

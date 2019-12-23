@@ -2,25 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TextInput = ({
+import { ErrorText } from '../../common';
+
+const TextAdornment = ({
   input,
   label,
   type,
   disabled,
-  placeholder,
+  adornment,
   meta: { touched, error },
 }) => {
   const errorExist = touched && Boolean(error);
   return (
     <InputContainer>
       {label && <p>{label}</p>}
-      <InputField
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        error={errorExist}
-      />
+      <InputWrapper error={errorExist}>
+        <p>{adornment}</p>
+        <InputField
+          {...input}
+          type={type}
+          disabled={disabled}
+        />
+      </InputWrapper>
+      {errorExist && <ErrorText>{error}</ErrorText>}
     </InputContainer>
   );
 };
@@ -33,10 +37,28 @@ const InputContainer = styled.div`
   }
 `;
 
-const InputField = styled.input`
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
-  padding: .75rem .5rem;
   margin: .5rem 0;
+  padding: .25rem .5rem;
+  p {
+    margin: 0;
+    color: grey;
+  }
+`;
+
+const InputField = styled.input`
+  width: 100%;
+  padding: 0 .25rem;
+  margin: .5rem 0;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 
   ::-webkit-input-placeholder {
     font-family: 'Proxima Nova', sans-serif;
@@ -53,8 +75,8 @@ const InputField = styled.input`
 
 `;
 
-TextInput.propTypes = {
-  label: PropTypes.string,
+TextAdornment.propTypes = {
+  label: PropTypes.string.isRequired,
   input: PropTypes.shape({}).isRequired,
   disabled: PropTypes.bool,
   meta: PropTypes.shape({
@@ -63,12 +85,12 @@ TextInput.propTypes = {
   }).isRequired,
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  adornment: PropTypes.string.isRequired,
 };
-TextInput.defaultProps = {
+TextAdornment.defaultProps = {
   placeholder: null,
   type: null,
   disabled: false,
-  label: '',
 };
 
-export default TextInput;
+export default TextAdornment;
