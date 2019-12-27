@@ -155,7 +155,8 @@
           "id": "originCity",
           "title": "Which city will you be traveling from?",
           "placeholder": "San Luis Obispo, CA",
-          "inputType": "textInput"
+          "inputType": "textInput",
+          "validate": "comma"
         },
         {          
           "id": "campusParking",
@@ -208,7 +209,8 @@
             "Instagram": "Instagram",
             "Facebook": "Facebook", 
             "Twitter": "Twitter", 
-            "LinkedIn": "LinkedIn"
+            "LinkedIn": "LinkedIn",
+            "Other": "Other"
           }
         }
       ]
