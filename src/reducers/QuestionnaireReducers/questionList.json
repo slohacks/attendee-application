@@ -155,7 +155,8 @@
           "id": "originCity",
           "title": "Which city will you be traveling from?",
           "placeholder": "San Luis Obispo, CA",
-          "inputType": "textInput"
+          "inputType": "textInput",
+          "validate": "comma"
         },
         {          
           "id": "campusParking",
@@ -183,7 +184,7 @@
         {          
           "id": "dietaryRestrictions",
           "title": "Dietary Restrictions",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "choices": {
             "Vegetarian": "Vegetarian",
             "Vegan": "Vegan", 
@@ -203,12 +204,13 @@
         {          
           "id": "referral",
           "title": "How did you hear about SLO Hacks?",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "choices": {
             "Instagram": "Instagram",
             "Facebook": "Facebook", 
             "Twitter": "Twitter", 
-            "LinkedIn": "LinkedIn"
+            "LinkedIn": "LinkedIn",
+            "Other": "Other"
           }
         }
       ]

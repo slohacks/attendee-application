@@ -19,6 +19,7 @@ const pn = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const email = value => (!re.test(value) ? 'Invalid Email Address' : '');
 const phoneNumber = value => (!pn.test(value) ? 'Invalid Phone Number' : '');
+const comma = value => (!value.includes(',') ? 'Invalid Location' : '');
 const checked = value => (value === 'false' ? 'Required' : '');
 const process = (date) => {
   return new Date(date).getTime();
@@ -48,6 +49,18 @@ const InputType = (props) => {
               label={title}
               disabled={disabled}
               validate={[required, email]}
+              name={id}
+              component={TextInput}
+              placeholder={placeholder}
+            />
+          );
+        }
+        if (question.validate === 'comma') {
+          return (
+            <Field
+              label={title}
+              disabled={disabled}
+              validate={[required, comma]}
               name={id}
               component={TextInput}
               placeholder={placeholder}

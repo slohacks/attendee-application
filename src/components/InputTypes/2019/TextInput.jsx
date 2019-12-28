@@ -37,6 +37,7 @@ const InputField = styled.input`
   border: 2px solid ${props => (props.error ? 'red' : 'grey')};
   padding: .75rem .5rem;
   margin: .5rem 0;
+  border-radius: 3px;
 
   ::-webkit-input-placeholder {
     font-family: 'Proxima Nova', sans-serif;
@@ -45,7 +46,7 @@ const InputField = styled.input`
     font-family: 'Proxima Nova', sans-serif;
   }
   :-ms-input-placeholder {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Proxima Novka', sans-serif;
   }
   :-moz-placeholder {
     font-family: 'Proxima Nova', sans-serif;
