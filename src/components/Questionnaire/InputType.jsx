@@ -66,7 +66,6 @@ const InputType = (props) => {
               placeholder={placeholder}
             />
           );
-
         }
         if (question.validate === 'phoneNumber') {
           return (

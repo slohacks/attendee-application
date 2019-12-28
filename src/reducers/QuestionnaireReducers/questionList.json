@@ -184,7 +184,7 @@
         {          
           "id": "dietaryRestrictions",
           "title": "Dietary Restrictions",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "choices": {
             "Vegetarian": "Vegetarian",
             "Vegan": "Vegan", 
@@ -204,7 +204,7 @@
         {          
           "id": "referral",
           "title": "How did you hear about SLO Hacks?",
-          "inputType": "dropDown",
+          "inputType": "multiSelect",
           "choices": {
             "Instagram": "Instagram",
             "Facebook": "Facebook", 
