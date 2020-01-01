@@ -10,6 +10,7 @@ import { SectionHeaderContainer } from '../../styled/containers';
 import { SectionHeader, SectionText } from '../../styled/headers';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
+import ProgressBar from './ProgressBar.jsx';
 
 class PersonalInfo extends Component {
   onSubmit(formProps) {
@@ -52,9 +53,7 @@ class PersonalInfo extends Component {
             </Button>
           </div>
         </form>
-        <div>
-          <h1>Hello world</h1>
-        </div>
+        <ProgressBar percentage={this.props.percentage}/>
       </QuestionnairePage>
     );
   }

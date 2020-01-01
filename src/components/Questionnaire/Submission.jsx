@@ -8,6 +8,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputType from './InputType';
 import { submitApp } from '../../actions/index';
 
+import ProgressBar from './ProgressBar.jsx';
+
 class Submission extends Component {
   componentDidUpdate() {
     const { submissionStatus, pushConfirmation } = this.props;
@@ -69,6 +71,7 @@ class Submission extends Component {
             {errorMessage}
           </FormHelperText>
         ) : null}
+        <ProgressBar percentage={this.props.percentage}/>
       </div>
     );
   }

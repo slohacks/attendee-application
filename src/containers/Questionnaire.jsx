@@ -21,6 +21,7 @@ class Questionnaire extends Component {
 
   renderQuestionSection(id) {
     const { questionSections, history: { push } } = this.props;
+    const numPages = 7;
     switch (id) {
       case '0':
         return (
@@ -28,6 +29,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '1':
@@ -36,6 +38,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '2':
@@ -44,6 +47,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '3':
@@ -52,6 +56,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '4':
@@ -60,6 +65,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '5':
@@ -68,6 +74,7 @@ class Questionnaire extends Component {
             previousPage={this.renderPreviousPage}
             nextPage={this.renderNextPage}
             section={questionSections[id]}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       case '6':
@@ -75,6 +82,7 @@ class Questionnaire extends Component {
           <Submission
             previousPage={this.renderPreviousPage}
             pushConfirmation={push}
+            percentage={(parseInt(id, 10) + 1) / numPages}
           />
         );
       default:

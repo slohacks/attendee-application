@@ -8,6 +8,8 @@ import { QuestionContainer } from '../common';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
+import ProgressBar from './ProgressBar.jsx';
+
 class BasicInfo extends Component {
   onSubmit(formProps) {
     const { nextPage, submitResponse: submitForm } = this.props;
@@ -43,6 +45,7 @@ class BasicInfo extends Component {
             NEXT
           </Button>
         </form>
+        <ProgressBar percentage={this.props.percentage}/>
       </div>
     );
   }
