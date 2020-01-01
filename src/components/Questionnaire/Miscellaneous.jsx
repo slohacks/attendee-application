@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import InputType from './InputType';
 import { submitResponse } from '../../actions/index';
 
+import ProgressBar from './ProgressBar.jsx';
+
 class ShortAnswer extends Component {
   onSubmit(formProps) {
     const { nextPage, submitResponse: submitAnswers } = this.props;
@@ -39,6 +41,7 @@ class ShortAnswer extends Component {
             NEXT
           </Button>
         </form>
+        <ProgressBar percentage={this.props.percentage}/>
       </div>
     );
   }

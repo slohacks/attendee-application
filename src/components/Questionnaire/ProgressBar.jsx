@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import React, {Component} from 'react';
+import styled from 'styled-components';
 
-import './ProgressBar.css';
+// The progress bar itself
+const Bar = styled.div`
+    width: ${props => props.percentage * 100}%;
+    height: 20px;
+    margin: 15px auto;
+    background: #2B34B0;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px #000;
+    align: left;
+
+    left: 13.54%;
+    right: 75.42%;
+    top: 77.13%;
+    bottom: 20.37%;
+`;
+
+// The text displaying the percentage of completion
+const ProgressText = styled.div`
+    left: 19.11%;
+    right: 75.42%;
+    top: 72.96%;
+    bottom: 25.56%;
+
+    font-family: Proxima Nova;
+    font-size: 16px;
+    line-height: 16px;
+
+    color: #2B34B0;
+`
 
 class ProgressBar extends Component {
-  renderProgressLinks() {
-    const { questionSections, id } = this.props;
-    return questionSections.map((section) => {
-      if (section.id.toString() === id) {
+    render() {
         return (
-          <Step key={section.id}>
-            <StepLabel>
-              {section.name}
-            </StepLabel>
-          </Step>
-        );
-      }
-      return (
-        <Step key={section.id}>
-          <StepLabel>
-            {section.name}
-          </StepLabel>
-        </Step>
-      );
-    });
-  }
-
-  render() {
-    const { id, questionSections: { length } } = this.props;
-    return (
-      <div>
-        <MobileStepper className="ProgressBar" position="static" variant="progress" steps={length} activeStep={Number(id)} />
-      </div>
-    );
-  }
+            <div>
+                <ProgressText>{Math.round(this.props.percentage * 100)}% completed</ProgressText>
+                <Bar percentage={this.props.percentage}/>
+            </div>
+        )
+    }
 }
 
-function mapStateToProps(state) {
-  return { questionSections: state.questions.body };
-}
-
-ProgressBar.propTypes = {
-  questionSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  id: PropTypes.string.isRequired,
-};
-
-export default connect(mapStateToProps, null)(ProgressBar);
+export default ProgressBar;
